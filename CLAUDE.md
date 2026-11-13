@@ -108,7 +108,7 @@ npm run lint
 
 ### Code
 
-- Identifiants, docstrings et commentaires de code en **anglais**. Documentation produit et discovery en **français**.
+- Identifiants, docstrings, commentaires de code et **nouvelle documentation** (à partir du 2026-11-13, `README.md` inclus) en **anglais**. Les documents historiques de discovery/specs v1 déjà rédigés restent en français.
 - Python : typage complet (`mypy --strict`), Pydantic v2 pour toute donnée qui passe une frontière (API, agents, fichiers JSON). Les calculs de métriques sont des **fonctions pures**, testées sur des cas connus calculés à la main.
 - Les agents échangent **uniquement** des modèles Pydantic de `schemas.py`, jamais de dict libres.
 - On ajoute une dépendance lourde (Whisper, spaCy, sentence-transformers…) seulement quand l'agent qui en a besoin est validé. Chaque composant tiers ajouté est inscrit, avec sa licence vérifiée, dans [`docs/tech/third-party-components.md`](docs/tech/third-party-components.md).
