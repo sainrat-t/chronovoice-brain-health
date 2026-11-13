@@ -1,0 +1,71 @@
+{
+  "synthetic": false,
+  "task_type": "life_story",
+  "language": "eng",
+  "follow_ups": [
+    "What happened next?",
+    "Can you tell me more about that?"
+  ],
+  "prompts": [
+    {
+      "id": "childhood_home",
+      "theme": "Childhood home",
+      "question": "Can you tell me about the home you grew up in?"
+    },
+    {
+      "id": "school_days",
+      "theme": "School days",
+      "question": "What do you remember about your school days?"
+    },
+    {
+      "id": "childhood_friend",
+      "theme": "A childhood friend",
+      "question": "Tell me about a friend from when you were young."
+    },
+    {
+      "id": "first_job",
+      "theme": "First job",
+      "question": "Tell me about your first job."
+    },
+    {
+      "id": "important_person",
+      "theme": "Someone important",
+      "question": "Tell me about someone who mattered a great deal in your life."
+    },
+    {
+      "id": "a_journey",
+      "theme": "A journey",
+      "question": "Tell me about a journey you have never forgotten."
+    },
+    {
+      "id": "celebration",
+      "theme": "A celebration",
+      "question": "Is there a celebration you remember especially well?"
+    },
+    {
+      "id": "family_meal",
+      "theme": "A family meal",
+      "question": "Tell me about a meal or a dish that brings back memories."
+    },
+    {
+      "id": "moving_home",
+      "theme": "Moving to a new place",
+      "question": "Tell me about a time you moved to a new place."
+    },
+    {
+      "id": "working_day",
+      "theme": "A working day",
+      "question": "What was a typical day like in your working life?"
+    },
+    {
+      "id": "mentor",
+      "theme": "A teacher or mentor",
+      "question": "Tell me about a teacher or a mentor who influenced you."
+    },
+    {
+      "id": "proud_moment",
+      "theme": "A proud moment",
+      "question": "Tell me about something you are proud of."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "synthetic": true,
+  "personas": [
+    {
+      "person_id": "margaret-hale",
+      "display_name": "Margaret Hale",
+      "birth_year": 1948,
+      "language": "eng",
+      "summary": "Retired ward sister from Leeds. Moved to Abu Dhabi in 2017 to live near her daughter and grandchildren.",
+      "risk_profile": {
+        "person_id": "margaret-hale",
+        "synthetic": true,
+        "entries": [
+          {"factor": "Blood pressure", "value": "High blood pressure, treated", "shared": true},
+          {"factor": "Diabetes", "value": "No", "shared": true},
+          {"factor": "Cholesterol", "value": "Raised LDL cholesterol, on a statin", "shared": true},
+          {"factor": "Hearing", "value": "Mild hearing loss, no hearing aid", "shared": true},
+          {"factor": "Vision", "value": "Corrected with glasses, cataract surgery in 2023", "shared": true},
+          {"factor": "Sleep", "value": "About 6 hours a night, wakes early", "shared": true},
+          {"factor": "Physical activity", "value": "Walks 20 minutes most days", "shared": true},
+          {"factor": "Mood", "value": "No current concern", "shared": true},
+          {"factor": "Social contact", "value": "Lives alone, sees family weekly, sings in a choir", "shared": true},
+          {"factor": "Smoking", "value": "Never smoked", "shared": true},
+          {"factor": "Alcohol", "value": "Occasional", "shared": true},
+          {"factor": "Family history", "value": "Mother had memory problems in her eighties", "shared": true},
+          {"factor": "Genomic data", "value": null, "shared": false}
+        ]
+      }
+    },
+    {
+      "person_id": "rajesh-menon",
+      "display_name": "Rajesh Menon",
+      "birth_year": 1952,
+      "language": "eng",
+      "summary": "Retired desalination engineer from Thrissur, Kerala. Has lived in Abu Dhabi since 1979.",
+      "risk_profile": {
+        "person_id": "rajesh-menon",
+        "synthetic": true,
+        "entries": [
+          {"factor": "Blood pressure", "value": "Normal", "shared": true},
+          {"factor": "Diabetes", "value": "Type 2 diabetes, controlled with diet and metformin", "shared": true},
+          {"factor": "Cholesterol", "value": "Normal", "shared": true},
+          {"factor": "Hearing", "value": "Normal", "shared": true},
+          {"factor": "Vision", "value": "Reading glasses", "shared": true},
+          {"factor": "Sleep", "value": "About 7 hours a night", "shared": true},
+          {"factor": "Physical activity", "value": "Walks 40 minutes every morning", "shared": true},
+          {"factor": "Mood", "value": "No current concern", "shared": true},
+          {"factor": "Social contact", "value": "Lives with his wife, weekly chess club", "shared": true},
+          {"factor": "Smoking", "value": "Stopped in 1995", "shared": true},
+          {"factor": "Alcohol", "value": "None", "shared": true},
+          {"factor": "Family history", "value": "None known", "shared": true},
+          {"factor": "Genomic data", "value": null, "shared": false}
+        ]
+      }
+    },
+    {
+      "person_id": "grace-santos",
+      "display_name": "Grace Santos",
+      "birth_year": 1954,
+      "language": "eng",
+      "summary": "Retired primary school teacher from Iloilo. Has lived in Abu Dhabi since 1992.",
+      "risk_profile": {
+        "person_id": "grace-santos",
+        "synthetic": true,
+        "entries": [
+          {"factor": "Blood pressure", "value": "Borderline, monitored", "shared": true},
+          {"factor": "Diabetes", "value": "No", "shared": true},
+          {"factor": "Cholesterol", "value": "Normal", "shared": true},
+          {"factor": "Hearing", "value": "Normal", "shared": true},
+          {"factor": "Vision", "value": "Corrected with glasses", "shared": true},
+          {"factor": "Sleep", "value": "Irregular, 5 to 7 hours a night", "shared": true},
+          {"factor": "Physical activity", "value": "Gentle exercise class twice a week", "shared": true},
+          {"factor": "Mood", "value": "No current concern", "shared": true},
+          {"factor": "Social contact", "value": "Lives with her husband, church choir, large circle of friends", "shared": true},
+          {"factor": "Smoking", "value": "Never smoked", "shared": true},
+          {"factor": "Alcohol", "value": "None", "shared": true},
+          {"factor": "Family history", "value": "None known", "shared": true},
+          {"factor": "Genomic data", "value": null, "shared": false}
+        ]
+      }
+    }
+  ]
+}

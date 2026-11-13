@@ -1,0 +1,41 @@
+[project]
+name = "chronovoice-backend"
+version = "0.1.0"
+description = "ChronoVoice Brain - longitudinal speech & language biomarkers API (non-diagnostic)"
+requires-python = ">=3.11"
+dependencies = [
+    "en-core-web-sm",
+    "fastapi>=0.115",
+    "langcodes>=3.4",
+    "pydantic>=2.9",
+    "spacy>=3.8,<3.9",
+    "uvicorn[standard]>=0.32",
+    "wordfreq>=3.1,<4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "httpx>=0.27",
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "numpy>=2",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "SIM", "RUF"]
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.uv.sources]
+en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }
