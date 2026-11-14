@@ -1,0 +1,2949 @@
+{
+ "components": {
+  "schemas": {
+   "AnnotatedTranscript": {
+    "additionalProperties": false,
+    "properties": {
+     "pause_threshold_s": {
+      "title": "Pause Threshold S",
+      "type": "number"
+     },
+     "target_speaker_id": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Target Speaker Id"
+     },
+     "turns": {
+      "items": {
+       "$ref": "#/components/schemas/TranscriptTurn"
+      },
+      "title": "Turns",
+      "type": "array"
+     }
+    },
+    "required": [
+     "target_speaker_id",
+     "pause_threshold_s",
+     "turns"
+    ],
+    "title": "AnnotatedTranscript",
+    "type": "object"
+   },
+   "BaselineReference": {
+    "additionalProperties": false,
+    "description": "Personal reference: the first 3 to 5 usable sessions of one task type.",
+    "properties": {
+     "change_index_values": {
+      "description": "Change index of each baseline session, in session_ids order.",
+      "items": {
+       "type": "number"
+      },
+      "title": "Change Index Values",
+      "type": "array"
+     },
+     "is_frozen": {
+      "title": "Is Frozen",
+      "type": "boolean"
+     },
+     "markers": {
+      "items": {
+       "$ref": "#/components/schemas/MarkerBaseline"
+      },
+      "title": "Markers",
+      "type": "array"
+     },
+     "session_ids": {
+      "items": {
+       "maxLength": 128,
+       "minLength": 1,
+       "type": "string"
+      },
+      "maxItems": 5,
+      "minItems": 3,
+      "title": "Session Ids",
+      "type": "array"
+     },
+     "task_type": {
+      "$ref": "#/components/schemas/TaskType"
+     }
+    },
+    "required": [
+     "task_type",
+     "session_ids",
+     "is_frozen",
+     "markers",
+     "change_index_values"
+    ],
+    "title": "BaselineReference",
+    "type": "object"
+   },
+   "Body_receive_recording_api_integrations_recordings_post": {
+    "properties": {
+     "audio": {
+      "contentMediaType": "application/octet-stream",
+      "title": "Audio",
+      "type": "string"
+     },
+     "metadata": {
+      "title": "Metadata",
+      "type": "string"
+     }
+    },
+    "required": [
+     "audio",
+     "metadata"
+    ],
+    "title": "Body_receive_recording_api_integrations_recordings_post",
+    "type": "object"
+   },
+   "Body_upload_session_api_people__person_id__sessions_post": {
+    "properties": {
+     "audio": {
+      "contentMediaType": "application/octet-stream",
+      "title": "Audio",
+      "type": "string"
+     },
+     "metadata": {
+      "title": "Metadata",
+      "type": "string"
+     }
+    },
+    "required": [
+     "audio",
+     "metadata"
+    ],
+    "title": "Body_upload_session_api_people__person_id__sessions_post",
+    "type": "object"
+   },
+   "ChangeIndexScore": {
+    "additionalProperties": false,
+    "description": "How far a session sits from the personal baseline.\n\n``value`` is the mean of the oriented z-scores of the tested markers, with equal\nweights (composite method of Robin 2023, study note 09). It is in units of the\nperson's own variability: 0 means \"as usual\", positive values point toward decline.\nIt is displayed as \"Change from baseline\". The orientation level is decided on the\nnumber of significant markers, not on this value (docs/specs/pipeline.md, step 3).",
+    "properties": {
+     "significant_markers": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/MarkerId"
+      },
+      "title": "Significant Markers",
+      "type": "array"
+     },
+     "tested_markers": {
+      "items": {
+       "$ref": "#/components/schemas/MarkerId"
+      },
+      "minItems": 1,
+      "title": "Tested Markers",
+      "type": "array"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     }
+    },
+    "required": [
+     "value",
+     "tested_markers"
+    ],
+    "title": "ChangeIndexScore",
+    "type": "object"
+   },
+   "ClinicalSummaryReport": {
+    "additionalProperties": false,
+    "description": "Output of step 4: non-diagnostic summary for the clinician and the person.",
+    "properties": {
+     "clinician_summary": {
+      "$ref": "#/components/schemas/ClinicianSummary"
+     },
+     "generation_mode": {
+      "$ref": "#/components/schemas/GenerationMode"
+     },
+     "model_id": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Model Id"
+     },
+     "orientation_level": {
+      "$ref": "#/components/schemas/OrientationLevel"
+     },
+     "person_explanation": {
+      "minLength": 1,
+      "title": "Person Explanation",
+      "type": "string"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "prevention_notes": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/PreventionNote"
+      },
+      "title": "Prevention Notes",
+      "type": "array"
+     },
+     "review": {
+      "$ref": "#/components/schemas/ReviewRecord"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "session_id",
+     "person_id",
+     "orientation_level",
+     "clinician_summary",
+     "person_explanation",
+     "generation_mode"
+    ],
+    "title": "ClinicalSummaryReport",
+    "type": "object"
+   },
+   "ClinicianSummary": {
+    "additionalProperties": false,
+    "properties": {
+     "findings": {
+      "items": {
+       "$ref": "#/components/schemas/Finding"
+      },
+      "title": "Findings",
+      "type": "array"
+     },
+     "headline": {
+      "minLength": 1,
+      "title": "Headline",
+      "type": "string"
+     },
+     "suggested_action": {
+      "$ref": "#/components/schemas/SuggestedAction"
+     },
+     "uncertainty_statement": {
+      "minLength": 1,
+      "title": "Uncertainty Statement",
+      "type": "string"
+     }
+    },
+    "required": [
+     "headline",
+     "findings",
+     "uncertainty_statement",
+     "suggested_action"
+    ],
+    "title": "ClinicianSummary",
+    "type": "object"
+   },
+   "DeclineDirection": {
+    "description": "Direction in which a marker moves with cognitive decline, per the literature.",
+    "enum": [
+     "increase",
+     "decrease",
+     "uncertain"
+    ],
+    "title": "DeclineDirection",
+    "type": "string"
+   },
+   "Episode": {
+    "additionalProperties": false,
+    "properties": {
+     "episode_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Episode Id",
+      "type": "string"
+     },
+     "life_period": {
+      "$ref": "#/components/schemas/LifePeriod"
+     },
+     "people": {
+      "default": [],
+      "items": {
+       "minLength": 1,
+       "type": "string"
+      },
+      "title": "People",
+      "type": "array"
+     },
+     "places": {
+      "default": [],
+      "items": {
+       "minLength": 1,
+       "type": "string"
+      },
+      "title": "Places",
+      "type": "array"
+     },
+     "summary": {
+      "minLength": 1,
+      "title": "Summary",
+      "type": "string"
+     },
+     "time_references": {
+      "default": [],
+      "items": {
+       "minLength": 1,
+       "type": "string"
+      },
+      "title": "Time References",
+      "type": "array"
+     },
+     "utterance_indices": {
+      "items": {
+       "minimum": 0.0,
+       "type": "integer"
+      },
+      "minItems": 1,
+      "title": "Utterance Indices",
+      "type": "array"
+     }
+    },
+    "required": [
+     "episode_id",
+     "summary",
+     "life_period",
+     "utterance_indices"
+    ],
+    "title": "Episode",
+    "type": "object"
+   },
+   "FamilyScore": {
+    "additionalProperties": false,
+    "description": "Mean oriented z-score of the index markers of one family (display only).",
+    "properties": {
+     "family": {
+      "$ref": "#/components/schemas/MarkerFamily"
+     },
+     "value": {
+      "title": "Value",
+      "type": "number"
+     }
+    },
+    "required": [
+     "family",
+     "value"
+    ],
+    "title": "FamilyScore",
+    "type": "object"
+   },
+   "Finding": {
+    "additionalProperties": false,
+    "description": "One statement of the clinician summary, always tied to at least one marker.",
+    "properties": {
+     "beyond_usual_range": {
+      "description": "True when the finding reports markers beyond the person's usual range; step 4 checks this claim against the tests of step 3.",
+      "title": "Beyond Usual Range",
+      "type": "boolean"
+     },
+     "marker_ids": {
+      "items": {
+       "$ref": "#/components/schemas/MarkerId"
+      },
+      "minItems": 1,
+      "title": "Marker Ids",
+      "type": "array"
+     },
+     "passages": {
+      "default": [],
+      "items": {
+       "minLength": 1,
+       "type": "string"
+      },
+      "title": "Passages",
+      "type": "array"
+     },
+     "study_refs": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/StudyRef"
+      },
+      "title": "Study Refs",
+      "type": "array"
+     },
+     "text": {
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "text",
+     "beyond_usual_range",
+     "marker_ids"
+    ],
+    "title": "Finding",
+    "type": "object"
+   },
+   "GenerationMode": {
+    "enum": [
+     "llm",
+     "template",
+     "template_fallback"
+    ],
+    "title": "GenerationMode",
+    "type": "string"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "title": "Detail",
+      "type": "array"
+     }
+    },
+    "title": "HTTPValidationError",
+    "type": "object"
+   },
+   "LifePeriod": {
+    "enum": [
+     "childhood",
+     "adolescence",
+     "young_adulthood",
+     "middle_adulthood",
+     "later_life",
+     "unspecified"
+    ],
+    "title": "LifePeriod",
+    "type": "string"
+   },
+   "LongitudinalComparisonResult": {
+    "additionalProperties": false,
+    "description": "Output of step 3 for one session.",
+    "properties": {
+     "baseline": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/BaselineReference"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "change_index": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/ChangeIndexScore"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "family_scores": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/FamilyScore"
+      },
+      "title": "Family Scores",
+      "type": "array"
+     },
+     "markers": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/MarkerDeviation"
+      },
+      "title": "Markers",
+      "type": "array"
+     },
+     "orientation": {
+      "$ref": "#/components/schemas/OrientationDecision"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     },
+     "task_type": {
+      "$ref": "#/components/schemas/TaskType"
+     },
+     "uncertainty": {
+      "$ref": "#/components/schemas/Uncertainty"
+     }
+    },
+    "required": [
+     "session_id",
+     "person_id",
+     "task_type",
+     "baseline",
+     "orientation",
+     "uncertainty"
+    ],
+    "title": "LongitudinalComparisonResult",
+    "type": "object"
+   },
+   "MarkerBaseline": {
+    "additionalProperties": false,
+    "properties": {
+     "marker": {
+      "$ref": "#/components/schemas/MarkerId"
+     },
+     "mean": {
+      "title": "Mean",
+      "type": "number"
+     },
+     "n": {
+      "minimum": 0.0,
+      "title": "N",
+      "type": "integer"
+     },
+     "sd": {
+      "minimum": 0.0,
+      "title": "Sd",
+      "type": "number"
+     }
+    },
+    "required": [
+     "marker",
+     "mean",
+     "sd",
+     "n"
+    ],
+    "title": "MarkerBaseline",
+    "type": "object"
+   },
+   "MarkerDeviation": {
+    "additionalProperties": false,
+    "properties": {
+     "baseline_mean": {
+      "title": "Baseline Mean",
+      "type": "number"
+     },
+     "baseline_sd": {
+      "minimum": 0.0,
+      "title": "Baseline Sd",
+      "type": "number"
+     },
+     "marker": {
+      "$ref": "#/components/schemas/MarkerId"
+     },
+     "test": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SignificanceTest"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "None when the marker cannot be tested: missing value, baseline without variance, or uncertain direction of decline."
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Value"
+     }
+    },
+    "required": [
+     "marker",
+     "value",
+     "baseline_mean",
+     "baseline_sd",
+     "test"
+    ],
+    "title": "MarkerDeviation",
+    "type": "object"
+   },
+   "MarkerFamily": {
+    "enum": [
+     "semantic",
+     "fluency",
+     "lexical"
+    ],
+    "title": "MarkerFamily",
+    "type": "string"
+   },
+   "MarkerId": {
+    "description": "Language markers computed by step 1 (definitions in docs/specs/pipeline.md).",
+    "enum": [
+     "pronoun_index",
+     "noun_ratio",
+     "mean_word_frequency",
+     "mean_word_length",
+     "maze_index",
+     "speech_rate_wpm",
+     "pauses_between_per100w",
+     "pauses_within_per100w",
+     "mattr_50"
+    ],
+    "title": "MarkerId",
+    "type": "string"
+   },
+   "MarkerSpec": {
+    "additionalProperties": false,
+    "description": "Static description of a marker, shown to clinicians (definition and sources).",
+    "properties": {
+     "decline_direction": {
+      "$ref": "#/components/schemas/DeclineDirection"
+     },
+     "definition": {
+      "minLength": 1,
+      "title": "Definition",
+      "type": "string"
+     },
+     "family": {
+      "$ref": "#/components/schemas/MarkerFamily"
+     },
+     "in_change_index": {
+      "title": "In Change Index",
+      "type": "boolean"
+     },
+     "label": {
+      "minLength": 1,
+      "title": "Label",
+      "type": "string"
+     },
+     "marker": {
+      "$ref": "#/components/schemas/MarkerId"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/StudyRef"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+     }
+    },
+    "required": [
+     "marker",
+     "label",
+     "family",
+     "decline_direction",
+     "in_change_index",
+     "definition",
+     "sources"
+    ],
+    "title": "MarkerSpec",
+    "type": "object"
+   },
+   "MarkerValue": {
+    "additionalProperties": false,
+    "description": "Value of one marker for one session; None when it cannot be computed.",
+    "properties": {
+     "marker": {
+      "$ref": "#/components/schemas/MarkerId"
+     },
+     "n_units": {
+      "description": "Count the value is computed on.",
+      "minimum": 0.0,
+      "title": "N Units",
+      "type": "integer"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Value"
+     }
+    },
+    "required": [
+     "marker",
+     "value",
+     "n_units"
+    ],
+    "title": "MarkerValue",
+    "type": "object"
+   },
+   "Mood": {
+    "enum": [
+     "good",
+     "neutral",
+     "low"
+    ],
+    "title": "Mood",
+    "type": "string"
+   },
+   "NarrativeAnalysis": {
+    "additionalProperties": false,
+    "description": "Output of step 2. Always experimental; never enters the change index.",
+    "properties": {
+     "episodes": {
+      "items": {
+       "$ref": "#/components/schemas/Episode"
+      },
+      "title": "Episodes",
+      "type": "array"
+     },
+     "experimental": {
+      "const": true,
+      "default": true,
+      "title": "Experimental",
+      "type": "boolean"
+     },
+     "model_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Model Id",
+      "type": "string"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "repetitions": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/Repetition"
+      },
+      "title": "Repetitions",
+      "type": "array"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "session_id",
+     "person_id",
+     "model_id",
+     "episodes"
+    ],
+    "title": "NarrativeAnalysis",
+    "type": "object"
+   },
+   "OrientationDecision": {
+    "additionalProperties": false,
+    "properties": {
+     "level": {
+      "$ref": "#/components/schemas/OrientationLevel"
+     },
+     "rule": {
+      "$ref": "#/components/schemas/OrientationRule"
+     },
+     "suggested_action": {
+      "$ref": "#/components/schemas/SuggestedAction"
+     }
+    },
+    "required": [
+     "level",
+     "rule",
+     "suggested_action"
+    ],
+    "title": "OrientationDecision",
+    "type": "object"
+   },
+   "OrientationLevel": {
+    "enum": [
+     "building_baseline",
+     "stable",
+     "monitor",
+     "review_recommended"
+    ],
+    "title": "OrientationLevel",
+    "type": "string"
+   },
+   "OrientationRule": {
+    "description": "Which rule of docs/specs/pipeline.md (step 3) produced the orientation level.",
+    "enum": [
+     "insufficient_baseline",
+     "not_significant",
+     "single_significant",
+     "adverse_context_capped",
+     "persistent_two_sessions",
+     "rapid_drop",
+     "carried_over"
+    ],
+    "title": "OrientationRule",
+    "type": "string"
+   },
+   "OrientationView": {
+    "additionalProperties": false,
+    "description": "The orientation card: the level of the last compared session, in words.",
+    "properties": {
+     "action_text": {
+      "title": "Action Text",
+      "type": "string"
+     },
+     "adverse_context": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Adverse Context",
+      "type": "array"
+     },
+     "level": {
+      "$ref": "#/components/schemas/OrientationLevel"
+     },
+     "recorded_at": {
+      "format": "date-time",
+      "title": "Recorded At",
+      "type": "string"
+     },
+     "rule": {
+      "$ref": "#/components/schemas/OrientationRule"
+     },
+     "rule_text": {
+      "title": "Rule Text",
+      "type": "string"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "suggested_action": {
+      "$ref": "#/components/schemas/SuggestedAction"
+     },
+     "uncertainty": {
+      "$ref": "#/components/schemas/Uncertainty"
+     }
+    },
+    "required": [
+     "session_id",
+     "recorded_at",
+     "level",
+     "rule",
+     "rule_text",
+     "suggested_action",
+     "action_text",
+     "uncertainty",
+     "adverse_context"
+    ],
+    "title": "OrientationView",
+    "type": "object"
+   },
+   "Person": {
+    "additionalProperties": false,
+    "properties": {
+     "birth_year": {
+      "anyOf": [
+       {
+        "maximum": 2030.0,
+        "minimum": 1900.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Birth Year"
+     },
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     },
+     "display_name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Display Name",
+      "type": "string"
+     },
+     "external_person_id": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "External Person Id"
+     },
+     "language": {
+      "description": "ISO 639-3 code.",
+      "pattern": "^[a-z]{3}$",
+      "title": "Language",
+      "type": "string"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "source_app": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source App"
+     },
+     "summary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Short background (personas only).",
+      "title": "Summary"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "person_id",
+     "display_name",
+     "language",
+     "created_at"
+    ],
+    "title": "Person",
+    "type": "object"
+   },
+   "PersonCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "birth_year": {
+      "anyOf": [
+       {
+        "maximum": 2030.0,
+        "minimum": 1900.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Birth Year"
+     },
+     "display_name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Display Name",
+      "type": "string"
+     },
+     "language": {
+      "default": "eng",
+      "description": "ISO 639-3 code.",
+      "pattern": "^[a-z]{3}$",
+      "title": "Language",
+      "type": "string"
+     }
+    },
+    "required": [
+     "display_name"
+    ],
+    "title": "PersonCreate",
+    "type": "object"
+   },
+   "PersonDetail": {
+    "additionalProperties": false,
+    "properties": {
+     "age": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Age"
+     },
+     "first_session_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "First Session At"
+     },
+     "last_session_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Session At"
+     },
+     "latest_summary": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/ClinicalSummaryReport"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "orientation": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/OrientationView"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "person": {
+      "$ref": "#/components/schemas/Person"
+     },
+     "retold_anecdotes": {
+      "items": {
+       "$ref": "#/components/schemas/RetoldAnecdote"
+      },
+      "title": "Retold Anecdotes",
+      "type": "array"
+     },
+     "risk_profile": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/RiskProfile"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "sessions": {
+      "items": {
+       "$ref": "#/components/schemas/SessionItem"
+      },
+      "title": "Sessions",
+      "type": "array"
+     },
+     "trajectory": {
+      "$ref": "#/components/schemas/Trajectory"
+     }
+    },
+    "required": [
+     "person",
+     "age",
+     "risk_profile",
+     "first_session_at",
+     "last_session_at",
+     "orientation",
+     "trajectory",
+     "latest_summary",
+     "sessions",
+     "retold_anecdotes"
+    ],
+    "title": "PersonDetail",
+    "type": "object"
+   },
+   "PersonSummary": {
+    "additionalProperties": false,
+    "description": "One row of the list of people (screen 1).",
+    "properties": {
+     "age": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Age"
+     },
+     "baseline_session_count": {
+      "title": "Baseline Session Count",
+      "type": "integer"
+     },
+     "birth_year": {
+      "anyOf": [
+       {
+        "maximum": 2030.0,
+        "minimum": 1900.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Birth Year"
+     },
+     "display_name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Display Name",
+      "type": "string"
+     },
+     "in_progress_count": {
+      "title": "In Progress Count",
+      "type": "integer"
+     },
+     "language": {
+      "description": "ISO 639-3 code.",
+      "pattern": "^[a-z]{3}$",
+      "title": "Language",
+      "type": "string"
+     },
+     "last_session_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Session At"
+     },
+     "orientation_level": {
+      "$ref": "#/components/schemas/OrientationLevel"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "session_count": {
+      "title": "Session Count",
+      "type": "integer"
+     },
+     "synthetic": {
+      "title": "Synthetic",
+      "type": "boolean"
+     },
+     "usable_session_count": {
+      "title": "Usable Session Count",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "person_id",
+     "display_name",
+     "birth_year",
+     "age",
+     "language",
+     "synthetic",
+     "last_session_at",
+     "session_count",
+     "usable_session_count",
+     "in_progress_count",
+     "orientation_level",
+     "baseline_session_count"
+    ],
+    "title": "PersonSummary",
+    "type": "object"
+   },
+   "PreventionNote": {
+    "additionalProperties": false,
+    "properties": {
+     "factor": {
+      "minLength": 1,
+      "title": "Factor",
+      "type": "string"
+     },
+     "source": {
+      "description": "Full citation of a verified reference.",
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+     },
+     "suggestion": {
+      "minLength": 1,
+      "title": "Suggestion",
+      "type": "string"
+     }
+    },
+    "required": [
+     "factor",
+     "suggestion",
+     "source"
+    ],
+    "title": "PreventionNote",
+    "type": "object"
+   },
+   "Prompt": {
+    "additionalProperties": false,
+    "properties": {
+     "follow_ups": {
+      "items": {
+       "minLength": 1,
+       "type": "string"
+      },
+      "title": "Follow Ups",
+      "type": "array"
+     },
+     "prompt_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Prompt Id",
+      "type": "string"
+     },
+     "question": {
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+     },
+     "theme": {
+      "minLength": 1,
+      "title": "Theme",
+      "type": "string"
+     }
+    },
+    "required": [
+     "prompt_id",
+     "theme",
+     "question",
+     "follow_ups"
+    ],
+    "title": "Prompt",
+    "type": "object"
+   },
+   "QualityReason": {
+    "enum": [
+     "no_target_speech",
+     "language_mismatch",
+     "unreadable_audio",
+     "too_few_words",
+     "too_short",
+     "low_confidence"
+    ],
+    "title": "QualityReason",
+    "type": "string"
+   },
+   "QualityReport": {
+    "additionalProperties": false,
+    "description": "Outcome of the step 0 quality control (docs/specs/pipeline.md, step 0).",
+    "properties": {
+     "mean_logprob": {
+      "anyOf": [
+       {
+        "maximum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Logprob"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "reasons": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/QualityReason"
+      },
+      "title": "Reasons",
+      "type": "array"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "status": {
+      "$ref": "#/components/schemas/QualityStatus"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     },
+     "target_speaking_time_s": {
+      "minimum": 0.0,
+      "title": "Target Speaking Time S",
+      "type": "number"
+     },
+     "target_speech_share": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Target Speech Share",
+      "type": "number"
+     },
+     "target_word_count": {
+      "minimum": 0.0,
+      "title": "Target Word Count",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "session_id",
+     "person_id",
+     "status",
+     "target_word_count",
+     "target_speaking_time_s",
+     "target_speech_share"
+    ],
+    "title": "QualityReport",
+    "type": "object"
+   },
+   "QualityStatus": {
+    "enum": [
+     "usable",
+     "partial",
+     "rejected"
+    ],
+    "title": "QualityStatus",
+    "type": "string"
+   },
+   "RecordingContext": {
+    "additionalProperties": false,
+    "description": "Session context entered by the clinician (docs/specs/clinician-ui.md, screen 4).\n\nContext weighs the reliability of a session; it is not a risk factor (hypothesis H9).",
+    "properties": {
+     "acute_illness": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Acute Illness"
+     },
+     "fatigue": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fatigue"
+     },
+     "mood": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Mood"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "new_medication": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "New Medication"
+     },
+     "sleep": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SleepQuality"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "title": "RecordingContext",
+    "type": "object"
+   },
+   "RecordingMetadata": {
+    "additionalProperties": false,
+    "description": "Everything that comes with an audio recording, from the UI or an integration.",
+    "properties": {
+     "consent": {
+      "const": true,
+      "description": "A recording without consent is refused.",
+      "title": "Consent",
+      "type": "boolean"
+     },
+     "context": {
+      "$ref": "#/components/schemas/RecordingContext"
+     },
+     "language": {
+      "description": "ISO 639-3 code.",
+      "pattern": "^[a-z]{3}$",
+      "title": "Language",
+      "type": "string"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "prompt_id": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Prompt Id"
+     },
+     "recorded_at": {
+      "format": "date-time",
+      "title": "Recorded At",
+      "type": "string"
+     },
+     "source": {
+      "$ref": "#/components/schemas/RecordingSource"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     },
+     "target_speaker_hint": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Target Speaker Hint"
+     },
+     "task_type": {
+      "$ref": "#/components/schemas/TaskType"
+     }
+    },
+    "required": [
+     "person_id",
+     "task_type",
+     "language",
+     "consent",
+     "recorded_at",
+     "source"
+    ],
+    "title": "RecordingMetadata",
+    "type": "object"
+   },
+   "RecordingSource": {
+    "enum": [
+     "clinician_ui",
+     "integration"
+    ],
+    "title": "RecordingSource",
+    "type": "string"
+   },
+   "Repetition": {
+    "additionalProperties": false,
+    "description": "An anecdote told again, in the same session or a previous one (Cook 2009).",
+    "properties": {
+     "acknowledgement_quote": {
+      "anyOf": [
+       {
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "The person's own words saying so, as transcribed.",
+      "title": "Acknowledgement Quote"
+     },
+     "episode_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Episode Id",
+      "type": "string"
+     },
+     "previous_episode_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Previous Episode Id",
+      "type": "string"
+     },
+     "previous_session_id": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Previous Session Id"
+     },
+     "quoted_passages": {
+      "items": {
+       "minLength": 1,
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Quoted Passages",
+      "type": "array"
+     },
+     "rationale": {
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+     },
+     "scope": {
+      "$ref": "#/components/schemas/RepetitionScope"
+     },
+     "self_flagged": {
+      "description": "The person says they already told it.",
+      "title": "Self Flagged",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "episode_id",
+     "scope",
+     "previous_episode_id",
+     "self_flagged",
+     "rationale",
+     "quoted_passages"
+    ],
+    "title": "Repetition",
+    "type": "object"
+   },
+   "RepetitionScope": {
+    "enum": [
+     "within_session",
+     "across_sessions"
+    ],
+    "title": "RepetitionScope",
+    "type": "string"
+   },
+   "RetoldAnecdote": {
+    "additionalProperties": false,
+    "description": "An anecdote told again, from step 2 (experimental, not in the index).",
+    "properties": {
+     "acknowledgement_quote": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Acknowledgement Quote"
+     },
+     "episode_summary": {
+      "title": "Episode Summary",
+      "type": "string"
+     },
+     "previous_episode_summary": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Previous Episode Summary"
+     },
+     "previous_recorded_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Previous Recorded At"
+     },
+     "previous_session_id": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Previous Session Id"
+     },
+     "quoted_passages": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Quoted Passages",
+      "type": "array"
+     },
+     "rationale": {
+      "title": "Rationale",
+      "type": "string"
+     },
+     "recorded_at": {
+      "format": "date-time",
+      "title": "Recorded At",
+      "type": "string"
+     },
+     "scope": {
+      "$ref": "#/components/schemas/RepetitionScope"
+     },
+     "self_flagged": {
+      "title": "Self Flagged",
+      "type": "boolean"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "session_id",
+     "recorded_at",
+     "episode_summary",
+     "scope",
+     "previous_session_id",
+     "previous_recorded_at",
+     "previous_episode_summary",
+     "self_flagged",
+     "acknowledgement_quote",
+     "rationale",
+     "quoted_passages"
+    ],
+    "title": "RetoldAnecdote",
+    "type": "object"
+   },
+   "ReviewRecord": {
+    "additionalProperties": false,
+    "description": "Human oversight: a summary stays a draft until a clinician validates it.",
+    "properties": {
+     "reviewed_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reviewed At"
+     },
+     "reviewed_by": {
+      "anyOf": [
+       {
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reviewed By"
+     },
+     "status": {
+      "$ref": "#/components/schemas/ReviewStatus",
+      "default": "draft"
+     }
+    },
+    "title": "ReviewRecord",
+    "type": "object"
+   },
+   "ReviewRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "reviewed_by": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Reviewed By",
+      "type": "string"
+     }
+    },
+    "required": [
+     "reviewed_by"
+    ],
+    "title": "ReviewRequest",
+    "type": "object"
+   },
+   "ReviewStatus": {
+    "enum": [
+     "draft",
+     "validated"
+    ],
+    "title": "ReviewStatus",
+    "type": "string"
+   },
+   "RiskFactorEntry": {
+    "additionalProperties": false,
+    "properties": {
+     "factor": {
+      "minLength": 1,
+      "title": "Factor",
+      "type": "string"
+     },
+     "shared": {
+      "description": "Whether the person authorised sharing this item.",
+      "title": "Shared",
+      "type": "boolean"
+     },
+     "value": {
+      "anyOf": [
+       {
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Value"
+     }
+    },
+    "required": [
+     "factor",
+     "shared"
+    ],
+    "title": "RiskFactorEntry",
+    "type": "object"
+   },
+   "RiskProfile": {
+    "additionalProperties": false,
+    "properties": {
+     "entries": {
+      "items": {
+       "$ref": "#/components/schemas/RiskFactorEntry"
+      },
+      "title": "Entries",
+      "type": "array"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "person_id",
+     "entries"
+    ],
+    "title": "RiskProfile",
+    "type": "object"
+   },
+   "SessionAccepted": {
+    "additionalProperties": false,
+    "properties": {
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "status": {
+      "$ref": "#/components/schemas/SessionStatus"
+     },
+     "status_url": {
+      "title": "Status Url",
+      "type": "string"
+     }
+    },
+    "required": [
+     "session_id",
+     "status",
+     "status_url"
+    ],
+    "title": "SessionAccepted",
+    "type": "object"
+   },
+   "SessionDetail": {
+    "additionalProperties": false,
+    "properties": {
+     "comparison": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/LongitudinalComparisonResult"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "error": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Error"
+     },
+     "metadata": {
+      "$ref": "#/components/schemas/RecordingMetadata"
+     },
+     "metrics": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SessionMetrics"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "narrative": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/NarrativeAnalysis"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "prompt": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Prompt"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "quality": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/QualityReport"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "session": {
+      "$ref": "#/components/schemas/SessionItem"
+     },
+     "summary": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/ClinicalSummaryReport"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "transcript": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/AnnotatedTranscript"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "required": [
+     "session",
+     "metadata",
+     "prompt",
+     "error",
+     "quality",
+     "metrics",
+     "comparison",
+     "narrative",
+     "summary",
+     "transcript"
+    ],
+    "title": "SessionDetail",
+    "type": "object"
+   },
+   "SessionItem": {
+    "additionalProperties": false,
+    "description": "One session in a list (screen 2, list of sessions).",
+    "properties": {
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "prompt_id": {
+      "anyOf": [
+       {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Prompt Id"
+     },
+     "quality_status": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/QualityStatus"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "recorded_at": {
+      "format": "date-time",
+      "title": "Recorded At",
+      "type": "string"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "source": {
+      "$ref": "#/components/schemas/RecordingSource"
+     },
+     "speaking_time_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Speaking Time S"
+     },
+     "status": {
+      "$ref": "#/components/schemas/SessionStatus"
+     },
+     "synthetic": {
+      "title": "Synthetic",
+      "type": "boolean"
+     },
+     "theme": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Theme"
+     }
+    },
+    "required": [
+     "session_id",
+     "person_id",
+     "recorded_at",
+     "source",
+     "prompt_id",
+     "theme",
+     "status",
+     "quality_status",
+     "speaking_time_s",
+     "synthetic"
+    ],
+    "title": "SessionItem",
+    "type": "object"
+   },
+   "SessionMetrics": {
+    "additionalProperties": false,
+    "description": "All marker values of one session (target speaker only).",
+    "properties": {
+     "markers": {
+      "items": {
+       "$ref": "#/components/schemas/MarkerValue"
+      },
+      "title": "Markers",
+      "type": "array"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "session_id",
+     "person_id",
+     "markers"
+    ],
+    "title": "SessionMetrics",
+    "type": "object"
+   },
+   "SessionStatus": {
+    "description": "Processing of a session (docs/specs/api.md, section 3).",
+    "enum": [
+     "received",
+     "transcribing",
+     "analysing",
+     "summarising",
+     "done",
+     "rejected",
+     "failed"
+    ],
+    "title": "SessionStatus",
+    "type": "string"
+   },
+   "SessionStatusView": {
+    "additionalProperties": false,
+    "properties": {
+     "error": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Error"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     },
+     "status": {
+      "$ref": "#/components/schemas/SessionStatus"
+     },
+     "step": {
+      "title": "Step",
+      "type": "string"
+     }
+    },
+    "required": [
+     "session_id",
+     "status",
+     "step"
+    ],
+    "title": "SessionStatusView",
+    "type": "object"
+   },
+   "SignificanceTest": {
+    "additionalProperties": false,
+    "description": "One-sided single-case t-test of one marker against the personal baseline.\n\nModified t-test for comparing one case with a small sample (Crawford & Howell, 1998),\nas extended by Crawford JR, Garthwaite PH (2002), Neuropsychologia 40(8):1196-1208,\nDOI 10.1016/s0028-3932(01)00224-x, PMID 11931923. Here the small sample is the\nperson's own baseline sessions. ``t`` is oriented so that positive values point\ntoward decline; ``significant`` means it reaches the one-sided 0.05 critical value\nof Student's t with ``df`` degrees of freedom (conventional threshold).",
+    "properties": {
+     "df": {
+      "maximum": 4.0,
+      "minimum": 2.0,
+      "title": "Df",
+      "type": "integer"
+     },
+     "significant": {
+      "title": "Significant",
+      "type": "boolean"
+     },
+     "t": {
+      "title": "T",
+      "type": "number"
+     }
+    },
+    "required": [
+     "t",
+     "df",
+     "significant"
+    ],
+    "title": "SignificanceTest",
+    "type": "object"
+   },
+   "SleepQuality": {
+    "enum": [
+     "good",
+     "average",
+     "poor"
+    ],
+    "title": "SleepQuality",
+    "type": "string"
+   },
+   "StudyRef": {
+    "description": "Study notes that generated text may cite (docs/discovery/studies/).",
+    "enum": [
+     "01-snowdon-1996",
+     "02-fraser-2016",
+     "03-garrard-2005",
+     "04-agbavor-2022",
+     "05-de-la-fuente-garcia-2020",
+     "06-pistono-2016",
+     "07-murphy-2008",
+     "08-mueller-2018",
+     "09-robin-2023",
+     "10-kemper-2001"
+    ],
+    "title": "StudyRef",
+    "type": "string"
+   },
+   "SuggestedAction": {
+    "enum": [
+     "continue_baseline",
+     "routine_follow_up",
+     "repeat_within_two_weeks",
+     "professional_review"
+    ],
+    "title": "SuggestedAction",
+    "type": "string"
+   },
+   "TaskType": {
+    "description": "Kind of speech task. The personal baseline is kept per task type.",
+    "enum": [
+     "life_story"
+    ],
+    "title": "TaskType",
+    "type": "string"
+   },
+   "Trajectory": {
+    "additionalProperties": false,
+    "properties": {
+     "marker_specs": {
+      "items": {
+       "$ref": "#/components/schemas/MarkerSpec"
+      },
+      "title": "Marker Specs",
+      "type": "array"
+     },
+     "person_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Person Id",
+      "type": "string"
+     },
+     "points": {
+      "items": {
+       "$ref": "#/components/schemas/TrajectoryPoint"
+      },
+      "title": "Points",
+      "type": "array"
+     }
+    },
+    "required": [
+     "person_id",
+     "marker_specs",
+     "points"
+    ],
+    "title": "Trajectory",
+    "type": "object"
+   },
+   "TrajectoryPoint": {
+    "additionalProperties": false,
+    "properties": {
+     "comparison": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/LongitudinalComparisonResult"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "None for a rejected session, which is only marked on the time axis."
+     },
+     "metrics": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SessionMetrics"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Marker values, also for the sessions that build the baseline."
+     },
+     "quality_status": {
+      "$ref": "#/components/schemas/QualityStatus"
+     },
+     "recorded_at": {
+      "format": "date-time",
+      "title": "Recorded At",
+      "type": "string"
+     },
+     "session_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Session Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "session_id",
+     "recorded_at",
+     "quality_status",
+     "metrics",
+     "comparison"
+    ],
+    "title": "TrajectoryPoint",
+    "type": "object"
+   },
+   "TranscriptItem": {
+    "additionalProperties": false,
+    "properties": {
+     "between_utterances": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "For a pause: after the end of a sentence.",
+      "title": "Between Utterances"
+     },
+     "end_s": {
+      "title": "End S",
+      "type": "number"
+     },
+     "kind": {
+      "$ref": "#/components/schemas/TranscriptItemKind"
+     },
+     "repeated": {
+      "default": false,
+      "description": "Part of a word or phrase said twice in a row.",
+      "title": "Repeated",
+      "type": "boolean"
+     },
+     "start_s": {
+      "title": "Start S",
+      "type": "number"
+     },
+     "text": {
+      "description": "As transcribed; empty for a pause.",
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "kind",
+     "text",
+     "start_s",
+     "end_s"
+    ],
+    "title": "TranscriptItem",
+    "type": "object"
+   },
+   "TranscriptItemKind": {
+    "enum": [
+     "word",
+     "filler",
+     "cut_off",
+     "audio_event",
+     "pause"
+    ],
+    "title": "TranscriptItemKind",
+    "type": "string"
+   },
+   "TranscriptTurn": {
+    "additionalProperties": false,
+    "properties": {
+     "is_tracked_speaker": {
+      "title": "Is Tracked Speaker",
+      "type": "boolean"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/TranscriptItem"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "speaker_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Speaker Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "speaker_id",
+     "is_tracked_speaker",
+     "items"
+    ],
+    "title": "TranscriptTurn",
+    "type": "object"
+   },
+   "Uncertainty": {
+    "additionalProperties": false,
+    "description": "What the clinician must see next to every score (CLAUDE.md, clinical rule 5).",
+    "properties": {
+     "adverse_context": {
+      "title": "Adverse Context",
+      "type": "boolean"
+     },
+     "baseline_change_index_range": {
+      "anyOf": [
+       {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "type": "number"
+         },
+         {
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Baseline Change Index Range"
+     },
+     "baseline_session_count": {
+      "minimum": 0.0,
+      "title": "Baseline Session Count",
+      "type": "integer"
+     },
+     "quality_status": {
+      "$ref": "#/components/schemas/QualityStatus"
+     }
+    },
+    "required": [
+     "baseline_session_count",
+     "quality_status",
+     "adverse_context"
+    ],
+    "title": "Uncertainty",
+    "type": "object"
+   },
+   "ValidationError": {
+    "properties": {
+     "ctx": {
+      "title": "Context",
+      "type": "object"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "title": "Location",
+      "type": "array"
+     },
+     "msg": {
+      "title": "Message",
+      "type": "string"
+     },
+     "type": {
+      "title": "Error Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError",
+    "type": "object"
+   }
+  }
+ },
+ "info": {
+  "description": "Longitudinal speech and language biomarkers from life-story recordings, for early detection of cognitive change. Screening support only - non-diagnostic.",
+  "title": "ChronoVoice Brain API",
+  "version": "0.2.0"
+ },
+ "openapi": "3.1.0",
+ "paths": {
+  "/api/integrations/recordings": {
+   "post": {
+    "description": "Another application that records speech (for example MyM\u00e9moires) sends a recording.\n\nThe person is matched by ``source_app`` and ``external_person_id``, and created\nwhen unknown (docs/specs/api.md, section 5).",
+    "operationId": "receive_recording_api_integrations_recordings_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "x-integration-key",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Integration-Key"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_receive_recording_api_integrations_recordings_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionAccepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Receive Recording"
+   }
+  },
+  "/api/people": {
+   "get": {
+    "operationId": "list_people_api_people_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/PersonSummary"
+         },
+         "title": "Response List People Api People Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "List People"
+   },
+   "post": {
+    "operationId": "create_person_api_people_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PersonCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Person"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Create Person"
+   }
+  },
+  "/api/people/{person_id}": {
+   "get": {
+    "operationId": "get_person_api_people__person_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "person_id",
+      "required": true,
+      "schema": {
+       "title": "Person Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PersonDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Person"
+   }
+  },
+  "/api/people/{person_id}/sessions": {
+   "post": {
+    "operationId": "upload_session_api_people__person_id__sessions_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "person_id",
+      "required": true,
+      "schema": {
+       "title": "Person Id",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_upload_session_api_people__person_id__sessions_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionAccepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Upload Session"
+   }
+  },
+  "/api/people/{person_id}/summary/review": {
+   "post": {
+    "description": "The clinician validates the summary of the person's last processed session.",
+    "operationId": "review_summary_api_people__person_id__summary_review_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "person_id",
+      "required": true,
+      "schema": {
+       "title": "Person Id",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReviewRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ClinicalSummaryReport"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Review Summary"
+   }
+  },
+  "/api/people/{person_id}/trajectory": {
+   "get": {
+    "operationId": "get_trajectory_api_people__person_id__trajectory_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "person_id",
+      "required": true,
+      "schema": {
+       "title": "Person Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Trajectory"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Trajectory"
+   }
+  },
+  "/api/prompts": {
+   "get": {
+    "description": "A theme never asked to this person; ``exclude`` skips themes already offered.",
+    "operationId": "choose_prompt_api_prompts_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "person_id",
+      "required": true,
+      "schema": {
+       "title": "Person Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "exclude",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "items": {
+          "type": "string"
+         },
+         "type": "array"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Exclude"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Prompt"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Choose Prompt"
+   }
+  },
+  "/api/sessions/{session_id}": {
+   "get": {
+    "operationId": "get_session_api_sessions__session_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "session_id",
+      "required": true,
+      "schema": {
+       "title": "Session Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionDetail"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Session"
+   }
+  },
+  "/api/sessions/{session_id}/retry": {
+   "post": {
+    "description": "Run a failed session again, as long as its audio is still there.",
+    "operationId": "retry_session_api_sessions__session_id__retry_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "session_id",
+      "required": true,
+      "schema": {
+       "title": "Session Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionAccepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Retry Session"
+   }
+  },
+  "/api/sessions/{session_id}/status": {
+   "get": {
+    "operationId": "get_session_status_api_sessions__session_id__status_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "session_id",
+      "required": true,
+      "schema": {
+       "title": "Session Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionStatusView"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Session Status"
+   }
+  },
+  "/health": {
+   "get": {
+    "description": "Liveness probe. `phase` tracks the project stage (see CLAUDE.md).",
+    "operationId": "health_health_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": {
+          "type": "string"
+         },
+         "title": "Response Health Health Get",
+         "type": "object"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Health"
+   }
+  }
+ }
+}

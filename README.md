@@ -42,17 +42,23 @@ Audio recording + metadata (RecordingMetadata)
 .
 ├── backend/
 │   ├── app/
-│   │   ├── main.py              # FastAPI entrypoint (GET /health)
+│   │   ├── main.py              # FastAPI app: /health and the /api routes
 │   │   ├── schemas.py           # Pydantic v2 contracts and clinical safety validators
+│   │   ├── api/                 # API response models, views, annotated transcript
+│   │   ├── store.py             # SQLite storage
+│   │   ├── processing.py        # Background processing of a session, audio to summary
+│   │   ├── demo.py              # Loads the personas (with their frozen LLM texts)
 │   │   ├── demo_data.py         # Synthetic persona and session loader/runner
-│   │   ├── agents/              # Pipeline steps (capture, segmentation, markers, drift, pipeline)
+│   │   ├── agents/              # Pipeline steps (transcription, capture, segmentation, markers,
+│   │   │                        #   narrative, drift, summary)
+│   │   ├── llm/                 # Model clients for steps 2 and 4 (Mistral, Claude)
 │   │   └── language/            # Language adapters (protocol + English)
 │   ├── data/
 │   │   ├── prompts.json         # Life-story prompt bank and follow-ups
-│   │   └── synthetic/           # Personas, generation params, stories, and 30 generated sessions
+│   │   └── synthetic/           # Personas, stories, 30 generated sessions, frozen LLM texts
 │   ├── scripts/                 # Synthetic data generator, trajectory report, Monte Carlo simulation
 │   └── tests/                   # pytest suite (pipeline, schemas, synthetic data, OKF docs)
-├── frontend/                    # Clinician dashboard (Vite + React + TS, to be scaffolded)
+├── frontend/                    # Clinician interface (Vite + React + TS + Tailwind + Recharts)
 ├── docs/                        # OKF v0.2 knowledge bundle (discovery, specs v1, tech, log)
 ├── CLAUDE.md                    # Full project guide and development rules
 ├── AGENTS.md                    # Reference instructions for coding agents
@@ -72,10 +78,49 @@ uv sync
 
 ### Run the API
 
+Copy `backend/.env.example` to `backend/.env` and fill in the keys (never commit it):
+`ELEVENLABS_API_KEY` for transcription, `MISTRAL_API_KEY` (or `ANTHROPIC_API_KEY`) for
+steps 2 and 4, and optionally `INTEGRATION_API_KEY` for the integration endpoint.
+
 ```bash
 cd backend
-uv run uvicorn app.main:app --reload
-# http://127.0.0.1:8000/health
+uv run --env-file .env uvicorn app.main:app --reload
+# http://127.0.0.1:8000/health, the API under /api, interactive docs at /docs
+```
+
+On first start the database (`backend/data/chronovoice.sqlite3`, git-ignored) is filled
+with the three synthetic personas. To get back to that state:
+
+```bash
+cd backend
+uv run --env-file .env python -m scripts.reset_demo
+```
+
+### Run the clinician interface
+
+```bash
+cd frontend
+npm install
+VITE_API_TARGET=http://127.0.0.1:8000 npm run dev
+# http://localhost:5173 (the API must be running)
+```
+
+`npm run build` writes `frontend/dist/`; the API then serves the interface itself, on
+the same origin (http://127.0.0.1:8000). Details in [`frontend/README.md`](frontend/README.md).
+
+### Integration endpoint (pluggable module)
+
+An application that already records speech, such as MyMémoires, can send a recording;
+the person is matched by `source_app` and `external_person_id`, and created if unknown
+([`docs/specs/api.md`](docs/specs/api.md), section 5):
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/integrations/recordings \
+  -H "X-Integration-Key: $INTEGRATION_API_KEY" \
+  -F "audio=@recording.m4a" \
+  -F 'metadata={"source_app": "mymemoires", "external_person_id": "mm-42",
+      "language": "eng", "consent": true, "recorded_at": "2026-11-14T09:00:00+04:00"}'
+# 202 {"session_id": "...", "status": "received", "status_url": "/api/sessions/.../status"}
 ```
 
 ### Tests, Linting, and Type Checking
@@ -99,6 +144,12 @@ uv run python -m scripts.generate_synthetic_data
 
 # Monte Carlo check of step 3 orientation rules
 uv run python -m scripts.simulate_orientation_rules
+
+# Real trial of the LLM steps on one persona (calls the configured model)
+uv run --env-file .env python -m scripts.try_llm_steps margaret-hale
+
+# Regenerate the frozen LLM texts of the personas (about 50 model calls)
+uv run --env-file .env python -m scripts.build_demo_snapshot
 ```
 
 ---
@@ -124,7 +175,8 @@ Project documentation follows the **Open Knowledge Format (OKF v0.2)**, rooted a
 - [x] Pydantic v2 contracts ([`backend/app/schemas.py`](backend/app/schemas.py))
 - [x] Deterministic step 0 (`capture.py`), step 1 (`segmentation.py`, `markers.py`), and step 3 (`drift.py`)
 - [x] Synthetic data for 3 demo personas (Margaret Hale, Rajesh Menon, Grace Santos) and trajectory tests
-- [ ] ElevenLabs Scribe v3 client (step 0 network integration) and audio calibration
-- [ ] LLM steps 2 (narrative analyst) and 4 (clinical summary)
-- [ ] Full FastAPI endpoints, SQLite persistence, and external integration endpoint
-- [ ] Clinician frontend (Vite + React + TypeScript + Tailwind + Recharts)
+- [x] ElevenLabs Scribe v3 client (step 0 network integration); calibration on real voices still to do
+- [x] LLM steps 2 (narrative analyst) and 4 (clinical summary), with Mistral or Claude
+- [x] FastAPI endpoints, SQLite persistence, background processing, and integration endpoint
+- [x] Clinician interface: people list, person page, session detail, microphone recording, printable summary
+- [ ] Deployment on Render, submission deck

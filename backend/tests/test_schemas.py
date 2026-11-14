@@ -146,7 +146,9 @@ def _summary(text: str = "Signals to monitor in the semantic markers.") -> Clini
         orientation_level=OrientationLevel.MONITOR,
         clinician_summary=ClinicianSummary(
             headline="Change from personal baseline",
-            findings=(Finding(text=text, marker_ids=(MarkerId.PRONOUN_INDEX,)),),
+            findings=(
+                Finding(text=text, beyond_usual_range=True, marker_ids=(MarkerId.PRONOUN_INDEX,)),
+            ),
             uncertainty_statement="Baseline of 3 sessions; one session above threshold.",
             suggested_action=SuggestedAction.REPEAT_WITHIN_TWO_WEEKS,
         ),
@@ -305,11 +307,35 @@ def test_narrative_repetition_must_point_to_known_episode() -> None:
         previous_session_id="s-0",
         previous_episode_id="e-old",
         self_flagged=True,
+        acknowledgement_quote="I told you this before",
         rationale="Told again.",
         quoted_passages=("I told you this before",),
     )
     with pytest.raises(ValidationError):
         NarrativeAnalysis(**IDS, model_id="claude-opus-5-5", episodes=(), repetitions=(repetition,))
+
+
+@pytest.mark.parametrize(
+    "fields",
+    [
+        # Said to be acknowledged, with no words to show for it.
+        {"self_flagged": True},
+        # Words of acknowledgement, on a repetition said not to be acknowledged.
+        {"self_flagged": False, "acknowledgement_quote": "I told you this before"},
+        # An episode told again from itself.
+        {"self_flagged": False, "previous_episode_id": "e-1"},
+    ],
+)
+def test_repetition_claims_must_hold_together(fields: dict[str, object]) -> None:
+    base: dict[str, object] = {
+        "episode_id": "e-1",
+        "scope": RepetitionScope.WITHIN_SESSION,
+        "previous_episode_id": "e-0",
+        "rationale": "Told again.",
+        "quoted_passages": ("we danced all night",),
+    }
+    with pytest.raises(ValidationError):
+        Repetition.model_validate(base | fields)
 
 
 # --- Step 3: clinical rule 5 ------------------------------------------------
@@ -502,7 +528,7 @@ def test_summary_accepts_non_diagnostic_wording() -> None:
 
 def test_finding_needs_a_marker() -> None:
     with pytest.raises(ValidationError):
-        Finding(text="Something changed.", marker_ids=())
+        Finding(text="Something changed.", beyond_usual_range=True, marker_ids=())
 
 
 def test_validated_review_needs_reviewer_and_date() -> None:

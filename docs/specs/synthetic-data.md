@@ -104,6 +104,7 @@ backend/data/
     stories/<persona>.json            # récits écrits par LLM, phrase par phrase
     generation_params.json            # graine, niveaux de base, décalages par séance
     sessions/<persona>/<NN>.json      # séance générée : métadonnées, paramètres, réponse au format Scribe
+    llm_snapshot/<persona>.json       # textes des étapes 2 et 4, générés une fois par le modèle retenu
 ```
 
 - Le code qui lit ces fichiers est dans `backend/app/demo_data.py`.
@@ -112,4 +113,7 @@ backend/data/
 ```bash
 uv run python -m scripts.generate_synthetic_data          # régénère les 30 séances
 uv run python -m scripts.report_synthetic_trajectories    # affiche les mesures et les niveaux
+uv run --env-file .env python -m scripts.build_demo_snapshot  # régénère les textes figés des étapes 2 et 4
 ```
+
+- **Textes figés** (`llm_snapshot/`, ajouté le 2026-11-14) : les analyses du récit et les synthèses des personas sont générées une fois, puis chargées avec les personas. Raisons et règles de chargement : [api.md](api.md), section 7.

@@ -10,8 +10,66 @@ tags: [okf, changelog, decisions]
 
 Historique chronologique du bundle `docs/` (entrées les plus récentes en premier).
 
+## 2026-11-14
+
+- **Interface soignant codée** (`frontend/`, précisions dans [`specs/clinician-ui.md`](specs/clinician-ui.md), section 5) :
+  - les 5 écrans de la spec ;
+  - types générés depuis l'OpenAPI du backend ;
+  - couleurs sauge et terracotta contrôlées pour les daltoniens ;
+  - interface servie par FastAPI une fois construite.
+  - **Essai dans le navigateur** : chaque écran affiché sur les personas ; une séance envoyée par fichier importé (dialogue de synthèse vocale) est transcrite, analysée et résumée, puis l'écran passe tout seul au détail de la séance. L'enregistrement au micro reste à essayer.
+  - **Backend** : chaque point de la trajectoire porte maintenant les valeurs des marqueurs, aussi pour les séances de constitution de la référence ; nouveau script `scripts/export_openapi.py`.
+  - Composants ajoutés à [`tech/third-party-components.md`](tech/third-party-components.md).
+- **API codée** ([`specs/api.md`](specs/api.md) précisée avant le code, section 7) :
+  - routes FastAPI : personnes, séances, statut, relance, validation de la synthèse, questions d'amorce, intégration ;
+  - stockage SQLite exclu de git, traitement des séances en tâche de fond ;
+  - client Scribe en HTTP direct (`backend/app/agents/transcription.py`) ;
+  - transcription annotée pour l'écran de détail ;
+  - personas chargées au démarrage, avec les textes des étapes 2 et 4 générés une fois par Mistral Medium 3.5 (`backend/data/synthetic/llm_snapshot/`).
+  - **Essai de bout en bout** avec Scribe et Mistral, sur un dialogue lu par deux voix de synthèse : 71 s d'audio traitées en 7 s (13 s avec une synthèse écrite par le modèle) ; voix séparées, hésitations et pauses repérées, audio supprimé chez nous puis chez ElevenLabs. Premiers constats sur Scribe notés dans [`tech/elevenlabs-scribe.md`](tech/elevenlabs-scribe.md), section 9.
+  - **Correctif de l'étape 4** trouvé pendant cet essai : le sens d'un écart n'est plus donné au modèle pour un marqueur resté dans sa zone habituelle ; il écrivait « higher than usual » pour un marqueur sans écart ([`specs/pipeline.md`](specs/pipeline.md)).
+  - Nouveaux composants : FastAPI, Pydantic, Uvicorn, python-multipart, HTTPX ([`tech/third-party-components.md`](tech/third-party-components.md)).
+  - **L'analyse du récit n'est plus envoyée à l'étape 4** ([`specs/pipeline.md`](specs/pipeline.md)). En relisant les textes des personas, on a vu le modèle écrire à Margaret « You also repeated a story you had told before » ; quand on le lui a interdit, il en a fait des constats sans marqueur, rejetés. L'analyse reste affichée à part, comme expérimentale.
+  - **Textes figés des personas** régénérés après ces deux correctifs : 7 synthèses sur 7 écrites par le modèle pour chaque persona. Analyse du récit : les 3 reprises de Margaret et la reprise signalée de Rajesh sont retrouvées, mais 5 autres reprises gardées chez Rajesh sont des souvenirs voisins. Elles seront visibles dans la section expérimentale : à relire par Thibaut.
+- **Modèle retenu par Thibaut : Mistral Medium 3.5, par réglage** (`MISTRAL_MODEL=mistral-medium-latest`), pour les essais et la démo. Le défaut du code reste Mistral Small 4, au cas où Mistral retirerait ce modèle déprécié. [`specs/pipeline.md`](specs/pipeline.md), [`specs/questions.md`](specs/questions.md) et [`tech/third-party-components.md`](tech/third-party-components.md) mis à jour.
+- **Premier essai réel des étapes 2 et 4**, avec Mistral Small puis Mistral Medium, sur Margaret et Rajesh (séances fictives). Constats :
+  - **Étape 4 :**
+    - les garde-fous rejettent bien les brouillons fautifs, et le texte fixe prend le relais ;
+    - avec Mistral Small, des erreurs passent quand même :
+      - un nombre de séances faux dans l'incertitude (3 brouillons sur 6) ;
+      - un titre qui contredit le niveau ;
+      - une explication rassurante pour un niveau `review_recommended` ;
+      - un marqueur hors zone non mentionné ;
+    - Mistral Medium ne fait aucune de ces erreurs sur Margaret.
+  - **Étape 2 :**
+    - Mistral Small retrouve l'anecdote répétée, mais se trompe souvent de type de reprise, ce qui la fait écarter ;
+    - Mistral Medium la retrouve mieux, mais garde beaucoup de simples ressemblances de thème ;
+    - les citations longues sont souvent recopiées sans les « um », puis écartées ;
+    - les réponses varient d'un essai à l'autre, même à température 0.
+  - **Mistral Large** raisonne avant de répondre et dépasse le délai de 90 s.
+  - Les corrections des garde-fous attendent la validation de Thibaut.
+- **Garde-fous des étapes 2 et 4 renforcés**, après validation de Thibaut ([`specs/pipeline.md`](specs/pipeline.md) mise à jour avant le code). Trois tours d'essais réels ont guidé les corrections.
+  - **Étape 4 :**
+    - le code écrit le titre, la phrase sur l'incertitude et la suite proposée à la personne ; le modèle n'écrit plus que les constats et ce qui a été remarqué ;
+    - un marqueur de l'indice sorti de la zone habituelle doit figurer dans un constat ;
+    - le modèle désigne un passage par son numéro, et le code place le texte exact ;
+    - les phrases pour la personne s'adressent à elle, sans mot qui rassure ou inquiète ;
+    - le sens de chaque écart est donné au modèle.
+  - **Étape 2 :**
+    - une seule référence à l'épisode d'origine, dont le code déduit le type de reprise ;
+    - le modèle distingue le même événement d'un thème voisin, et seul le premier est gardé ;
+    - une reprise n'est notée comme signalée par la personne qu'avec les mots du signalement, retrouvés dans la transcription (nouveau champ `acknowledgement_quote` dans `schemas.py`) ;
+    - les passages sont retrouvés même sans leurs hésitations, et affichés tels que la personne les a dits ;
+    - le code attribue les identifiants d'épisode, et garde une seule reprise par épisode.
+  - **Résultat** avec Mistral Medium 3.5 sur les 3 personas : 4 reprises attendues sur 4, 3 reprises gardées alors qu'aucune n'était prévue, 8 synthèses sur 8 acceptées au premier essai. Les réponses varient d'un essai à l'autre : c'est un ordre de grandeur.
+- **Modèles Mistral** : Mistral Medium 3.5 est déprécié depuis le 2026-10-31 et Mistral Large 4 met plus d'une minute par appel. Le défaut du code reste Mistral Small 4 ; `MISTRAL_MODEL` et la nouvelle variable `MISTRAL_REASONING_EFFORT` règlent le reste. [`tech/third-party-components.md`](tech/third-party-components.md) mis à jour.
+- **Correctif du client Mistral** : `top_p` à 1 envoyé avec la température à 0, sinon Mistral Large refuse la requête ([`specs/pipeline.md`](specs/pipeline.md), « Appel au modèle »).
+
 ## 2026-11-13
 
+- **Second fournisseur de modèle : Mistral**, sur proposition de Thibaut, qui a des crédits. `backend/app/llm/` devient un paquet : `base.py` (contrat commun), `claude.py`, `mistral.py` (`mistral-small-latest` par défaut), et le choix du fournisseur par `LLM_PROVIDER` ou par la clé présente. Script d'essai réel `backend/scripts/try_llm_steps.py` et fichier `backend/.env.example`. [`specs/pipeline.md`](specs/pipeline.md) et [`specs/questions.md`](specs/questions.md) mis à jour.
+- **Nouveau garde-fou de l'étape 4** : chaque constat déclare s'il parle de marqueurs sortis de la zone habituelle, et le code vérifie cette déclaration contre les tests de l'étape 3. Un texte ne peut plus annoncer un écart que les mesures ne montrent pas.
+- **Étapes 2 et 4 codées (LLM)** : `backend/app/llm.py` (client Claude Opus 5.5, sortie structurée), `backend/app/agents/narrative.py` (analyste du récit), `backend/app/agents/summary.py` (synthèse clinique, validateur, texte fixe de repli) et `backend/app/agents/passages.py` (vérification des citations). [`specs/pipeline.md`](specs/pipeline.md) précisée : la liste du vocabulaire interdit s'étend à tout nom d'affection ; le profil de risque n'est pas envoyé au modèle ; `prevention_notes` reste vide tant que la liste du rapport Lancet 2024 n'a pas été relue. Aucun appel réel au modèle n'a encore été fait, faute de clé.
 - **Données de démonstration générées** ([`specs/synthetic-data.md`](specs/synthetic-data.md) mise à jour) : 3 personas, 30 séances au format Scribe sous `backend/data/synthetic/`, récits écrits par Claude Sonnet 5.5, banque de 12 questions `backend/data/prompts.json`. Les trajectoires sont verrouillées par `backend/tests/test_synthetic_data.py`. Constat noté dans [`specs/pipeline.md`](specs/pipeline.md) : le thème du récit pèse sur les marqueurs sémantiques.
 - **Partie déterministe de l'étape 0 codée** : `backend/app/agents/capture.py` (réponse Scribe vers transcription, choix de la voix suivie, contrôle qualité) et `backend/app/agents/pipeline.py`. Le seuil de confiance de 50 % est provisoire. L'appel à Scribe reste à écrire.
 - **Règle de décision de l'étape 3 validée par Thibaut** (au moins 2 marqueurs sur 6 ; chute rapide à partir de 4).

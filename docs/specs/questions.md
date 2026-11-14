@@ -250,4 +250,8 @@ Elles ont été posées après la rédaction des specs v1, et les réponses sont
 | Q42 | Taille de l'équipe ? | **Thibaut seul** |
 | Q43 | Vercel (avec Blob, découpage en 3 appels et Postgres) ou Render (spec inchangée) ? | **Render**, spec inchangée |
 
+**Mise à jour du 2026-11-13 (Q15, Q36).** Sur proposition de Thibaut, qui a des crédits Mistral, un second fournisseur de modèle est branché : Mistral, avec `mistral-small-latest` par défaut. Il sert aux essais réels des étapes 2 et 4. Claude Opus 5.5 reste branché. Le modèle de la démo sera choisi après comparaison ([pipeline.md](pipeline.md), « Appel au modèle »).
+
+**Mise à jour du 2026-11-14 (Q15, Q36).** Premier essai réel avec les clés de Thibaut. Mistral Medium 3.5 fait mieux que Mistral Small 4, mais Mistral l'a déprécié le 2026-10-31 ; son remplaçant, Mistral Large 4, met plus d'une minute par appel. Le défaut du code reste donc Mistral Small 4, et les essais tournent avec Mistral Medium 3.5, réglé par `MISTRAL_MODEL`. Thibaut retient Mistral Medium 3.5 par réglage, pour les essais et la démo ([pipeline.md](pipeline.md), « Appel au modèle »).
+
 **Mise à jour du 2026-11-13 (Q30).** La chute rapide n'est plus définie par un seuil à α = 0,01 sur l'indice. Elle correspond à au moins 4 marqueurs significatifs sur 6 dans une même séance. L'idée validée reste la même : une seule séance très anormale suffit à recommander la revue. Le détail et la simulation sont dans [pipeline.md](pipeline.md), étape 3.

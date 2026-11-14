@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/*
+ * ChronoVoice identity (CLAUDE.md): slate for structure and text, sage for what is
+ * stable and for the baseline, terracotta for significant changes. No alarming red:
+ * the person being followed may see the screen.
+ * Chart colors were checked with the dataviz validator: sage #5e9384 vs terracotta
+ * #b9522c, colour-blind distance 10.9 (target 8). Sage is muted by design, so a
+ * status is never shown by colour alone: it always comes with an icon and a label.
+ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --color-canvas: #f6f5f1;
+
+  --color-sage-50: #f1f6f4;
+  --color-sage-100: #e2ede9;
+  --color-sage-200: #c5dbd3;
+  --color-sage-300: #9fc1b5;
+  --color-sage-500: #5e9384;
+  --color-sage-600: #4b796c;
+  --color-sage-700: #3b6156;
+  --color-sage-800: #2f4d45;
+
+  --color-terra-50: #fbf2ed;
+  --color-terra-100: #f6e1d6;
+  --color-terra-200: #edc3ad;
+  --color-terra-300: #e0a080;
+  --color-terra-500: #b9522c;
+  --color-terra-600: #9d4524;
+  --color-terra-700: #7f381e;
+  --color-terra-800: #642d19;
+}
+
+@layer base {
+  html {
+    background: var(--color-canvas);
+    color: var(--color-slate-800);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    min-height: 100vh;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-sage-600);
+    outline-offset: 2px;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Printable summary (screen 5): an A4 page, no navigation. */
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm;
+  }
+  html,
+  body {
+    background: white;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+}

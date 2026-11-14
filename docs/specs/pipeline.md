@@ -149,16 +149,32 @@ Précisions sur le `maze_index` :
 ## Étape 2 : analyste du récit (LLM, expérimental)
 
 - **Quand** : seulement pour `task_type = life_story` et une séance `usable` ou `partial`.
-- **Modèle** : Claude Opus 5.5 (`claude-opus-5-5`), choisi le 2026-11-12.
+- **Modèle** : Mistral ou Claude, selon la configuration, avec une sortie structurée (voir « Appel au modèle » à l'étape 4).
 - **Entrée** :
-  - les énoncés de la personne, chacun avec un identifiant ;
-  - la mémoire des épisodes déjà racontés lors des séances précédentes (résumés et identifiants).
+  - les énoncés de la personne, numérotés, hésitations comprises. Les paroles de l'interlocuteur ne sont pas envoyées ;
+  - la mémoire des épisodes déjà racontés lors des séances précédentes (identifiants et résumés).
 - **Sortie validée** (`NarrativeAnalysis`) :
-  - `episodes` : pour chaque épisode, un id, un résumé, la période de vie, les personnes, les lieux, les repères de temps et les ids des énoncés concernés ;
-  - `repetitions` : pour chaque répétition, l'épisode, la séance et l'épisode d'origine, si elle a lieu dans la même séance ou d'une séance à l'autre (Cook 2009, [candidates](../discovery/candidates.md)), si la personne la signale elle-même (« I've told you this before »), et la justification avec les passages cités.
-- **Garde-fous** :
-  - Chaque passage cité doit exister mot pour mot dans la transcription ; sinon l'élément est écarté.
-  - Le résultat est affiché comme **expérimental** et n'entre **pas** dans l'indice d'écart.
+  - `episodes` : pour chaque épisode, un id, un résumé, la période de vie, les personnes, les lieux, les repères de temps et les numéros des énoncés concernés ;
+  - `repetitions` : pour chaque reprise d'anecdote (Cook 2009, [candidates](../discovery/candidates.md)) :
+    - l'épisode qui la raconte de nouveau, la séance et l'épisode d'origine ;
+    - si elle a lieu dans la même séance ou d'une séance à l'autre ;
+    - si la personne la signale elle-même (« I've told you this before »), avec les mots exacts de ce signalement ;
+    - la justification et les passages cités.
+- **Ce qu'on demande au modèle pour une reprise** (révisé le 2026-11-14, après le premier essai réel) :
+  - `retold_from` : une seule référence à l'épisode d'origine, recopiée de la liste fournie. C'est `séance/épisode` pour une séance précédente, ou l'id d'un épisode antérieur de la même séance. Le code en déduit le type de reprise ; le modèle ne le déclare plus ;
+  - `relation` : `same_event` si c'est le même événement précis, `related_theme` si les deux épisodes partagent seulement un thème, une personne, un lieu ou une habitude ;
+  - `acknowledgement_quote` : les mots exacts par lesquels la personne dit l'avoir déjà raconté, ou rien ;
+  - `quoted_passages` : un ou deux passages courts de la séance.
+- **Garde-fous.** La réponse du modèle est traitée comme une donnée non fiable. On ne garde que ce qu'on peut vérifier :
+  - un épisode doit renvoyer à au moins un énoncé qui existe ; les numéros inventés sont retirés ;
+  - **les identifiants d'épisode sont attribués par le code** (`e1`, `e2`, … dans l'ordre du modèle). Les modèles inventent parfois d'autres formes d'identifiant ; les références du modèle sont traduites ;
+  - une reprise notée `related_theme` est écartée. Une habitude ou un lieu décrit de nouveau n'est pas le même événement ;
+  - la référence d'origine doit désigner un épisode de la mémoire, ou un autre épisode de la séance. Une reprise qui renvoie à elle-même est écartée ;
+  - un passage cité doit reprendre les mots de la personne, dans l'ordre. On ne tient pas compte des majuscules, de la ponctuation, ni des hésitations que le modèle aurait omises (« um », mots coupés) : les modèles ont tendance à les retirer. Le numéro d'énoncé recopié en tête d'un passage est retiré. **On garde et on affiche le passage exact de la transcription**, pas le texte du modèle. Une reprise sans aucun passage retrouvé est écartée ;
+  - la personne n'est notée comme ayant signalé la reprise que si les mots du signalement se retrouvent dans la transcription. Limite : le code vérifie que ces mots ont été dits, pas qu'ils signalent bien une reprise ;
+  - **une seule reprise par épisode** : la première qui passe les contrôles.
+- **Si le modèle est indisponible**, l'étape est sautée : la séance garde ses marqueurs et son niveau.
+- Le résultat est affiché comme **expérimental** et n'entre **pas** dans l'indice d'écart.
 - **Hors v1** : incohérences de dates (H7), part de détails vécus (07).
 
 ## Étape 3 : dérive longitudinale (statistique)
@@ -258,25 +274,72 @@ Seules les séances `usable` comptent.
 
 ## Étape 4 : synthèse clinique (LLM contraint)
 
-- **Modèle** : Claude Opus 5.5 (`claude-opus-5-5`), choisi le 2026-11-12.
-- **Entrée**, structurée uniquement :
-  - les sorties des étapes 0 à 3 ;
-  - le contexte ;
-  - le profil de risque, qui reste à part ;
-  - quelques passages de la transcription choisis par calcul : les énoncés qui contiennent le plus d'hésitations et de répétitions, ou le plus de pronoms.
+- **Modèle** : Mistral ou Claude, selon la configuration (voir « Appel au modèle » plus bas).
 - **Pas de décision par le LLM.** Le niveau et l'action proposée viennent de l'étape 3. Le LLM rédige ; il ne décide pas.
-- **Sortie** (`ClinicalSummaryReport`) :
-  - `clinician_summary` : un titre ; des constats, chacun avec son texte, les ids des marqueurs, les passages et les fiches d'étude qui l'appuient ; l'incertitude ; l'action proposée ;
-  - `person_explanation` : quelques phrases en langage clair, sans chiffres ni jargon, destinées à la personne ;
-  - `prevention_notes` : des suggestions de prévention tirées d'une liste fixe et sourcée, choisies selon le profil de risque. Les facteurs modifiables viennent de la Commission Lancet 2024 (Livingston et al., PMID 39096926) ; la liste exacte reste à reprendre du rapport ;
-  - `review_status` : `draft`, puis `validated` après le clic du soignant (exigence 5 du challenge).
-- **Validateur.** Il vérifie :
-  - qu'aucun terme diagnostique n'apparaît (liste anglaise tirée de la règle 1 de CLAUDE.md : « diagnosis », « diagnosed », « has Alzheimer's », « dementia confirmed »…) ;
-  - que chaque constat cite au moins un marqueur existant ;
-  - que les fiches d'étude citées font partie de la liste autorisée ;
-  - que les passages cités existent dans la transcription.
+- **Entrée**, structurée uniquement :
+  - le niveau, la règle qui l'a déclenché et l'action proposée ;
+  - le nombre de séances de référence, la qualité de la séance et le contexte ;
+  - pour chaque marqueur : sa valeur, la zone habituelle de la personne, s'il sort de la zone et, s'il en sort, dans quel sens (plus haut ou plus bas que d'habitude ; pour un marqueur resté dans la zone, le sens n'est pas donné, pour que le texte n'annonce pas un écart que les mesures ne montrent pas), et les fiches d'étude qu'on peut citer pour lui ;
+  - quelques passages de la transcription **choisis par calcul** et numérotés : les énoncés qui contiennent le plus d'hésitations et de répétitions, et ceux où les pronoms dépassent le plus les noms. Le modèle rattache un passage à un constat **par son numéro** ; il ne recopie pas de texte, et c'est le code qui place le passage exact (révisé le 2026-11-14 : les modèles recopiaient le passage avec son étiquette).
+- **Le profil de risque n'est pas envoyé au modèle** dans la v1 : il reste affiché à côté, sans être mêlé à la synthèse.
+- **L'analyse du récit (étape 2) n'est pas envoyée au modèle** non plus (révisé le 2026-11-14). Elle est expérimentale et hors de l'indice : elle reste affichée dans sa propre section, « Experimental, not in the index ». Raison : le modèle l'avait reprise dans les phrases destinées à la personne (« You also repeated a story you had told before »), puis, quand on le lui a interdit, dans des constats sans marqueur, rejetés par le validateur.
+- **Qui écrit quoi** (révisé le 2026-11-14, après le premier essai réel). Le modèle n'écrit que ce qui demande une mise en mots ; ce qui est déjà décidé ou chiffré est écrit par le code.
 
-  En cas d'échec, on fait un nouvel essai, puis on repasse à un modèle de texte écrit à l'avance.
+  | Texte | Écrit par |
+  |---|---|
+  | Titre | le code : un texte fixe par niveau |
+  | Constats | le modèle |
+  | Phrase sur l'incertitude | le code : nombre de séances de référence, qualité de la séance et contexte, tirés de l'étape 3 |
+  | Explication pour la personne : ce qui a été remarqué | le modèle, en une ou deux phrases |
+  | Explication pour la personne : la suite | le code : un texte fixe par niveau, ajouté après les phrases du modèle |
+
+  Raison : avec Mistral Small, le modèle a donné un nombre de séances faux, un titre qui contredisait le niveau, et une explication rassurante sans mention de la consultation pour un niveau `review_recommended`.
+- **Sortie** (`ClinicalSummaryReport`) :
+  - `clinician_summary` : le titre ; des constats, chacun avec son texte, les ids des marqueurs, les passages et les fiches d'étude qui l'appuient ; l'incertitude ; l'action proposée ;
+  - `person_explanation` : quelques phrases en langage clair, sans chiffres ni jargon, destinées à la personne ;
+  - `prevention_notes` : **vide dans la v1**. Les suggestions de prévention doivent venir d'une liste fixe et sourcée, tirée de la Commission Lancet 2024 (Livingston et al., PMID 39096926). Cette liste n'a pas encore pu être relue dans le rapport : le site du Lancet bloque la lecture automatique. On n'écrit pas de liste de mémoire ;
+  - `review` : `draft`, puis `validated` après le clic du soignant (exigence 5 du challenge) ;
+  - `generation_mode` et `model_id` : comment le texte a été produit, et par quel modèle.
+- **Validateur.** Il rejette un brouillon :
+  - qui nomme une affection, même pour l'écarter : « diagnosis », « diagnostic », « Alzheimer's », « dementia », « cognitive impairment », « MCI » (règle 1 de CLAUDE.md). Le contrat `schemas.py` applique la même liste ;
+  - dont un constat ne cite aucun marqueur, ou cite un marqueur qui n'a pas été comparé pour cette séance ;
+  - dont un constat annonce un écart pour un marqueur resté dans la zone habituelle, ou l'inverse. Chaque constat déclare s'il parle de marqueurs sortis de la zone habituelle (`beyond_usual_range`), et le code compare cette déclaration aux tests de l'étape 3 ;
+  - **qui passe sous silence un marqueur de l'indice sorti de la zone habituelle** : chacun doit figurer dans un constat ;
+  - dont un constat cite une fiche d'étude qui n'est pas une source des marqueurs sur lesquels il s'appuie ;
+  - dont un constat renvoie à un passage qui ne lui a pas été fourni, ou mentionne un numéro de passage dans son texte ;
+  - dont les phrases destinées à la personne contiennent un chiffre, ou parlent d'elle à la troisième personne (« the person », « the patient ») au lieu de s'adresser à elle ;
+  - dont les phrases destinées à la personne rassurent ou inquiètent : les mots de la famille de « worry » et de « concern » sont refusés. C'est un **choix de conception** : l'outil ne sait pas dire si un écart est grave ou bénin.
+- **En cas de rejet**, on fait un seul nouvel essai, en donnant au modèle la liste des problèmes. Si le second brouillon est rejeté, ou si le modèle est indisponible, on écrit un **texte fixe** construit à partir des seules mesures.
+- **Pendant la constitution de la référence**, on n'appelle pas le modèle : le texte fixe suffit.
+
+### Appel au modèle (étapes 2 et 4)
+
+Les étapes ne dépendent pas d'un fournisseur : elles passent par un petit contrat commun (`LLMClient`, dans `backend/app/llm/`). Deux fournisseurs sont branchés.
+
+| Fournisseur | Modèle par défaut | Clé | Usage |
+|---|---|---|---|
+| **Mistral** | `mistral-small-latest` (Mistral Small 4), modifiable par `MISTRAL_MODEL` | `MISTRAL_API_KEY` | essais réels : Thibaut a des crédits Mistral (proposition du 2026-11-13). Modèle retenu le 2026-11-14 : `MISTRAL_MODEL=mistral-medium-latest`, réglé dans `backend/.env` et sur l'hébergeur |
+| **Anthropic** | `claude-opus-5-5`, choisi le 2026-11-12 (Q36) | `ANTHROPIC_API_KEY` | prévu au départ ; pas encore de clé |
+
+- **Choix du fournisseur** : la variable `LLM_PROVIDER` (`mistral` ou `anthropic`). Sans elle, on prend le fournisseur dont la clé est présente ; si les deux le sont, Anthropic. Sans aucune clé, il n'y a pas de modèle : l'étape 2 est sautée et l'étape 4 écrit le texte fixe.
+- **Modèle retenu (choix de Thibaut, 2026-11-14) : Mistral Medium 3.5, par réglage.** Ce que les essais du 2026-11-14 ont montré, sur les trois modèles de Mistral :
+
+  | Modèle | Statut chez Mistral | Durée d'un appel | Constat |
+  |---|---|---|---|
+  | Mistral Small 4 (`mistral-small-latest`) | disponible | 3 à 7 s | correct, mais moins régulier : des reprises manquées, et des brouillons de synthèse rejetés puis remplacés par le texte fixe |
+  | Mistral Medium 3.5 (`mistral-medium-latest`) | **déprécié depuis le 2026-10-31**, encore servi le 2026-11-14 ; remplaçant annoncé : Mistral Large 4 | 4 à 9 s | le plus juste des trois sur les deux étapes |
+  | Mistral Large 4 (`mistral-large-latest`) | disponible depuis le 2026-11-05 | plus de 60 s | raisonne toujours avant de répondre ; trop lent pour une démo en direct, et proche du délai de 90 s |
+
+  Mistral Medium 3.5 est donc réglé par `MISTRAL_MODEL`, en local comme sur l'hébergeur. Le défaut du code reste Mistral Small 4, parce qu'un modèle déprécié peut être retiré sans préavis. **S'il l'est**, aucun plantage : l'étape 2 est sautée et l'étape 4 écrit le texte fixe ; il suffit alors de retirer le réglage pour revenir à Mistral Small 4. Mistral Small 4 avec raisonnement (`high`) a fait moins bien que sans, pour 4 fois la durée. Claude Opus 5.5 n'a pas encore été essayé, faute de clé.
+- **Sortie structurée** : le modèle répond dans un schéma JSON, validé par Pydantic, chez les deux fournisseurs.
+- **Garde-fous identiques** : les vérifications des étapes 2 et 4 ne dépendent pas du modèle. Un petit modèle qui se trompe davantage produit plus de brouillons rejetés, pas des erreurs affichées.
+- **Erreurs** : une panne, un refus ou une réponse tronquée ne cassent jamais le pipeline. L'étape 2 est sautée, l'étape 4 passe au texte fixe.
+- **Propre à Anthropic** : niveau d'effort `medium` fixé explicitement ; si le modèle décline une requête, l'API la rejoue sur un modèle de repli dans le même appel (`fallbacks`, en bêta).
+- **Propre à Mistral** : température à 0 et `top_p` à 1, envoyés tous les deux. Avec la température à 0 seule, Mistral Large refuse la requête (erreur 400, `top_p` doit valoir 1 ; constaté le 2026-11-14). Même ainsi, les réponses varient d'un essai à l'autre.
+- **Raisonnement, propre à Mistral** : la variable `MISTRAL_REASONING_EFFORT` règle l'effort de raisonnement du modèle. Sans elle, on ne l'envoie pas. Les valeurs acceptées dépendent du modèle (constaté le 2026-11-14) : `none` ou `high` pour Mistral Small 4 ; `low`, `medium` ou `high` pour Mistral Large 4, qui raisonne toujours.
+- **Le modèle qui a réellement répondu** est enregistré avec chaque texte.
+- **Cache de prompts** : non utilisé. Les consignes sont trop courtes pour être mises en cache.
+- **Essai réel** : `backend/scripts/try_llm_steps.py` rejoue les étapes 2 et 4 sur une persona et affiche ce qui a été gardé, écarté ou rejeté. Pour l'étape 2, il compare le résultat à ce que les personas contiennent par construction : les reprises d'anecdote de Margaret (séances 8, 9, 10) et de Rajesh (séance 7). Résultat du 2026-11-14 avec le code corrigé et Mistral Medium 3.5, sur les 3 personas : les 4 reprises attendues sont retrouvées ; 3 autres sont gardées chez Rajesh alors qu'aucune n'était prévue (rappels ou souvenirs voisins) ; les 8 synthèses demandées au modèle passent les contrôles au premier essai. Les réponses varient d'un essai à l'autre : ces chiffres sont un ordre de grandeur. Détail dans [`../log.md`](../log.md).
 
 ## Contrats entre étapes (`backend/app/schemas.py`)
 

@@ -144,3 +144,16 @@ C'est un parcours en 5 temps, sur une seule page.
 - Vite, React, TypeScript strict, Tailwind, Lucide, Recharts (CLAUDE.md).
 - Les types reflètent `schemas.py`, avec les mêmes noms de champs en snake_case.
 - Le frontend construit est servi par FastAPI : un seul service à mettre en ligne (Q24).
+
+## 5. Précisions du 2026-11-14, en codant le frontend
+
+- **Code** : `frontend/src/` ; pages dans `pages/`, sections dans `components/`, appels à l'API dans `api/client.ts`.
+- **Types** : générés à partir de la description OpenAPI du backend (`npm run gen:api`), pour refléter exactement les modèles Python. Seul le JSON `metadata` d'un envoi de séance est écrit à la main, car il voyage dans un champ de formulaire.
+- **Couleurs** : sauge `#5e9384` et terracotta `#b9522c`, contrôlés avec le validateur de palettes de la compétence dataviz : écart de 10,9 pour les daltoniens (cible 8). Le sauge est peu saturé, comme le veut la charte : un niveau s'affiche donc toujours avec une icône et un libellé, jamais par la couleur seule. Pas de mode sombre dans le prototype.
+- **Courbe « Change from baseline »** : graduations en écarts-types entiers ; le point d'une séance en écart est terracotta et porte son nombre de marqueurs ; un clic sur un point ouvre la séance ; info-bulle avec réticule au survol ; tableau des valeurs dans « Details ».
+- **Petits graphiques des marqueurs** : la bande ombrée est la moyenne de la référence ± 1 écart-type. Ce n'est pas le seuil du test : un point est marqué quand le test de la séance le trouve hors de la zone. Pour les pauses, dont le sens lié au déclin n'est pas établi, l'écran l'indique au lieu d'une flèche.
+- **Comparaison de deux séances** : un tableau compact (marqueur, cette séance, référence), puis les deux transcriptions côte à côte.
+- **Micro** : la réduction de bruit du navigateur est coupée, car elle pourrait effacer les hésitations que compte l'indice de fluence. L'enregistrement reste en mémoire jusqu'à l'envoi : un échec réseau permet de renvoyer sans réenregistrer.
+- **Validation de la synthèse** : le nom du soignant est demandé à côté du bouton, puis gardé dans le navigateur pour la fois suivante.
+- **Service** : FastAPI sert le frontend construit (`frontend/dist`) pour toute adresse hors de `/api`. En développement, Vite renvoie `/api` vers le backend.
+

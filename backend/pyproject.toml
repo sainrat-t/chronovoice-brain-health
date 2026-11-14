@@ -4,10 +4,14 @@ version = "0.1.0"
 description = "ChronoVoice Brain - longitudinal speech & language biomarkers API (non-diagnostic)"
 requires-python = ">=3.11"
 dependencies = [
+    "anthropic>=1.0",
     "en-core-web-sm",
     "fastapi>=0.115",
+    "httpx>=0.28,<1",
     "langcodes>=3.4",
+    "mistralai>=2",
     "pydantic>=2.9",
+    "python-multipart>=0.0.20",
     "spacy>=3.8,<3.9",
     "uvicorn[standard]>=0.32",
     "wordfreq>=3.1,<4",

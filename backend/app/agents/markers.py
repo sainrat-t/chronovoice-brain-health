@@ -57,6 +57,7 @@ _TIMESTAMP_DECIMALS = 3  # Scribe timestamps are given to the millisecond.
 
 def _spec(
     marker: MarkerId,
+    label: str,
     family: MarkerFamily,
     direction: DeclineDirection,
     in_change_index: bool,
@@ -65,6 +66,7 @@ def _spec(
 ) -> MarkerSpec:
     return MarkerSpec(
         marker=marker,
+        label=label,
         family=family,
         decline_direction=direction,
         in_change_index=in_change_index,
@@ -78,6 +80,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
     for spec in (
         _spec(
             MarkerId.PRONOUN_INDEX,
+            "Pronoun index",
             MarkerFamily.SEMANTIC,
             DeclineDirection.INCREASE,
             True,
@@ -87,6 +90,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.NOUN_RATIO,
+            "Share of nouns",
             MarkerFamily.SEMANTIC,
             DeclineDirection.DECREASE,
             True,
@@ -96,6 +100,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.MEAN_WORD_FREQUENCY,
+            "Word frequency",
             MarkerFamily.SEMANTIC,
             DeclineDirection.INCREASE,
             True,
@@ -105,6 +110,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.MEAN_WORD_LENGTH,
+            "Word length",
             MarkerFamily.SEMANTIC,
             DeclineDirection.DECREASE,
             True,
@@ -113,6 +119,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.MAZE_INDEX,
+            "Hesitations and repetitions",
             MarkerFamily.FLUENCY,
             DeclineDirection.INCREASE,
             True,
@@ -121,6 +128,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.SPEECH_RATE_WPM,
+            "Speech rate",
             MarkerFamily.FLUENCY,
             DeclineDirection.DECREASE,
             True,
@@ -129,6 +137,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.PAUSES_BETWEEN_PER100W,
+            "Pauses between sentences",
             MarkerFamily.FLUENCY,
             DeclineDirection.UNCERTAIN,
             False,
@@ -137,6 +146,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.PAUSES_WITHIN_PER100W,
+            "Pauses within sentences",
             MarkerFamily.FLUENCY,
             DeclineDirection.UNCERTAIN,
             False,
@@ -145,6 +155,7 @@ MARKER_SPECS: dict[MarkerId, MarkerSpec] = {
         ),
         _spec(
             MarkerId.MATTR_50,
+            "Lexical diversity",
             MarkerFamily.LEXICAL,
             DeclineDirection.DECREASE,
             False,
@@ -271,24 +282,30 @@ def mattr_marker(words: Sequence[LexicalWord]) -> MarkerValue:
 # ---------------------------------------------------------------------------
 
 
-def count_immediate_repetitions(forms: Sequence[str]) -> int:
-    """Count words or short phrases said twice in a row ("the the", "it was it was").
+def find_immediate_repetitions(forms: Sequence[str]) -> tuple[tuple[int, int], ...]:
+    """Words or short phrases said twice in a row ("the the", "it was it was").
 
-    Each repeated unit counts once: "no no no" holds two repetitions.
+    Returns, for each repeated unit, the position of its second occurrence and its
+    length in words. "no no no" holds two repetitions: (1, 1) and (2, 1).
     """
     forms = tuple(forms)
-    count = 0
+    found: list[tuple[int, int]] = []
     position = 1
     while position < len(forms):
         for size in range(1, MAX_REPEATED_PHRASE_WORDS + 1):
             repeated = forms[position : position + size]
             if position >= size and repeated == forms[position - size : position]:
-                count += 1
+                found.append((position, size))
                 position += size
                 break
         else:
             position += 1
-    return count
+    return tuple(found)
+
+
+def count_immediate_repetitions(forms: Sequence[str]) -> int:
+    """Number of repeated units: each counts once, whatever its length."""
+    return len(find_immediate_repetitions(forms))
 
 
 def maze_index(turns: Sequence[Turn]) -> MarkerValue:

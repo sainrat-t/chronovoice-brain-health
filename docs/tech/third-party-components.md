@@ -13,7 +13,7 @@ sources:
     url: https://github.com/rspeer/wordfreq
 verified:
   by: PyPI et dépôts GitHub officiels des projets
-  at: "2026-11-13"
+  at: "2026-11-14"
 ---
 
 # Composants tiers et licences
@@ -39,7 +39,36 @@ Le règlement du challenge peut exclure des prix une solution qui dépend de dro
 | Composant | Version | Rôle | Licence | Vérifié le |
 |---|---|---|---|---|
 | [langcodes](https://pypi.org/project/langcodes/) | 3.5.x | Conversion des codes de langue de Scribe (« en ») en codes à 3 lettres (« eng ») | MIT | 2026-11-13 |
+| [FastAPI](https://pypi.org/project/fastapi/) | 0.162.x | Serveur de l'API | MIT | 2026-11-14 |
+| [Pydantic](https://pypi.org/project/pydantic/) | 2.14.x | Contrats entre étapes, validation à toutes les frontières | MIT | 2026-11-14 |
+| [Uvicorn](https://pypi.org/project/uvicorn/) | 0.54.x | Serveur HTTP qui fait tourner FastAPI | BSD 3-Clause | 2026-11-14 |
+| [python-multipart](https://pypi.org/project/python-multipart/) | 0.0.x | Lecture des envois multipart (audio et métadonnées) | Apache 2.0 | 2026-11-14 |
+| [HTTPX](https://pypi.org/project/httpx/) | 0.28.x | Appels à l'API de Scribe | BSD 3-Clause | 2026-11-14 |
 | [NumPy](https://numpy.org) | 2.x | Outil de développement seulement : simulation des règles d'orientation | BSD 3-Clause, avec des composants sous 0BSD, MIT, Zlib et CC0 | 2026-11-13 |
+
+## Modèle de langage (étapes 2 et 4)
+
+| Composant | Version | Rôle | Conditions | Vérifié le |
+|---|---|---|---|---|
+| Claude Opus 5.5, par l'API d'Anthropic | `claude-opus-5-5` | Analyse du récit et rédaction de la synthèse | Service commercial par API | 2026-11-13 |
+| [SDK Python d'Anthropic](https://pypi.org/project/anthropic/) | 2.8.x | Appels à l'API, sorties structurées | Apache 2.0 | 2026-11-13 |
+| Mistral Small 4, par l'API de Mistral | `mistral-small-latest` | Second fournisseur, défaut du code | Service commercial par API ; poids publiés sous Apache 2.0 ([fiche du modèle](https://docs.mistral.ai/models/mistral-small-4-0-26-03)) | 2026-11-14 |
+| Mistral Medium 3.5, par l'API de Mistral | `mistral-medium-latest` | Modèle retenu pour les essais et la démo (réglage `MISTRAL_MODEL`, choix du 2026-11-14) | Service commercial par API ; poids publiés sous licence MIT modifiée. **Déprécié par Mistral depuis le 2026-10-31**, remplaçant annoncé : Mistral Large 4 ([fiche du modèle](https://docs.mistral.ai/models/mistral-medium-3-5-26-04)) | 2026-11-14 |
+| [SDK Python de Mistral](https://pypi.org/project/mistralai/) | 3.7.x | Appels à l'API, sorties structurées | Apache 2.0 (fichier LICENSE du paquet) | 2026-11-13 |
+
+## Interface (frontend)
+
+| Composant | Version | Rôle | Licence | Vérifié le |
+|---|---|---|---|---|
+| [React](https://react.dev) et React DOM | 19.3.x | Interface | MIT | 2026-11-14 |
+| [React Router](https://reactrouter.com) | 7.18.x | Navigation entre les écrans | MIT | 2026-11-14 |
+| [Recharts](https://recharts.org) | 3.10.x | Graphiques | MIT | 2026-11-14 |
+| [Lucide](https://lucide.dev) (`lucide-react`) | 1.73.x | Icônes | ISC | 2026-11-14 |
+| [Tailwind CSS](https://tailwindcss.com) | 4.3.x | Styles | MIT | 2026-11-14 |
+| [Vite](https://vite.dev) | 8.3.x | Outil de développement et de construction | MIT | 2026-11-14 |
+| TypeScript, ESLint, typescript-eslint, openapi-typescript | 5.9.x, 10.x, 8.x, 7.x | Outils de développement seulement | Apache 2.0 (TypeScript) ; MIT (les autres) | 2026-11-14 |
+
+**À savoir** : `npm audit` signale 7 failles de gravité moyenne, toutes dans la chaîne de typescript-eslint, un outil de développement qui n'est pas livré avec l'application. TypeScript reste en 5.9 : la version 7 n'est pas encore prise en charge par typescript-eslint ni par openapi-typescript.
 
 ## Contenus générés
 
@@ -49,9 +78,8 @@ Le règlement du challenge peut exclure des prix une solution qui dépend de dro
 
 | Composant | Rôle | Conditions | Vérifié le |
 |---|---|---|---|
-| ElevenLabs Scribe v3 | Transcription mot pour mot, horodatée, avec séparation des voix | Service commercial par API. Détails dans [elevenlabs-scribe.md](elevenlabs-scribe.md) | 2026-11-12 |
+| ElevenLabs Scribe v3 | Transcription mot pour mot, horodatée, avec séparation des voix | Service commercial par API, appelé directement en HTTP (sans le SDK). Détails dans [elevenlabs-scribe.md](elevenlabs-scribe.md) | 2026-11-14 |
 
 ## À compléter
 
-- Le LLM des étapes 2 et 4 (Claude Opus 5.5, par l'API Anthropic), quand ces étapes seront codées.
-- Les bibliothèques du backend (FastAPI, Pydantic) et du frontend (React, Tailwind, Recharts, Lucide).
+- Rien pour l'instant : la liste suit les dépendances au fil de l'eau.

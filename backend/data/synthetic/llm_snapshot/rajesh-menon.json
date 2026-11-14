@@ -1,0 +1,2639 @@
+{
+ "synthetic": true,
+ "person_id": "rajesh-menon",
+ "generated_at": "2026-11-14T16:08:58.106784Z",
+ "narratives": [
+  {
+   "session_id": "rajesh-menon-s01",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Birth and description of the family home in Thrissur, Kerala, built by grandfather.",
+     "life_period": "childhood",
+     "people": [
+      "grandfather",
+      "narrator"
+     ],
+     "places": [
+      "Thrissur",
+      "Kerala",
+      "house"
+     ],
+     "time_references": [
+      "nineteen fifty-two"
+     ],
+     "utterance_indices": [
+      0
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Description of the house's roof and monsoon rain.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "house"
+     ],
+     "time_references": [
+      "monsoon"
+     ],
+     "utterance_indices": [
+      1
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Description of the open courtyard with a tulsi plant and mother's daily ritual.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "courtyard"
+     ],
+     "time_references": [
+      "every morning"
+     ],
+     "utterance_indices": [
+      2,
+      3
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Father's profession as a schoolmaster and his evening routine on the verandah.",
+     "life_period": "childhood",
+     "people": [
+      "father"
+     ],
+     "places": [
+      "verandah"
+     ],
+     "time_references": [
+      "evenings"
+     ],
+     "utterance_indices": [
+      4,
+      5
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Description of the narrator's siblings and their shared living space.",
+     "life_period": "childhood",
+     "people": [
+      "Radha",
+      "Meena",
+      "narrator"
+     ],
+     "places": [
+      "big room"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      6,
+      7
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Description of the kitchen, hearth, and brass vessels.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "kitchen"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      8
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Grandmother grinding rice batter on a heavy stone.",
+     "life_period": "childhood",
+     "people": [
+      "grandmother"
+     ],
+     "places": [
+      "kitchen"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      9,
+      10
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Narrator's childhood curiosity about how the house worked.",
+     "life_period": "childhood",
+     "people": [
+      "narrator"
+     ],
+     "places": [
+      "house"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      11,
+      12,
+      13
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Description of the roof beams and their durability.",
+     "life_period": "childhood",
+     "people": [
+      "father"
+     ],
+     "places": [
+      "house"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      14
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Description of the well and mango tree behind the kitchen.",
+     "life_period": "childhood",
+     "people": [
+      "grandfather"
+     ],
+     "places": [
+      "well",
+      "kitchen"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      15,
+      16,
+      17
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "Description of the neighbors: a carpenter and a widow with hens.",
+     "life_period": "childhood",
+     "people": [
+      "Kunjan",
+      "widow"
+     ],
+     "places": [
+      "lane"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      18,
+      19,
+      20
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "Description of the lane and the walk to school.",
+     "life_period": "childhood",
+     "people": [
+      "narrator",
+      "sisters"
+     ],
+     "places": [
+      "lane",
+      "school"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e13",
+     "summary": "Father reading aloud to the family on the verandah in the evenings.",
+     "life_period": "childhood",
+     "people": [
+      "father",
+      "narrator",
+      "sisters"
+     ],
+     "places": [
+      "verandah"
+     ],
+     "time_references": [
+      "evenings"
+     ],
+     "utterance_indices": [
+      23,
+      24
+     ]
+    },
+    {
+     "episode_id": "e14",
+     "summary": "Arrival of electricity in the lane and the first bulb in the courtyard.",
+     "life_period": "childhood",
+     "people": [
+      "father",
+      "narrator",
+      "whole street"
+     ],
+     "places": [
+      "lane",
+      "courtyard"
+     ],
+     "time_references": [
+      "about eight years old"
+     ],
+     "utterance_indices": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+     ]
+    },
+    {
+     "episode_id": "e15",
+     "summary": "Description of the family's simple diet and cooking methods.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "house"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      32,
+      33
+     ]
+    },
+    {
+     "episode_id": "e16",
+     "summary": "Festival days with rice flour patterns and visiting relatives.",
+     "life_period": "childhood",
+     "people": [
+      "relatives"
+     ],
+     "places": [
+      "courtyard",
+      "house"
+     ],
+     "time_references": [
+      "festival days"
+     ],
+     "utterance_indices": [
+      34,
+      35,
+      36
+     ]
+    },
+    {
+     "episode_id": "e17",
+     "summary": "Narrator's sensory memories of the house and its influence on his life.",
+     "life_period": "childhood",
+     "people": [
+      "mother",
+      "narrator"
+     ],
+     "places": [
+      "house"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      37,
+      38,
+      39,
+      40
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "rajesh-menon-s02",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Introduction of childhood friend Gopalan (Gopi) who lived nearby and repaired bicycles with his father.",
+     "life_period": "childhood",
+     "people": [
+      "Gopalan (Gopi)",
+      "Gopi's father"
+     ],
+     "places": [
+      "lane",
+      "bicycle repair shed"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Spending afternoons in Gopi's shed learning about bicycle mechanics.",
+     "life_period": "childhood",
+     "people": [
+      "Gopalan (Gopi)",
+      "Gopi's father",
+      "narrator"
+     ],
+     "places": [
+      "bicycle repair shed"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Building a water wheel in the stream behind the paddy fields during the summer the narrator turned eleven.",
+     "life_period": "childhood",
+     "people": [
+      "Gopalan (Gopi)",
+      "narrator"
+     ],
+     "places": [
+      "stream behind the paddy fields"
+     ],
+     "time_references": [
+      "summer I turned eleven"
+     ],
+     "utterance_indices": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Gopi's struggles in school and the narrator helping him with arithmetic using pebbles on the verandah.",
+     "life_period": "childhood",
+     "people": [
+      "Gopalan (Gopi)",
+      "narrator",
+      "Gopi's mother"
+     ],
+     "places": [
+      "school",
+      "verandah"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      18,
+      19,
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Gopi leaving school at thirteen to work full-time with his father, and the narrator missing him in class.",
+     "life_period": "adolescence",
+     "people": [
+      "Gopalan (Gopi)",
+      "narrator"
+     ],
+     "places": [
+      "school",
+      "bicycle repair shed"
+     ],
+     "time_references": [
+      "When we were thirteen"
+     ],
+     "utterance_indices": [
+      23,
+      24,
+      25,
+      26
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Gopi gifting the narrator a brass bell for his bicycle when he left for engineering college.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Gopalan (Gopi)",
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [
+      "When I went away to the engineering college"
+     ],
+     "utterance_indices": [
+      27,
+      28
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Gopi expanding his father's shed into a proper shop and the narrator visiting him in Kerala.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Gopalan (Gopi)",
+      "narrator"
+     ],
+     "places": [
+      "Kerala",
+      "bicycle repair shop"
+     ],
+     "time_references": [
+      "Later"
+     ],
+     "utterance_indices": [
+      29,
+      30,
+      31
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Gopi and the narrator reminiscing about the water wheel in the stream.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Gopalan (Gopi)",
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      32,
+      33,
+      34
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Gopi's death and the narrator receiving a photograph of the shop with the old bench.",
+     "life_period": "later_life",
+     "people": [
+      "Gopalan (Gopi)",
+      "Gopi's son",
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [
+      "a few years ago"
+     ],
+     "utterance_indices": [
+      35,
+      36
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Reflection on the enduring nature of the friendship with Gopi, built on tools and repairs.",
+     "life_period": "later_life",
+     "people": [
+      "Gopalan (Gopi)",
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      37,
+      38,
+      39,
+      40
+     ]
+    }
+   ],
+   "repetitions": [
+    {
+     "episode_id": "e8",
+     "scope": "within_session",
+     "previous_session_id": null,
+     "previous_episode_id": "e3",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "Both episodes describe the same event of building and reminiscing about the water wheel in the stream.",
+     "quoted_passages": [
+      "We talked about the wheel in the stream more than anything else.",
+      "He once told me that he still looked at running water and thought of our paddles."
+     ]
+    }
+   ]
+  },
+  {
+   "session_id": "rajesh-menon-s03",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Meeting Mister Duncan Hale, a Scotsman and chief engineer, in Abu Dhabi in 1983.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator"
+     ],
+     "places": [
+      "Abu Dhabi"
+     ],
+     "time_references": [
+      "nineteen eighty-three",
+      "four years"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Hale's silent tour of the plant and his lesson about observing the operators, not just the machines.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator",
+      "operators"
+     ],
+     "places": [
+      "plant"
+     ],
+     "time_references": [
+      "first day"
+     ],
+     "utterance_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Hale making the narrator sit with operators for a week to listen and learn from them.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator",
+      "operators"
+     ],
+     "places": [
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      10,
+      11
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Hale teaching the narrator to keep an honest logbook, including mistakes, and the narrator's first recorded error.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      12,
+      13,
+      14,
+      15
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Evening gatherings at Hale's flat for tea, shortbread, and discussions, including his love for technical books and bagpipes.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator",
+      "colleagues"
+     ],
+     "places": [
+      "Hale's flat"
+     ],
+     "time_references": [
+      "evenings"
+     ],
+     "utterance_indices": [
+      16,
+      17,
+      18
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Hale's habit of naming pumps and valves after Scottish rivers, which the operators adopted.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "operators",
+      "narrator"
+     ],
+     "places": [
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      19,
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Hale's appreciation for Carnatic music and the narrator bringing him a veena recital tape.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator",
+      "colleague"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      23,
+      24,
+      25,
+      26,
+      27
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Hale working alongside the team during long nights and his leadership style of humility and collaboration.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator",
+      "team"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      28,
+      29
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Hale gifting the narrator a brass slide rule upon his promotion to supervisor.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      30,
+      31
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Hale's retirement to a town near Aberdeen and his correspondence with the narrator for twenty years.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Mister Duncan Hale",
+      "narrator",
+      "Hale's daughter"
+     ],
+     "places": [
+      "Aberdeen"
+     ],
+     "time_references": [
+      "nineteen ninety",
+      "twenty years"
+     ],
+     "utterance_indices": [
+      32,
+      33,
+      34,
+      35
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "The narrator reflecting on Hale's mentorship and how it shaped his own approach to leading juniors.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "narrator",
+      "Mister Duncan Hale",
+      "juniors"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      36,
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "rajesh-menon-s04",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Starting first job as a junior design engineer at a pump manufacturing works in Coimbatore in 1975.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "chief draughtsman"
+     ],
+     "places": [
+      "Coimbatore",
+      "pump manufacturing works",
+      "main shed"
+     ],
+     "time_references": [
+      "nineteen seventy-five",
+      "first morning"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Living in a rented room above a tea shop with a retired nurse landlady who served idli every morning.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "landlady"
+     ],
+     "places": [
+      "rented room",
+      "tea shop"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      9,
+      10
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Mister Raghavan, the owner, walking the shed every morning and knowing every worker by name.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Mister Raghavan",
+      "workers"
+     ],
+     "places": [
+      "shed"
+     ],
+     "time_references": [
+      "every morning at seven"
+     ],
+     "utterance_indices": [
+      11,
+      12
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Receiving a salary of 450 rupees a month and sending a quarter home, with mother asking about eating habits.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "mother"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      13,
+      15
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Enjoying the stillness of the compound on Sundays.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator"
+     ],
+     "places": [
+      "compound"
+     ],
+     "time_references": [
+      "Sundays"
+     ],
+     "utterance_indices": [
+      14
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Walking past the lathe shop in the evenings and watching apprentices sweep up metal curls.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "apprentices"
+     ],
+     "places": [
+      "lathe shop"
+     ],
+     "time_references": [
+      "each evening"
+     ],
+     "utterance_indices": [
+      16
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Learning from workers, especially Foreman Subramaniam, who taught the narrator how to listen to a bearing.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "Subramaniam",
+      "workers"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Building a test rig for pumps and taking pride in initials on every pump that left the works.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator"
+     ],
+     "places": [
+      "works"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      22,
+      23,
+      24
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Dealing with a difficult customer from Palakkad who returned a pump three times due to a dropped well.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "landowner from Palakkad"
+     ],
+     "places": [
+      "Palakkad",
+      "farm",
+      "well"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      25,
+      26,
+      27,
+      28
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Playing weekly cricket matches on a dusty ground with a taped tennis ball and drinking tea afterward.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "teammates"
+     ],
+     "places": [
+      "dusty ground",
+      "roadside stall"
+     ],
+     "time_references": [
+      "weekly"
+     ],
+     "utterance_indices": [
+      29,
+      30,
+      31
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "Reflecting on the lessons learned from the pump works, including patience and the dignity of machines.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      32,
+      33
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "Feeling restless after three years and deciding to apply for a job in the Gulf.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "senior colleague"
+     ],
+     "places": [
+      "Gulf",
+      "coastal plants"
+     ],
+     "time_references": [
+      "after three years",
+      "that evening",
+      "the next morning",
+      "six months later"
+     ],
+     "utterance_indices": [
+      34,
+      35,
+      36,
+      37
+     ]
+    },
+    {
+     "episode_id": "e13",
+     "summary": "Expressing gratitude to the pump works for giving a footing and still listening to pumps humming in buildings.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [
+      "even now"
+     ],
+     "utterance_indices": [
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "rajesh-menon-s05",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "The narrator describes his first flight from Kochi to Abu Dhabi in 1979 at age 27.",
+     "life_period": "young_adulthood",
+     "people": [
+      "narrator",
+      "mother",
+      "father"
+     ],
+     "places": [
+      "Kochi",
+      "Abu Dhabi",
+      "airport"
+     ],
+     "time_references": [
+      "1979",
+      "August"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "The narrator recalls the intense heat and humidity upon arriving in Abu Dhabi.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "Abu Dhabi"
+     ],
+     "time_references": [
+      "August"
+     ],
+     "utterance_indices": [
+      5,
+      6
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "A company driver meets the narrator at the airport with a misspelled name card.",
+     "life_period": "young_adulthood",
+     "people": [
+      "driver"
+     ],
+     "places": [
+      "Abu Dhabi",
+      "airport"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      7
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "The narrator describes the drive to the city and his first impressions of Abu Dhabi.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "Abu Dhabi",
+      "road",
+      "sea"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      8,
+      9
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "The narrator moves into a shared house near the plant with four other bachelors.",
+     "life_period": "young_adulthood",
+     "people": [
+      "roommates"
+     ],
+     "places": [
+      "shared house",
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      10,
+      11
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "The narrator describes the shared living arrangements and house rules.",
+     "life_period": "young_adulthood",
+     "people": [
+      "roommates"
+     ],
+     "places": [
+      "shared house"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      11,
+      12
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "The narrator learns to cook dal and chapati from a Punjabi engineer named Harbans.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Harbans"
+     ],
+     "places": [
+      "shared house"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      13,
+      14
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "The narrator describes the plant's purpose: turning seawater into drinking water.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "plant",
+      "coast"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      15,
+      16,
+      17
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "The narrator writes letters home every Sunday and cherishes the replies.",
+     "life_period": "young_adulthood",
+     "people": [
+      "mother",
+      "father"
+     ],
+     "places": [],
+     "time_references": [
+      "Sunday"
+     ],
+     "utterance_indices": [
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "The narrator describes how Abu Dhabi gradually felt like home due to the generosity of its people.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Lebanese baker",
+      "shopkeepers"
+     ],
+     "places": [
+      "Abu Dhabi",
+      "corniche"
+     ],
+     "time_references": [
+      "weekends"
+     ],
+     "utterance_indices": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "The narrator's wife, Lakshmi, joins him in Abu Dhabi after their arranged marriage.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Lakshmi",
+      "sisters"
+     ],
+     "places": [
+      "Abu Dhabi",
+      "small flat"
+     ],
+     "time_references": [
+      "after two years"
+     ],
+     "utterance_indices": [
+      29,
+      30,
+      31
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "The narrator's sons, Arun and Vivek, are born and grow up in Abu Dhabi.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Arun",
+      "Vivek"
+     ],
+     "places": [
+      "Abu Dhabi"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      32
+     ]
+    },
+    {
+     "episode_id": "e13",
+     "summary": "The narrator reflects on his unplanned long-term stay in Abu Dhabi and his career at the plant.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "Abu Dhabi",
+      "plant",
+      "Kerala"
+     ],
+     "time_references": [
+      "each year"
+     ],
+     "utterance_indices": [
+      33,
+      34,
+      35
+     ]
+    },
+    {
+     "episode_id": "e14",
+     "summary": "The narrator reflects on having roots in both Kerala and Abu Dhabi.",
+     "life_period": "later_life",
+     "people": [
+      "sons"
+     ],
+     "places": [
+      "Abu Dhabi",
+      "Thrissur",
+      "Kerala"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      36,
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "rajesh-menon-s06",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "The narrator takes an overnight train to Madras for an engineering college interview at age seventeen.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "father",
+      "mother",
+      "ticket collector",
+      "old man",
+      "porter",
+      "interview panel",
+      "girl",
+      "girl's mother",
+      "sisters"
+     ],
+     "places": [
+      "Thrissur (implied home)",
+      "Madras",
+      "train carriage",
+      "interview location",
+      "beach",
+      "Palakkad station",
+      "small station"
+     ],
+     "time_references": [
+      "seventeen",
+      "overnight",
+      "midnight",
+      "dawn",
+      "morning"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "The narrator loses his shoes from the train and reflects on the incident.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "old man"
+     ],
+     "places": [
+      "train",
+      "track"
+     ],
+     "time_references": [
+      "night"
+     ],
+     "utterance_indices": [
+      8,
+      9,
+      10,
+      11,
+      12
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "The narrator borrows oversized sandals for the interview and faces amusement from the panel.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "porter",
+      "interview panel"
+     ],
+     "places": [
+      "Madras",
+      "interview location"
+     ],
+     "time_references": [
+      "dawn"
+     ],
+     "utterance_indices": [
+      16,
+      17,
+      18
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "The narrator observes the scenery and vendors during the train journey.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "vendors"
+     ],
+     "places": [
+      "train",
+      "paddy fields",
+      "dry red country",
+      "platform"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      19,
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "The narrator witnesses the engine change at Palakkad and studies the coupling mechanism.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "men (workers)"
+     ],
+     "places": [
+      "Palakkad station"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      23,
+      24,
+      25
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "The narrator shares tamarind sweets with a girl and her mother on the train.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "girl",
+      "girl's mother"
+     ],
+     "places": [
+      "train"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      26,
+      27,
+      28,
+      29,
+      30
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "The narrator visits the beach in Madras after the interview and reflects on the ocean.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator"
+     ],
+     "places": [
+      "Madras",
+      "beach",
+      "ocean"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      31,
+      32,
+      33,
+      34
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "The narrator returns home and receives new shoes, with his family laughing about the sandals.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "conductor",
+      "father",
+      "sisters"
+     ],
+     "places": [
+      "train",
+      "home"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      35,
+      36,
+      37,
+      38
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "The narrator reflects on how the journey marked the beginning of his traveling life.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "rajesh-menon-s07",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "The narrator describes his wedding to Lakshmi in 1981 at a temple near Guruvayur.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Lakshmi",
+      "Lakshmi's father",
+      "narrator's father",
+      "priest",
+      "aunt",
+      "uncle Raman",
+      "sister Radha",
+      "Meena",
+      "cousins",
+      "children",
+      "guests",
+      "photographer",
+      "cooks",
+      "band members"
+     ],
+     "places": [
+      "temple near Guruvayur",
+      "pandal",
+      "temple door",
+      "courtyard",
+      "verandah"
+     ],
+     "time_references": [
+      "1981",
+      "nineteen eighty-one",
+      "cool early morning",
+      "four in the morning",
+      "afternoon",
+      "evening"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "The narrator recalls the story of losing his shoes on the Madras train and his cousins laughing about it during the wedding.",
+     "life_period": "adolescence",
+     "people": [
+      "narrator",
+      "cousins"
+     ],
+     "places": [
+      "temple door"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      18,
+      19,
+      20
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "The narrator and Lakshmi celebrate their fortieth anniversary with a small dinner, and their sons ask for the wedding feast story.",
+     "life_period": "later_life",
+     "people": [
+      "Lakshmi",
+      "narrator",
+      "sons (Arun and Vivek)"
+     ],
+     "places": [],
+     "time_references": [
+      "fortieth anniversary"
+     ],
+     "utterance_indices": [
+      36,
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": [
+    {
+     "episode_id": "e2",
+     "scope": "across_sessions",
+     "previous_session_id": "rajesh-menon-s06",
+     "previous_episode_id": "e2",
+     "self_flagged": true,
+     "acknowledgement_quote": "I believe I told you about my shoes and the Madras train last time.",
+     "rationale": "The narrator recounts the same event of losing his shoes on the Madras train, now referenced during his wedding.",
+     "quoted_passages": [
+      "I had to leave my shoes outside,",
+      "my cousins, who knew the old story, laughed at me."
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "scope": "within_session",
+     "previous_session_id": null,
+     "previous_episode_id": "e1",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "The narrator retells the wedding feast story during the fortieth anniversary celebration.",
+     "quoted_passages": [
+      "They asked for the old story of the wedding feast, and I told it again."
+     ]
+    }
+   ]
+  },
+  {
+   "session_id": "rajesh-menon-s08",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "The narrator describes his early morning routine, including tea and the drive to the plant.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Lakshmi"
+     ],
+     "places": [
+      "kitchen",
+      "plant",
+      "coast"
+     ],
+     "time_references": [
+      "five in the morning",
+      "before the sun was properly up",
+      "by six"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "The narrator describes the plant's structure and its purpose of desalinating seawater.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      4,
+      5
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "The narrator details his morning inspection routine at the plant, including checking gauges and writing in a notebook.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "plant",
+      "control room"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      6,
+      7,
+      8,
+      9
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "The narrator describes the working conditions in the plant, including heat, noise, and interactions with operators.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "operators"
+     ],
+     "places": [
+      "plant",
+      "brine pumps",
+      "control room"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      10,
+      11,
+      12,
+      13
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "The narrator meets with the shift supervisor to discuss plant operations and potential issues.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "shift supervisor"
+     ],
+     "places": [
+      "control room"
+     ],
+     "time_references": [
+      "seven thirty"
+     ],
+     "utterance_indices": [
+      14,
+      15
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "The narrator reviews the maintenance list and plans work for the day, focusing on combating scale buildup.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      16,
+      17,
+      18
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "The narrator attends a short morning meeting with managers.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "managers"
+     ],
+     "places": [
+      "plant"
+     ],
+     "time_references": [
+      "at ten"
+     ],
+     "utterance_indices": [
+      19,
+      20
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "The narrator describes his lunch routine, including eating Lakshmi's packed meal at his desk.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Lakshmi",
+      "younger engineers"
+     ],
+     "places": [
+      "plant",
+      "desk"
+     ],
+     "time_references": [
+      "midday"
+     ],
+     "utterance_indices": [
+      21,
+      22,
+      23,
+      24
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "The narrator writes reports in the afternoon, emphasizing the importance of recommendations.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      25,
+      26
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "The narrator conducts a second round of inspections in the late afternoon, enjoying the golden light.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "plant"
+     ],
+     "time_references": [
+      "at four"
+     ],
+     "utterance_indices": [
+      27,
+      28
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "The narrator signs the logbook and hands over duties to the evening engineer before leaving.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "evening engineer"
+     ],
+     "places": [
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      29
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "The narrator describes his drive home and the changing colors of the sky.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "road",
+      "sea"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      30
+     ]
+    },
+    {
+     "episode_id": "e13",
+     "summary": "The narrator describes his evening routine at home, including helping his sons with homework and family dinner.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Arun",
+      "Vivek",
+      "Lakshmi"
+     ],
+     "places": [
+      "home",
+      "dining table"
+     ],
+     "time_references": [
+      "at eight"
+     ],
+     "utterance_indices": [
+      31,
+      32,
+      33
+     ]
+    },
+    {
+     "episode_id": "e14",
+     "summary": "The narrator plays chess with Arun and reads the newspaper after dinner.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Arun"
+     ],
+     "places": [
+      "home"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      34,
+      35
+     ]
+    },
+    {
+     "episode_id": "e15",
+     "summary": "The narrator reflects on the satisfaction of his daily routine and compares the plant to a living body.",
+     "life_period": "middle_adulthood",
+     "people": [],
+     "places": [
+      "plant"
+     ],
+     "time_references": [
+      "by ten",
+      "thirty-five years"
+     ],
+     "utterance_indices": [
+      36,
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": [
+    {
+     "episode_id": "e2",
+     "scope": "across_sessions",
+     "previous_session_id": "rajesh-menon-s05",
+     "previous_episode_id": "e8",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "Both episodes describe the plant's purpose of turning seawater into fresh water.",
+     "quoted_passages": [
+      "Its purpose was to boil seawater and capture the steam, which condensed into fresh water."
+     ]
+    },
+    {
+     "episode_id": "e15",
+     "scope": "across_sessions",
+     "previous_session_id": "rajesh-menon-s05",
+     "previous_episode_id": "e13",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "Both episodes reflect on the narrator's long-term career at the plant in Abu Dhabi.",
+     "quoted_passages": [
+      "I kept that uh routine for thirty-five years, and I would happily keep it again."
+     ]
+    }
+   ]
+  },
+  {
+   "session_id": "rajesh-menon-s09",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Description of the school building and its surroundings, including the banyan tree.",
+     "life_period": "childhood",
+     "people": [
+      "Mister Pillai"
+     ],
+     "places": [
+      "Board School",
+      "banyan tree"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Daily school routine, including prayers, multiplication tables, and writing on slates.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "Board School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Love for mathematics, especially geometry, and the geometry teacher's advice.",
+     "life_period": "childhood",
+     "people": [
+      "geometry teacher"
+     ],
+     "places": [
+      "Board School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "English lessons from a worn reader and reading stories to sister Meena.",
+     "life_period": "childhood",
+     "people": [
+      "Meena"
+     ],
+     "places": [
+      "Board School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      15,
+      16,
+      17
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Science classes with a magnet and mercury, and father's role as a teacher.",
+     "life_period": "childhood",
+     "people": [
+      "father",
+      "science teacher"
+     ],
+     "places": [
+      "Board School"
+     ],
+     "time_references": [
+      "Fridays"
+     ],
+     "utterance_indices": [
+      18,
+      19,
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Prize day in the courtyard and receiving the mathematics prize three times.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "Board School courtyard"
+     ],
+     "time_references": [
+      "end of the year"
+     ],
+     "utterance_indices": [
+      23,
+      24,
+      25,
+      26
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Monsoon challenges in the classroom and lunch under the banyan tree.",
+     "life_period": "childhood",
+     "people": [
+      "Thomas"
+     ],
+     "places": [
+      "Board School",
+      "banyan tree"
+     ],
+     "time_references": [
+      "monsoon"
+     ],
+     "utterance_indices": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "School discipline, including being caned once for laughing during an inspection.",
+     "life_period": "childhood",
+     "people": [
+      "Mister Pillai"
+     ],
+     "places": [
+      "Board School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      33,
+      34
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Exams in a hall and the joy of seeing good results.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "exam hall"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      35,
+      36,
+      37,
+      38,
+      39
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Reflection on the value of school discipline and the pleasure of learning.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "Board School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      40,
+      41
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "rajesh-menon-s10",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "The narrator and his team fix a critical pump vibration issue at the Abu Dhabi plant in 1998 by diagnosing a bearing fault and replacing it overnight.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "narrator",
+      "operators",
+      "mechanics",
+      "Faisal",
+      "Lakshmi",
+      "Mister Hale",
+      "father"
+     ],
+     "places": [
+      "Abu Dhabi",
+      "plant",
+      "control room",
+      "neighbouring plant"
+     ],
+     "time_references": [
+      "summer of 1998",
+      "that year",
+      "six weeks",
+      "that same night",
+      "until sunrise",
+      "nine hours"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "The narrator reflects on the pride and reward of the pump repair, including the team's reaction and the lasting impact on young engineers.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "narrator",
+      "young engineers",
+      "Faisal"
+     ],
+     "places": [
+      "plant"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      26,
+      27,
+      28,
+      29,
+      30
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "The narrator expresses pride in his sons' careers and credits their success to their own efforts, with support from him and Lakshmi.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "narrator",
+      "Lakshmi",
+      "Arun",
+      "Vivek"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      31,
+      32
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "The narrator reflects on the pump repair as the finest moment of his working life, valuing careful listening, teamwork, and restoring the machine.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "narrator",
+      "father"
+     ],
+     "places": [],
+     "time_references": [
+      "that summer"
+     ],
+     "utterance_indices": [
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": [
+    {
+     "episode_id": "e1",
+     "scope": "across_sessions",
+     "previous_session_id": "rajesh-menon-s04",
+     "previous_episode_id": "e7",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "Both episodes involve diagnosing a pump issue by listening to its bearing, a technique learned from Foreman Subramaniam in Coimbatore.",
+     "quoted_passages": [
+      "I remembered my days at the pump works in Coimbatore and Subramaniam with his steel rod.",
+      "I asked a mechanic to press the rod against the housing and listen to the bearing."
+     ]
+    }
+   ]
+  }
+ ],
+ "summaries": [
+  {
+   "session_id": "rajesh-menon-s01",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "building_baseline",
+   "clinician_summary": {
+    "headline": "Personal baseline in progress",
+    "findings": [],
+    "uncertainty_statement": "0 of 3 baseline sessions recorded. No assessment is made before the personal baseline exists.",
+    "suggested_action": "continue_baseline"
+   },
+   "person_explanation": "We are still getting to know your usual way of telling stories. There is nothing to report yet. A few more sessions will give us a reliable starting point.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "template",
+   "model_id": null
+  },
+  {
+   "session_id": "rajesh-menon-s02",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "building_baseline",
+   "clinician_summary": {
+    "headline": "Personal baseline in progress",
+    "findings": [],
+    "uncertainty_statement": "1 of 3 baseline sessions recorded. No assessment is made before the personal baseline exists.",
+    "suggested_action": "continue_baseline"
+   },
+   "person_explanation": "We are still getting to know your usual way of telling stories. There is nothing to report yet. A few more sessions will give us a reliable starting point.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "template",
+   "model_id": null
+  },
+  {
+   "session_id": "rajesh-menon-s03",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "building_baseline",
+   "clinician_summary": {
+    "headline": "Personal baseline in progress",
+    "findings": [],
+    "uncertainty_statement": "2 of 3 baseline sessions recorded. No assessment is made before the personal baseline exists.",
+    "suggested_action": "continue_baseline"
+   },
+   "person_explanation": "We are still getting to know your usual way of telling stories. There is nothing to report yet. A few more sessions will give us a reliable starting point.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "template",
+   "model_id": null
+  },
+  {
+   "session_id": "rajesh-menon-s04",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within the person's usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": []
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 3 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "rajesh-menon-s05",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within the person’s usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": []
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 4 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like your earlier sessions. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "rajesh-menon-s06",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within the person’s usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "rajesh-menon-s07",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within the person’s usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": []
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "rajesh-menon-s08",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within the person’s usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "rajesh-menon-s09",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All markers that are counted in the change index stayed within the person’s usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "rajesh-menon-s10",
+   "person_id": "rajesh-menon",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within the person’s usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  }
+ ]
+}

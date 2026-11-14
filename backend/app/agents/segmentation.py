@@ -50,6 +50,11 @@ class Utterance:
     def lexical_words(self) -> tuple[SpokenWord, ...]:
         return tuple(word for word in self.words if word.kind is WordKind.LEXICAL)
 
+    @property
+    def text(self) -> str:
+        """The utterance as transcribed, hesitations included."""
+        return " ".join(word.raw for word in self.words)
+
 
 @dataclass(frozen=True, slots=True)
 class Turn:

@@ -244,7 +244,10 @@ class ReviewStatus(StrEnum):
 
 class GenerationMode(StrEnum):
     LLM = "llm"
+    TEMPLATE = "template"
+    """Fixed wording by design: no model is called while the baseline is being built."""
     TEMPLATE_FALLBACK = "template_fallback"
+    """Fixed wording because the model was unavailable or its drafts were rejected."""
 
 
 LEVEL_ACTIONS: dict[OrientationLevel, SuggestedAction] = {
@@ -285,18 +288,27 @@ class RecordingContext(ContractModel):
     mood: Mood | None = None
 
     @property
-    def is_adverse(self) -> bool:
-        """True when any field signals a less reliable session.
+    def adverse_items(self) -> tuple[str, ...]:
+        """The fields that signal a less reliable session, in words.
 
         Design choice validated on 2026-11-12, not backed by a study (H9; Q32).
         """
-        return (
-            self.sleep is SleepQuality.POOR
-            or self.fatigue is True
-            or self.acute_illness is True
-            or self.new_medication is True
-            or self.mood is Mood.LOW
+        return tuple(
+            label
+            for label, present in (
+                ("poor sleep", self.sleep is SleepQuality.POOR),
+                ("fatigue", self.fatigue is True),
+                ("acute illness", self.acute_illness is True),
+                ("new medication", self.new_medication is True),
+                ("low mood", self.mood is Mood.LOW),
+            )
+            if present
         )
+
+    @property
+    def is_adverse(self) -> bool:
+        """True when any field signals a less reliable session."""
+        return bool(self.adverse_items)
 
 
 class RecordingMetadata(ContractModel):
@@ -389,6 +401,7 @@ class MarkerSpec(ContractModel):
     """Static description of a marker, shown to clinicians (definition and sources)."""
 
     marker: MarkerId
+    label: NonEmptyText
     family: MarkerFamily
     decline_direction: DeclineDirection
     in_change_index: bool
@@ -453,6 +466,9 @@ class Repetition(ContractModel):
     previous_session_id: Identifier | None = None
     previous_episode_id: Identifier
     self_flagged: bool = Field(description="The person says they already told it.")
+    acknowledgement_quote: NonEmptyText | None = Field(
+        default=None, description="The person's own words saying so, as transcribed."
+    )
     rationale: NonEmptyText
     quoted_passages: tuple[NonEmptyText, ...] = Field(min_length=1)
 
@@ -463,6 +479,11 @@ class Repetition(ContractModel):
             raise ValueError("an across-session repetition needs previous_session_id")
         if not across and self.previous_session_id is not None:
             raise ValueError("a within-session repetition has no previous_session_id")
+        if not across and self.previous_episode_id == self.episode_id:
+            raise ValueError("an episode cannot be a repetition of itself")
+        # The claim is only as good as the words that back it (pipeline.md, step 2).
+        if self.self_flagged != (self.acknowledgement_quote is not None):
+            raise ValueError("self_flagged goes with the words by which the person says so")
         return self
 
 
@@ -707,13 +728,17 @@ FORBIDDEN_DIAGNOSTIC_PATTERNS: tuple[re.Pattern[str], ...] = tuple(
     re.compile(pattern, re.IGNORECASE)
     for pattern in (
         r"\bdiagnos\w*",  # diagnosis, diagnose(d), diagnostic
-        r"\bhas\s+alzheimer(?:'s)?\b",
-        r"\bhas\s+dementia\b",
-        r"\bdementia\s+(?:is\s+)?confirmed\b",
-        r"\bconfirmed\s+dementia\b",
+        r"\balzheimer\w*",
+        r"\bdementia\b",
+        r"\bcognitive\s+impairment\b",
+        r"\bMCI\b",
     )
 )
-"""English counterpart of the vocabulary forbidden by CLAUDE.md, clinical rule 1."""
+"""Vocabulary forbidden in generated text (CLAUDE.md, clinical rule 1).
+
+The tool shows that speech differs from a person's usual range, never why: generated
+text must not name a condition at all, even to rule it out.
+"""
 
 
 def find_diagnostic_terms(text: str) -> list[str]:
@@ -725,6 +750,12 @@ class Finding(ContractModel):
     """One statement of the clinician summary, always tied to at least one marker."""
 
     text: NonEmptyText
+    beyond_usual_range: bool = Field(
+        description=(
+            "True when the finding reports markers beyond the person's usual range; "
+            "step 4 checks this claim against the tests of step 3."
+        )
+    )
     marker_ids: tuple[MarkerId, ...] = Field(min_length=1)
     passages: tuple[NonEmptyText, ...] = ()
     study_refs: tuple[StudyRef, ...] = ()

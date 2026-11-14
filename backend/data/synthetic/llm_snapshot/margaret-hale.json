@@ -1,0 +1,2701 @@
+{
+ "synthetic": true,
+ "person_id": "margaret-hale",
+ "generated_at": "2026-11-14T16:08:58.751406Z",
+ "narratives": [
+  {
+   "session_id": "margaret-hale-s01",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret describes her birth year, birthplace, and the layout of her childhood home in Leeds.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "Hollin Road",
+      "Leeds",
+      "terraced house"
+     ],
+     "time_references": [
+      "nineteen forty-eight"
+     ],
+     "utterance_indices": [
+      0,
+      1
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret recalls her father's job as a railway signalman and her mother's work as a seamstress.",
+     "life_period": "childhood",
+     "people": [
+      "father",
+      "mother"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      2
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret describes her older brother Peter and their shared bedroom with a curtain divider.",
+     "life_period": "childhood",
+     "people": [
+      "Peter"
+     ],
+     "places": [
+      "back bedroom"
+     ],
+     "time_references": [
+      "until I was nine"
+     ],
+     "utterance_indices": [
+      3,
+      4
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Margaret remembers the kitchen as the heart of the home, with her mother polishing the black range every Friday.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "kitchen"
+     ],
+     "time_references": [
+      "every Friday"
+     ],
+     "utterance_indices": [
+      5,
+      6
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Margaret describes the pegged rug made from old coat cuttings in front of the fire.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      7
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Margaret recalls winter conditions in the house, including frost on the windows and dressing under blankets.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [],
+     "time_references": [
+      "winter",
+      "January"
+     ],
+     "utterance_indices": [
+      8,
+      9
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Margaret describes the communal washday routine and the smell of wet wool and carbolic soap on Mondays.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "street"
+     ],
+     "time_references": [
+      "Mondays",
+      "washday"
+     ],
+     "utterance_indices": [
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Margaret remembers her mother's Singer sewing machine and the forbidden velvet tomato pin cushion.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "front window"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      15,
+      16,
+      17,
+      18
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Margaret describes her father's work schedule, his smell, and the tin box of sandwiches he carried.",
+     "life_period": "childhood",
+     "people": [
+      "father"
+     ],
+     "places": [],
+     "time_references": [
+      "six in the morning or the evening"
+     ],
+     "utterance_indices": [
+      19,
+      20
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Margaret recalls visiting her father's signal box on Sundays and pulling a lever.",
+     "life_period": "childhood",
+     "people": [
+      "father"
+     ],
+     "places": [
+      "signal box"
+     ],
+     "time_references": [
+      "Sunday"
+     ],
+     "utterance_indices": [
+      21,
+      22,
+      23
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "Margaret describes the railway cutting near her home and collecting train numbers with her brother.",
+     "life_period": "childhood",
+     "people": [
+      "Peter"
+     ],
+     "places": [
+      "railway cutting"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      24,
+      25
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "Margaret remembers her neighbor Missus Pickersgill, her canary Gladstone, and the humbugs she gave for sweeping her step.",
+     "life_period": "childhood",
+     "people": [
+      "Missus Pickersgill"
+     ],
+     "places": [
+      "next door"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      26,
+      27
+     ]
+    },
+    {
+     "episode_id": "e13",
+     "summary": "Margaret describes the Dawsons, her neighbors with seven children and one tin bath.",
+     "life_period": "childhood",
+     "people": [
+      "Dawsons"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      28
+     ]
+    },
+    {
+     "episode_id": "e14",
+     "summary": "Margaret recalls Saturday night bath routines, with Peter going first and her getting lukewarm water.",
+     "life_period": "childhood",
+     "people": [
+      "Peter",
+      "mother"
+     ],
+     "places": [
+      "kitchen"
+     ],
+     "time_references": [
+      "Saturday night",
+      "bath night"
+     ],
+     "utterance_indices": [
+      29,
+      30
+     ]
+    },
+    {
+     "episode_id": "e15",
+     "summary": "Margaret remembers sitting by the range with cocoa and dripping toast after bath night.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "range"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      31
+     ]
+    },
+    {
+     "episode_id": "e16",
+     "summary": "Margaret describes her mother cutting her hair with dressmaking scissors, resulting in an uneven fringe.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      32
+     ]
+    },
+    {
+     "episode_id": "e17",
+     "summary": "Margaret recalls her father growing tomatoes in an old tin bath in the yard.",
+     "life_period": "childhood",
+     "people": [
+      "father"
+     ],
+     "places": [
+      "yard"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      33,
+      34,
+      35
+     ]
+    },
+    {
+     "episode_id": "e18",
+     "summary": "Margaret remembers summer evenings with children playing in the street.",
+     "life_period": "childhood",
+     "people": [
+      "children"
+     ],
+     "places": [
+      "street"
+     ],
+     "time_references": [
+      "summer evenings"
+     ],
+     "utterance_indices": [
+      36
+     ]
+    },
+    {
+     "episode_id": "e19",
+     "summary": "Margaret describes the coalman's weekly visit with his horse, Duke, and her feeding him crusts.",
+     "life_period": "childhood",
+     "people": [
+      "coalman"
+     ],
+     "places": [],
+     "time_references": [
+      "Thursdays"
+     ],
+     "utterance_indices": [
+      37
+     ]
+    },
+    {
+     "episode_id": "e20",
+     "summary": "Margaret reflects on the sensory memories of her childhood home, including the smells of blacklead, wet wool, and toast.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      38
+     ]
+    },
+    {
+     "episode_id": "e21",
+     "summary": "Margaret shares her mother's saying about the importance of a tidy house and a warm kettle.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      39,
+      40
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "margaret-hale-s02",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret starts at Holbeck Road Infants at age five, wearing a pinafore made by her mother.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "mother"
+     ],
+     "places": [
+      "Holbeck Road Infants"
+     ],
+     "time_references": [
+      "age five"
+     ],
+     "utterance_indices": [
+      0
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret clings to the school railings on her first morning and is gently separated by Miss Threlfall.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "Miss Threlfall"
+     ],
+     "places": [
+      "Holbeck Road Infants"
+     ],
+     "time_references": [
+      "first morning"
+     ],
+     "utterance_indices": [
+      1,
+      2
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret describes Miss Threlfall's appearance and voice.",
+     "life_period": "childhood",
+     "people": [
+      "Miss Threlfall"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      3
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Margaret recalls the classroom smells and the frozen school milk in winter.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "classroom"
+     ],
+     "time_references": [
+      "winter"
+     ],
+     "utterance_indices": [
+      4,
+      5
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Margaret describes the classroom setup with wooden desks and inkwells, and learning letters in a sand tray.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "classroom"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      6,
+      7
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Margaret moves to the juniors at age seven, taught by Mister Bickerdike, who uses a pointer for arithmetic.",
+     "life_period": "childhood",
+     "people": [
+      "Mister Bickerdike"
+     ],
+     "places": [
+      "juniors"
+     ],
+     "time_references": [
+      "age seven"
+     ],
+     "utterance_indices": [
+      8,
+      9
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Margaret recalls chanting times tables and Mister Bickerdike's strict but non-violent teaching style.",
+     "life_period": "childhood",
+     "people": [
+      "Mister Bickerdike"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      10
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Margaret describes playtime activities, including skipping and conkers.",
+     "life_period": "childhood",
+     "people": [],
+     "places": [
+      "schoolyard"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      11
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Margaret introduces her best friend Brenda Sugden, with whom she shares sweets, secrets, and ribbon for six years.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "Brenda Sugden"
+     ],
+     "places": [],
+     "time_references": [
+      "six years"
+     ],
+     "utterance_indices": [
+      12,
+      13
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Margaret recalls Brenda Sugden's ability to whistle through her gap teeth, which Mister Bickerdike never discovered.",
+     "life_period": "childhood",
+     "people": [
+      "Brenda Sugden",
+      "Mister Bickerdike"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      14
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "Margaret begins preparing for the scholarship exam at age ten, with nightly practice enforced by her mother.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "mother"
+     ],
+     "places": [],
+     "time_references": [
+      "age ten"
+     ],
+     "utterance_indices": [
+      15
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "Margaret passes the scholarship exam and wins a place at Moorside Grammar School for Girls.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "Moorside Grammar School for Girls"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      16
+     ]
+    },
+    {
+     "episode_id": "e13",
+     "summary": "Margaret's father wears his best tie on an ordinary Tuesday to celebrate her scholarship success.",
+     "life_period": "childhood",
+     "people": [
+      "father"
+     ],
+     "places": [],
+     "time_references": [
+      "ordinary Tuesday"
+     ],
+     "utterance_indices": [
+      17
+     ]
+    },
+    {
+     "episode_id": "e14",
+     "summary": "Margaret describes the cost and details of her Moorside Grammar School uniform, partly sewn by her mother.",
+     "life_period": "childhood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "Moorside Grammar School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      18,
+      19
+     ]
+    },
+    {
+     "episode_id": "e15",
+     "summary": "Margaret describes Moorside Grammar School's grand building, clock tower, and the silent presence of the headmistress, Miss Pembridge.",
+     "life_period": "childhood",
+     "people": [
+      "Miss Pembridge"
+     ],
+     "places": [
+      "Moorside Grammar School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e16",
+     "summary": "Margaret feels out of place at Moorside due to her working-class background but excels in biology.",
+     "life_period": "adolescence",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "Moorside Grammar School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      23,
+      24,
+      25
+     ]
+    },
+    {
+     "episode_id": "e17",
+     "summary": "Margaret recalls her biology teacher, Miss Lindqvist, who praises her steady hands and curious mind after dissecting a dogfish.",
+     "life_period": "adolescence",
+     "people": [
+      "Miss Lindqvist"
+     ],
+     "places": [
+      "Moorside Grammar School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      26,
+      27,
+      28
+     ]
+    },
+    {
+     "episode_id": "e18",
+     "summary": "Margaret enjoys domestic science for baking and darning, but struggles with Latin and her critical teacher, Mister Coombes.",
+     "life_period": "adolescence",
+     "people": [
+      "Mister Coombes"
+     ],
+     "places": [
+      "Moorside Grammar School"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      29,
+      30,
+      31,
+      32,
+      33
+     ]
+    },
+    {
+     "episode_id": "e19",
+     "summary": "Margaret describes playing hockey on a frozen pitch in thin skirts, resulting in purple knees until April.",
+     "life_period": "adolescence",
+     "people": [],
+     "places": [
+      "hockey pitch"
+     ],
+     "time_references": [
+      "until April"
+     ],
+     "utterance_indices": [
+      34
+     ]
+    },
+    {
+     "episode_id": "e20",
+     "summary": "Margaret and Brenda Sugden meet on Saturdays at the market after Brenda attends secondary modern school.",
+     "life_period": "adolescence",
+     "people": [
+      "Margaret",
+      "Brenda Sugden"
+     ],
+     "places": [
+      "market"
+     ],
+     "time_references": [
+      "Saturdays"
+     ],
+     "utterance_indices": [
+      35
+     ]
+    },
+    {
+     "episode_id": "e21",
+     "summary": "Brenda Sugden becomes a hairdresser and opens her own salon by age thirty.",
+     "life_period": "adolescence",
+     "people": [
+      "Brenda Sugden"
+     ],
+     "places": [],
+     "time_references": [
+      "by thirty"
+     ],
+     "utterance_indices": [
+      36
+     ]
+    },
+    {
+     "episode_id": "e22",
+     "summary": "Margaret leaves school at eighteen with good results and decides to pursue nursing despite her headmistress's disapproval.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "headmistress"
+     ],
+     "places": [],
+     "time_references": [
+      "age eighteen"
+     ],
+     "utterance_indices": [
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "margaret-hale-s03",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret starts her first nursing job at Saint Aldric's Infirmary in Leeds on a wet Monday in September 1967 at age nineteen.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Maureen Flaherty"
+     ],
+     "places": [
+      "Saint Aldric's Infirmary",
+      "Leeds",
+      "nurses' home"
+     ],
+     "time_references": [
+      "September 1967",
+      "wet Monday",
+      "nineteen"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret describes her nursing uniform and the difficulty of folding her starched cap, which collapses in front of Matron Fairweather.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Matron Fairweather"
+     ],
+     "places": [
+      "Saint Aldric's Infirmary"
+     ],
+     "time_references": [
+      "first day"
+     ],
+     "utterance_indices": [
+      4,
+      5,
+      6,
+      7
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret recounts the initial months of her nursing training, which involved laundry, bedpans, and scrubbing floors rather than patient care.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "Saint Aldric's Infirmary"
+     ],
+     "time_references": [
+      "three months"
+     ],
+     "utterance_indices": [
+      8,
+      9
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Margaret learns to make a hospital bed with perfect corners under Sister Cartwright's strict supervision.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Sister Cartwright"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "fifth try"
+     ],
+     "utterance_indices": [
+      10,
+      11,
+      12,
+      13
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Margaret studies anatomy in a damp classroom with a skeleton named Percy during her nursing training.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "damp classroom"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      14,
+      15
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Margaret meets a retired carpenter, Mister Arkwright, who carves her a tiny wooden sparrow for her twentieth birthday.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Mister Arkwright"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "twentieth birthday",
+      "first year"
+     ],
+     "utterance_indices": [
+      16,
+      17,
+      18,
+      19
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Margaret begins taking temperatures and pulses after her first year and bonds with a patient who teaches her to play cribbage.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "man with a broken leg"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "first year"
+     ],
+     "utterance_indices": [
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Margaret describes the challenges of night duty, including walking the ward and listening to patients' breathing.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "ward",
+      "sluice room"
+     ],
+     "time_references": [
+      "night duty"
+     ],
+     "utterance_indices": [
+      23,
+      24,
+      25
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Margaret experiences her first patient death at age twenty and is comforted by an older nurse named Gwen.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Gwen",
+      "patient"
+     ],
+     "places": [
+      "ward",
+      "sluice room"
+     ],
+     "time_references": [
+      "twenty",
+      "first time"
+     ],
+     "utterance_indices": [
+      26,
+      27,
+      28,
+      29
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Margaret and her fellow nurses sneak out to dance at the Mecca, returning late and facing extra scrubbing duty the next morning.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Matron Fairweather",
+      "nurses"
+     ],
+     "places": [
+      "nurses' home",
+      "Mecca"
+     ],
+     "time_references": [
+      "midnight"
+     ],
+     "utterance_indices": [
+      30,
+      31,
+      32,
+      33
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "Margaret reflects on the camaraderie and purpose she felt during her nursing training.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "nurses"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      34,
+      35
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "Margaret qualifies as a nurse in 1970, and her parents attend the ceremony where she receives a silver badge and certificate.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "parents",
+      "Matron Fairweather"
+     ],
+     "places": [],
+     "time_references": [
+      "1970",
+      "nineteen seventy"
+     ],
+     "utterance_indices": [
+      36,
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "margaret-hale-s04",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret introduces her husband, Alan Hale, as the most important person in her life.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan Hale"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      0
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret meets Alan in autumn 1969 while working as a student nurse on Ward Six, where his uncle Walter is a patient.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan",
+      "Uncle Walter"
+     ],
+     "places": [
+      "Ward Six"
+     ],
+     "time_references": [
+      "autumn of nineteen sixty-nine"
+     ],
+     "utterance_indices": [
+      1,
+      2
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret describes Alan's appearance and mannerisms, including his thin build, round glasses, and pencil behind his ear.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Alan"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      3
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Alan leaves his pencil case on the locker, and Margaret runs after him to return it, leading to a shy interaction.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan"
+     ],
+     "places": [],
+     "time_references": [
+      "third visit"
+     ],
+     "utterance_indices": [
+      4,
+      5
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Alan invites Margaret to see a footbridge he helped design, and they spend a Sunday together in Wetherby.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan"
+     ],
+     "places": [
+      "Wetherby"
+     ],
+     "time_references": [
+      "a week later",
+      "freezing Sunday"
+     ],
+     "utterance_indices": [
+      6,
+      7,
+      8
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Margaret describes Alan's profession as a draughtsman and his personality traits, including his shyness and dry humor.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Alan"
+     ],
+     "places": [
+      "Wellington Street"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      9,
+      10
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Margaret's mother approves of Alan because he wipes his feet and admires her sewing, while her father tests him with railway timetable questions.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan",
+      "Margaret's mother",
+      "Margaret's father"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      11,
+      12,
+      13
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Margaret and Alan marry in June 1971 in a small chapel on Hollin Road, with Alan designing the order of service.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan"
+     ],
+     "places": [
+      "Hollin Road chapel"
+     ],
+     "time_references": [
+      "June nineteen seventy-one"
+     ],
+     "utterance_indices": [
+      14,
+      15
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Margaret and Alan rent two rooms above a chemist's shop in Headingley and buy their first kettle together.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan"
+     ],
+     "places": [
+      "Headingley"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      16
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Alan cooks beans on toast with a fried egg on Saturdays and draws houses for fun on Sundays.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Alan"
+     ],
+     "places": [],
+     "time_references": [
+      "Saturdays",
+      "Sunday afternoon"
+     ],
+     "utterance_indices": [
+      17,
+      18,
+      19,
+      20
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "Helen is born in 1975, and Alan is deeply involved in her early life, including drawing her tiny hand.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Alan",
+      "Helen"
+     ],
+     "places": [],
+     "time_references": [
+      "nineteen seventy-five"
+     ],
+     "utterance_indices": [
+      21,
+      22,
+      23
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "Alan teaches Helen to use drawing tools, and she later decides to become an architect, which pleases Alan.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Alan",
+      "Helen"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      24,
+      25,
+      26
+     ]
+    },
+    {
+     "episode_id": "e13",
+     "summary": "Alan supports Margaret during her night shifts, waiting up with tea and the newspaper without complaint.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Margaret",
+      "Alan"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      27,
+      28
+     ]
+    },
+    {
+     "episode_id": "e14",
+     "summary": "Alan's health declines in his sixties, and he ignores medical advice after being diagnosed with a heart condition.",
+     "life_period": "later_life",
+     "people": [
+      "Alan"
+     ],
+     "places": [],
+     "time_references": [
+      "his sixties",
+      "two thousand and fifteen"
+     ],
+     "utterance_indices": [
+      30,
+      31,
+      32,
+      33
+     ]
+    },
+    {
+     "episode_id": "e15",
+     "summary": "Alan dies quietly in his sleep in spring 2015, and Margaret stays with him until morning.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret",
+      "Alan"
+     ],
+     "places": [],
+     "time_references": [
+      "spring of two thousand and fifteen"
+     ],
+     "utterance_indices": [
+      34,
+      35,
+      36
+     ]
+    },
+    {
+     "episode_id": "e16",
+     "summary": "Margaret copes with Alan's death by gardening and reflects on his quiet strength and the nature of love.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "garden"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "margaret-hale-s05",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret and Peter take a train to Whitby in 1958 to visit Auntie Dorothy.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "Peter",
+      "Auntie Dorothy",
+      "father",
+      "mother",
+      "conductor",
+      "woman with eggs and hen"
+     ],
+     "places": [
+      "Leeds Central",
+      "York",
+      "Malton",
+      "Whitby station",
+      "Whitby abbey",
+      "train",
+      "sea"
+     ],
+     "time_references": [
+      "summer of nineteen fifty-eight",
+      "Saturday morning",
+      "four o'clock",
+      "week",
+      "morning",
+      "coming home"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret and Peter arrive at Auntie Dorothy's house in Whitby.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "Peter",
+      "Auntie Dorothy"
+     ],
+     "places": [
+      "Whitby station",
+      "Auntie Dorothy's house",
+      "abbey"
+     ],
+     "time_references": [
+      "four o'clock",
+      "that night",
+      "in the morning"
+     ],
+     "utterance_indices": [
+      23,
+      24,
+      25,
+      26,
+      27
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret and Peter spend a week in Whitby with Auntie Dorothy.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "Peter",
+      "Auntie Dorothy"
+     ],
+     "places": [
+      "Whitby",
+      "sand",
+      "sea"
+     ],
+     "time_references": [
+      "week",
+      "morning"
+     ],
+     "utterance_indices": [
+      28,
+      29,
+      30,
+      31
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Margaret and Peter return home from Whitby by train.",
+     "life_period": "childhood",
+     "people": [
+      "Margaret",
+      "Peter",
+      "father"
+     ],
+     "places": [
+      "Whitby station",
+      "Leeds",
+      "train"
+     ],
+     "time_references": [
+      "coming home"
+     ],
+     "utterance_indices": [
+      32,
+      33,
+      34,
+      35,
+      36,
+      37
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Margaret reflects on the significance of the train journey to Whitby.",
+     "life_period": "unspecified",
+     "people": [
+      "Margaret"
+     ],
+     "places": [],
+     "time_references": [
+      "whenever I travel now"
+     ],
+     "utterance_indices": [
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "margaret-hale-s06",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret describes the 1977 Jubilee street party on Ash Grove in Headingley.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Helen",
+      "Alan",
+      "Missus Garside",
+      "Old Mister Ackroyd",
+      "a man from the shop",
+      "a man from the pub",
+      "the woman",
+      "a boy",
+      "teenagers"
+     ],
+     "places": [
+      "Ash Grove",
+      "Headingley",
+      "church hall",
+      "school",
+      "railway bridge",
+      "pub"
+     ],
+     "time_references": [
+      "nineteen seventy-seven",
+      "weeks beforehand",
+      "Saturday",
+      "the morning itself",
+      "noon",
+      "mid afternoon",
+      "evening",
+      "eleven",
+      "the next morning",
+      "twenty years"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "margaret-hale-s07",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret describes her mother's Sunday dinner preparation and traditions on Hollin Road.",
+     "life_period": "childhood",
+     "people": [
+      "mother",
+      "father",
+      "brother",
+      "Mister Hartley",
+      "grandmother"
+     ],
+     "places": [
+      "Hollin Road",
+      "pantry",
+      "Armley",
+      "kitchen"
+     ],
+     "time_references": [
+      "Saturday night",
+      "Sunday morning",
+      "Sunday",
+      "Monday"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret recalls missing her mother's Sunday dinners while training as a nurse.",
+     "life_period": "young_adulthood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "training location"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      25,
+      26
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret describes her mother's extra potato gesture when she visited home during training.",
+     "life_period": "young_adulthood",
+     "people": [
+      "mother"
+     ],
+     "places": [
+      "home"
+     ],
+     "time_references": [
+      "Sunday"
+     ],
+     "utterance_indices": [
+      27
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Margaret recounts her early struggles and eventual success in making Yorkshire puddings after marrying Alan.",
+     "life_period": "young_adulthood",
+     "people": [
+      "mother",
+      "Alan",
+      "Helen"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      28,
+      29,
+      30
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Margaret describes making Yorkshire puddings for her family in Abu Dhabi.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Helen",
+      "Sam",
+      "children"
+     ],
+     "places": [
+      "Abu Dhabi",
+      "little shop near the sea"
+     ],
+     "time_references": [
+      "Sunday"
+     ],
+     "utterance_indices": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "repetitions": []
+  },
+  {
+   "session_id": "margaret-hale-s08",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret decides to move to Abu Dhabi after falling on the ice and realizing her house is too quiet without Alan.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret",
+      "Helen",
+      "Alan"
+     ],
+     "places": [
+      "Headingley",
+      "Abu Dhabi"
+     ],
+     "time_references": [
+      "spring",
+      "two years after Alan's death",
+      "Sundays"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret sells her house, finds Alan's belongings, and prepares to move with her brother Peter's help.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret",
+      "Peter",
+      "Alan"
+     ],
+     "places": [
+      "Headingley",
+      "attic"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret travels to Abu Dhabi by plane, greeted by Helen and her children at the airport.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret",
+      "Helen",
+      "Sam",
+      "Ruby",
+      "Doreen"
+     ],
+     "places": [
+      "airport",
+      "Abu Dhabi",
+      "Khalidiyah"
+     ],
+     "time_references": [
+      "night"
+     ],
+     "utterance_indices": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Margaret adjusts to life in Abu Dhabi, struggling with the heat, brightness, and missing the green landscapes of home.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "Abu Dhabi",
+      "Khalidiyah",
+      "balcony"
+     ],
+     "time_references": [
+      "dawn",
+      "a week"
+     ],
+     "utterance_indices": [
+      22,
+      23,
+      28,
+      29
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Margaret recalls a patient from her nursing days who carved her a tiny wooden bird for her birthday.",
+     "life_period": "young_adulthood",
+     "people": [
+      "Margaret",
+      "Mister Arkwright"
+     ],
+     "places": [
+      "ward",
+      "home"
+     ],
+     "time_references": [
+      "birthday"
+     ],
+     "utterance_indices": [
+      24,
+      25,
+      26,
+      27
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Margaret starts gardening on her balcony in Abu Dhabi, eventually succeeding with a rosemary plant.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret"
+     ],
+     "places": [
+      "balcony"
+     ],
+     "time_references": [
+      "third attempt"
+     ],
+     "utterance_indices": [
+      30,
+      31
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Margaret integrates into her new community in Abu Dhabi, joining a choir and bonding with neighbors.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret",
+      "Helen",
+      "Sam",
+      "Ruby",
+      "a woman in the building"
+     ],
+     "places": [
+      "market",
+      "church hall near the harbour"
+     ],
+     "time_references": [
+      "within a month"
+     ],
+     "utterance_indices": [
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Margaret reflects on her move, missing home but finding comfort in her new life and family.",
+     "life_period": "later_life",
+     "people": [
+      "Margaret",
+      "Peter"
+     ],
+     "places": [
+      "Yorkshire",
+      "Abu Dhabi"
+     ],
+     "time_references": [
+      "Sundays",
+      "some nights"
+     ],
+     "utterance_indices": [
+      39,
+      40,
+      41,
+      42,
+      43
+     ]
+    }
+   ],
+   "repetitions": [
+    {
+     "episode_id": "e5",
+     "scope": "across_sessions",
+     "previous_session_id": "margaret-hale-s03",
+     "previous_episode_id": "e6",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "Both episodes describe the same event where a retired carpenter, Mister Arkwright, carves Margaret a tiny wooden bird for her birthday.",
+     "quoted_passages": [
+      "He made me a little bird for my birthday.",
+      "It was a tiny thing, no bigger than my thumb."
+     ]
+    }
+   ]
+  },
+  {
+   "session_id": "margaret-hale-s09",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret describes her early morning routine and arrival at Saint Aldric's Infirmary for her nursing shift.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "Saint Aldric's Infirmary"
+     ],
+     "time_references": [
+      "very early",
+      "still dark",
+      "six",
+      "half past six"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "Margaret details the layout and atmosphere of the ward at Saint Aldric's.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "Saint Aldric's Infirmary",
+      "ward"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      7,
+      8
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret describes the morning routine of bedpans, washing, and making beds.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "ward"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "episode_id": "e4",
+     "summary": "Margaret explains the breakfast routine and her habit of eating with the patients.",
+     "life_period": "young_adulthood",
+     "people": [
+      "grumpy ones"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      12,
+      13
+     ]
+    },
+    {
+     "episode_id": "e5",
+     "summary": "Margaret describes the medication round and the doctors' visit.",
+     "life_period": "young_adulthood",
+     "people": [
+      "doctors",
+      "important one"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "nine"
+     ],
+     "utterance_indices": [
+      14,
+      15,
+      16,
+      17
+     ]
+    },
+    {
+     "episode_id": "e6",
+     "summary": "Margaret talks about morning medical tasks like dressing wounds and administering treatments.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "later in the morning"
+     ],
+     "utterance_indices": [
+      18,
+      19
+     ]
+    },
+    {
+     "episode_id": "e7",
+     "summary": "Margaret describes the mid-morning tea break and lunch routine.",
+     "life_period": "young_adulthood",
+     "people": [],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "eleven",
+      "noon"
+     ],
+     "utterance_indices": [
+      20,
+      21,
+      22
+     ]
+    },
+    {
+     "episode_id": "e8",
+     "summary": "Margaret recounts the visiting hours and her role in greeting families.",
+     "life_period": "young_adulthood",
+     "people": [
+      "relatives"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "two"
+     ],
+     "utterance_indices": [
+      23,
+      28
+     ]
+    },
+    {
+     "episode_id": "e9",
+     "summary": "Margaret remembers a patient who made her a wooden bird as a gift.",
+     "life_period": "young_adulthood",
+     "people": [
+      "man who used to make furniture"
+     ],
+     "places": [
+      "ward",
+      "kitchen"
+     ],
+     "time_references": [
+      "one winter"
+     ],
+     "utterance_indices": [
+      24,
+      25,
+      26,
+      27
+     ]
+    },
+    {
+     "episode_id": "e10",
+     "summary": "Margaret describes the afternoon activities, including interacting with young visitors.",
+     "life_period": "young_adulthood",
+     "people": [
+      "young ones"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "afternoon",
+      "three"
+     ],
+     "utterance_indices": [
+      29,
+      30,
+      31,
+      32
+     ]
+    },
+    {
+     "episode_id": "e11",
+     "summary": "Margaret describes the visit from the matron and the evening handover.",
+     "life_period": "young_adulthood",
+     "people": [
+      "big boss"
+     ],
+     "places": [
+      "ward"
+     ],
+     "time_references": [
+      "four",
+      "six"
+     ],
+     "utterance_indices": [
+      33,
+      34,
+      35
+     ]
+    },
+    {
+     "episode_id": "e12",
+     "summary": "Margaret recounts her evening routine after work, including interactions with her family.",
+     "life_period": "young_adulthood",
+     "people": [
+      "husband",
+      "Helen"
+     ],
+     "places": [
+      "home",
+      "kitchen"
+     ],
+     "time_references": [],
+     "utterance_indices": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43
+     ]
+    }
+   ],
+   "repetitions": [
+    {
+     "episode_id": "e9",
+     "scope": "across_sessions",
+     "previous_session_id": "margaret-hale-s08",
+     "previous_episode_id": "e5",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "Both episodes describe the same patient, a furniture maker, who carved a small wooden bird for Margaret as a gift.",
+     "quoted_passages": [
+      "A man who used to make furniture was ill in my ward one winter. He gave me a present that he had made um himself, a small, a small bird."
+     ]
+    }
+   ]
+  },
+  {
+   "session_id": "margaret-hale-s10",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "experimental": true,
+   "model_id": "mistral-medium-latest",
+   "episodes": [
+    {
+     "episode_id": "e1",
+     "summary": "Margaret decides to create a garden for patients at Saint Aldric's Infirmary in 1994.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Margaret",
+      "her husband",
+      "a man with a trolley",
+      "another man with stones",
+      "older staff",
+      "a woman patient"
+     ],
+     "places": [
+      "Saint Aldric's Infirmary",
+      "second floor",
+      "old wing",
+      "garden"
+     ],
+     "time_references": [
+      "1994",
+      "Sunday mornings",
+      "summer",
+      "spring after spring"
+     ],
+     "utterance_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      43,
+      44
+     ]
+    },
+    {
+     "episode_id": "e2",
+     "summary": "A patient carves Margaret a wooden bird for her birthday.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Margaret",
+      "a patient"
+     ],
+     "places": [],
+     "time_references": [],
+     "utterance_indices": [
+      24,
+      25,
+      26,
+      27,
+      28
+     ]
+    },
+    {
+     "episode_id": "e3",
+     "summary": "Margaret receives recognition for the garden, including a named seat and a farewell from staff.",
+     "life_period": "middle_adulthood",
+     "people": [
+      "Margaret",
+      "the nurses",
+      "the chairman",
+      "the people in charge"
+     ],
+     "places": [
+      "Saint Aldric's Infirmary"
+     ],
+     "time_references": [
+      "the next year"
+     ],
+     "utterance_indices": [
+      37,
+      38,
+      39,
+      40,
+      41,
+      42
+     ]
+    }
+   ],
+   "repetitions": [
+    {
+     "episode_id": "e2",
+     "scope": "across_sessions",
+     "previous_session_id": "margaret-hale-s08",
+     "previous_episode_id": "e5",
+     "self_flagged": false,
+     "acknowledgement_quote": null,
+     "rationale": "Both episodes describe the same patient carving a wooden bird for Margaret as a birthday gift.",
+     "quoted_passages": [
+      "he uh made me something for my birthday. It was a little bird,"
+     ]
+    }
+   ]
+  }
+ ],
+ "summaries": [
+  {
+   "session_id": "margaret-hale-s01",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "building_baseline",
+   "clinician_summary": {
+    "headline": "Personal baseline in progress",
+    "findings": [],
+    "uncertainty_statement": "0 of 3 baseline sessions recorded. No assessment is made before the personal baseline exists.",
+    "suggested_action": "continue_baseline"
+   },
+   "person_explanation": "We are still getting to know your usual way of telling stories. There is nothing to report yet. A few more sessions will give us a reliable starting point.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "template",
+   "model_id": null
+  },
+  {
+   "session_id": "margaret-hale-s02",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "building_baseline",
+   "clinician_summary": {
+    "headline": "Personal baseline in progress",
+    "findings": [],
+    "uncertainty_statement": "1 of 3 baseline sessions recorded. No assessment is made before the personal baseline exists.",
+    "suggested_action": "continue_baseline"
+   },
+   "person_explanation": "We are still getting to know your usual way of telling stories. There is nothing to report yet. A few more sessions will give us a reliable starting point.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "template",
+   "model_id": null
+  },
+  {
+   "session_id": "margaret-hale-s03",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "building_baseline",
+   "clinician_summary": {
+    "headline": "Personal baseline in progress",
+    "findings": [],
+    "uncertainty_statement": "2 of 3 baseline sessions recorded. No assessment is made before the personal baseline exists.",
+    "suggested_action": "continue_baseline"
+   },
+   "person_explanation": "We are still getting to know your usual way of telling stories. There is nothing to report yet. A few more sessions will give us a reliable starting point.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "template",
+   "model_id": null
+  },
+  {
+   "session_id": "margaret-hale-s04",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within your usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 3 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "margaret-hale-s05",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within your usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 4 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "margaret-hale-s06",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "stable",
+   "clinician_summary": {
+    "headline": "Within this person's usual range",
+    "findings": [
+     {
+      "text": "All measured markers stayed within the person’s usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "maze_index",
+       "speech_rate_wpm",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "routine_follow_up"
+   },
+   "person_explanation": "Your way of speaking this time was much like it usually is. We will simply continue as planned.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "margaret-hale-s07",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "monitor",
+   "clinician_summary": {
+    "headline": "Signals to monitor: one session outside the usual range",
+    "findings": [
+     {
+      "text": "Hesitations and repetitions were higher than usual. Speech rate was lower than usual.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "maze_index",
+       "speech_rate_wpm"
+      ],
+      "passages": [
+       "She used plain flour, eggs, milk, milk and a pinch of salt, and she let it, it rest in the pantry.",
+       "I rang her up in tears, and she laughed and told um me uh the tin um had not been hot enough."
+      ],
+      "study_refs": [
+       "08-mueller-2018"
+      ]
+     },
+     {
+      "text": "Pronoun index, noun ratio, word frequency, word length, and lexical diversity stayed within the usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mean_word_length",
+       "mattr_50"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "repeat_within_two_weeks"
+   },
+   "person_explanation": "You hesitated and repeated words more often than usual. You also spoke a little more slowly. One session on its own can vary for many everyday reasons, such as a short night. We suggest another session within two weeks to see how things go.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "margaret-hale-s08",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "review_recommended",
+   "clinician_summary": {
+    "headline": "Change from personal baseline: review by a qualified professional recommended",
+    "findings": [
+     {
+      "text": "The use of more common words and shorter words on average was beyond the usual range. This is supported by studies on word frequency and length.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "mean_word_frequency",
+       "mean_word_length"
+      ],
+      "passages": [],
+      "study_refs": [
+       "09-robin-2023"
+      ]
+     },
+     {
+      "text": "There were more hesitations and repetitions, and the speech rate was lower than usual. This aligns with findings on speech disfluencies and rate.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "maze_index",
+       "speech_rate_wpm"
+      ],
+      "passages": [
+       "Alan had been, been gone for um two years, and the house in Headingley had um grown far too quiet.",
+       "Helen was waiting in arrivals with Sam on her shoulders, her shoulders and Ruby holding um a paper um sign."
+      ],
+      "study_refs": [
+       "08-mueller-2018"
+      ]
+     },
+     {
+      "text": "The share of pronouns and nouns, as well as lexical diversity, stayed within the usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mattr_50"
+      ],
+      "passages": [
+       "She asked if I would come and live near her and the little ones.",
+       "I was not hurt, but I lay, lay there looking at the sky and thought how silly it was."
+      ],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "professional_review"
+   },
+   "person_explanation": "You used more common and shorter words than usual, and your speech had more pauses and repetitions. Your word choices and sentence flow were otherwise typical for you. This does not tell us why, and it is not a medical conclusion. We suggest talking it through with a health professional, who can look at the whole picture with you.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "margaret-hale-s09",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "review_recommended",
+   "clinician_summary": {
+    "headline": "Change from personal baseline: review by a qualified professional recommended",
+    "findings": [
+     {
+      "text": "The average word length was shorter than usual. Studies have linked lower word length to changes in language patterns over time.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "mean_word_length"
+      ],
+      "passages": [],
+      "study_refs": [
+       "09-robin-2023"
+      ]
+     },
+     {
+      "text": "Hesitations and repetitions were more frequent than usual. This marker has been associated with disruptions in fluent speech.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "maze_index"
+      ],
+      "passages": [
+       "I used a tray of tools and, and um bandages, and my hands um never shook.",
+       "Mister um Jenkins in uh bed fourteen always held up two fingers, meaning he was alive and um cross."
+      ],
+      "study_refs": [
+       "08-mueller-2018"
+      ]
+     },
+     {
+      "text": "Speech rate was slower than usual. Slower speech rate has been observed in studies tracking language changes.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "speech_rate_wpm"
+      ],
+      "passages": [],
+      "study_refs": [
+       "08-mueller-2018"
+      ]
+     },
+     {
+      "text": "Pronoun index, noun ratio, word frequency, and lexical diversity stayed within the usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "noun_ratio",
+       "mean_word_frequency",
+       "mattr_50"
+      ],
+      "passages": [
+       "I tried it myself every day, because you uh cannot complain if you have not tried it.",
+       "I told them, them that it was like talking, and they should um listen."
+      ],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "professional_review"
+   },
+   "person_explanation": "You used shorter words and spoke a little more slowly this time. You also hesitated more often. This does not tell us why, and it is not a medical conclusion. We suggest talking it through with a health professional, who can look at the whole picture with you.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  },
+  {
+   "session_id": "margaret-hale-s10",
+   "person_id": "margaret-hale",
+   "synthetic": true,
+   "orientation_level": "review_recommended",
+   "clinician_summary": {
+    "headline": "Change from personal baseline: review by a qualified professional recommended",
+    "findings": [
+     {
+      "text": "The share of nouns and the average word length were lower than usual. The speech rate was also lower, and hesitations and repetitions were higher.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "noun_ratio",
+       "mean_word_length",
+       "speech_rate_wpm",
+       "maze_index"
+      ],
+      "passages": [
+       "I was in charge uh of the older people's part, up on the, the second, the second floor.",
+       "We had a tea um party in the um summer, with um c- cakes and uh some men with instruments."
+      ],
+      "study_refs": [
+       "08-mueller-2018",
+       "09-robin-2023"
+      ]
+     },
+     {
+      "text": "The average word frequency was higher than usual.",
+      "beyond_usual_range": true,
+      "marker_ids": [
+       "mean_word_frequency"
+      ],
+      "passages": [],
+      "study_refs": [
+       "09-robin-2023"
+      ]
+     },
+     {
+      "text": "The pronoun index and lexical diversity stayed within the usual range.",
+      "beyond_usual_range": false,
+      "marker_ids": [
+       "pronoun_index",
+       "mattr_50"
+      ],
+      "passages": [
+       "I told her I thought it was exactly what the work was.",
+       "He was good with um his hands, and he uh made me something for my birthday."
+      ],
+      "study_refs": [
+       "08-mueller-2018",
+       "03-garrard-2005"
+      ]
+     }
+    ],
+    "uncertainty_statement": "Based on a personal baseline of 5 sessions. Session quality: usable. With few baseline sessions, moderate changes can go unnoticed and a single session can deviate by chance. This is screening support, not a medical conclusion.",
+    "suggested_action": "professional_review"
+   },
+   "person_explanation": "You used fewer nouns and shorter words than usual, and your speech was slower with more hesitations. This does not tell us why, and it is not a medical conclusion. We suggest talking it through with a health professional, who can look at the whole picture with you.",
+   "prevention_notes": [],
+   "review": {
+    "status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null
+   },
+   "generation_mode": "llm",
+   "model_id": "mistral-medium-latest"
+  }
+ ]
+}

@@ -190,6 +190,18 @@ with open("session.wav", "rb") as audio:
 
 ## 9. À tester avant de coder les mesures
 
+> **Premiers appels réels, le 2026-11-14**, sur deux enregistrements de synthèse vocale (voix macOS, textes fictifs ; pas une vraie voix). Le client (`backend/app/agents/transcription.py`) appelle l'API en HTTP, sans le SDK. Constats :
+>
+> - **Tous nos réglages sont acceptés**, et la transcription est supprimée chez ElevenLabs par `DELETE` sans erreur.
+> - **Durée** : 2 s pour 16 s d'audio ; 7 s de traitement complet pour 71 s.
+> - **Hésitations** : « um » et « uh » sont transcrits comme des mots, avec la ponctuation collée (« um, »). Notre détection les retrouve.
+> - **Répétitions** : « the, the » est gardé tel quel.
+> - **Deux voix** : séparées sans erreur, mais ce sont deux voix de synthèse très différentes.
+> - **Nombres** : « forty-two » est écrit en lettres, mais « sixteen » en chiffres (« 16 »). `numbers_format` n'est donc pas toujours suivi. Sans effet sur le compte de mots, puisque « 16 » compte pour un mot.
+> - **Titres** : « Mister » est écrit « Mr. ».
+>
+> Une voix de synthèse n'hésite pas comme une personne : les 5 tests ci-dessous demandent toujours de vrais enregistrements.
+
 Sur 2 ou 3 enregistrements en anglais, de préférence une personne âgée qui raconte un souvenir avec un interlocuteur :
 
 1. **Hésitations et faux départs** : leur forme exacte dans `words`.

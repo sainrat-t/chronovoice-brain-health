@@ -10,7 +10,7 @@
   - l'heure et le fuseau horaire de la remise ;
   - les exigences complètes de soumission (lien de démo ? vidéo ? dépôt de code ?).
 - [x] 👤 Répondre au questionnaire des specs : [`docs/specs/questions.md`](docs/specs/questions.md). Reste Q28 (MyMémoires).
-- [ ] 👤 Mettre les clés dans `backend/.env` : `ELEVENLABS_API_KEY` et `ANTHROPIC_API_KEY` (Claude Opus 5.5).
+- [x] 👤 Copier `backend/.env.example` en `backend/.env` et y mettre les clés : `MISTRAL_API_KEY` (ou `ANTHROPIC_API_KEY`) et `ELEVENLABS_API_KEY`.
 - [ ] 👤 Créer un compte Render, avec l'offre payante d'entrée pendant l'évaluation (du 20 au 30 novembre).
 - [ ] 👤 Fournir 1 ou 2 enregistrements en anglais pour tester Scribe : quelqu'un qui raconte un souvenir, avec son accord, sans données de vrais patients.
 - [x] 👥 Faire le premier commit et créer le dépôt privé, car le jury peut demander le code (git est initialisé, sans commit).
@@ -34,7 +34,7 @@
 
 - [x] 🤖 `backend/app/schemas.py` : le contrat d'interface entre les étapes, avec 40 tests.
 - [ ] 🤖 Étape 0 :
-  - [ ] client Scribe (attend la clé ElevenLabs) ;
+  - [x] client Scribe (fait le 2026-11-14, essayé sur des voix de synthèse ; les tests sur de vraies voix attendent des enregistrements) ;
   - [x] choix de la voix suivie ;
   - [x] contrôle qualité (seuil de confiance provisoire, à caler sur de vraies transcriptions).
 - [x] 🤖 Étape 1 : les marqueurs, en fonctions pures, testés sur des cas calculés à la main (fait le 13 novembre).
@@ -51,23 +51,23 @@
 
 ## Lundi 16 novembre : LLM et API
 
-- [ ] 🤖 Étape 2 : l'analyste du récit, dans le périmètre décidé dans les specs.
-- [ ] 🤖 Étape 4 : la synthèse clinique, avec le validateur qui rejette le vocabulaire diagnostique.
-- [ ] 🤖 API FastAPI :
-  - personnes ;
-  - séances ;
-  - statut du traitement ;
-  - réception d'un enregistrement venu d'une autre application (module branchable).
+- [x] 🤖 Étape 2 : l'analyste du récit (code et garde-fous faits le 13 novembre).
+- [x] 🤖 Étape 4 : la synthèse clinique, avec le validateur et le texte fixe de repli (fait le 13 novembre).
+- [x] 👥 Essai réel des étapes 2 et 4 sur les personas (`scripts/try_llm_steps.py`) : fait le 2026-11-14 avec Mistral Small et Medium (constats dans `docs/log.md`).
+- [x] 👥 Renforcer les garde-fous des étapes 2 et 4 d'après l'essai réel : fait le 2026-11-14, validé par Thibaut, rejoué sur les 3 personas.
+- [x] 👥 Choisir le modèle de la démo : Mistral Medium 3.5, par le réglage `MISTRAL_MODEL=mistral-medium-latest` (choix de Thibaut, 2026-11-14). Le défaut du code reste Mistral Small 4.
+- [ ] 🤖 Avant la démo, vérifier que Mistral sert toujours `mistral-medium-latest` (déprécié depuis le 2026-10-31). Sinon, retirer le réglage : retour à Mistral Small 4.
+- [ ] 👥 Conseils de prévention (`prevention_notes`) : relire la liste des facteurs dans le rapport Lancet 2024, puis l'écrire.
+- [x] 🤖 API FastAPI (fait le 2026-11-14) : personnes, séances, statut du traitement, relance, validation de la synthèse, questions d'amorce, réception d'un enregistrement venu d'une autre application. Essayée de bout en bout avec Scribe et Mistral.
+- [ ] 👤 Relire les textes figés des personas (`backend/data/synthetic/llm_snapshot/`), que le jury verra : analyses du récit et synthèses.
 
 ## Mardi 17 et mercredi 18 novembre : interface soignant et micro
 
-- [ ] 🤖 Mise en place du frontend : Vite, React, TypeScript, Tailwind, Recharts.
-- [ ] 🤖 Écrans définis dans les specs.
-- [ ] 🤖 Enregistrement au micro dans le navigateur :
-  - envoi ;
-  - suivi du traitement ;
-  - affichage du résultat.
-- [ ] 🤖 Mise en ligne avec accès invité (slide 11 du template).
+- [x] 🤖 Mise en place du frontend : Vite, React, TypeScript, Tailwind, Recharts (fait le 2026-11-14).
+- [x] 🤖 Écrans définis dans les specs : liste, fiche, détail de séance, nouvelle séance, synthèse imprimable.
+- [x] 🤖 Enregistrement au micro dans le navigateur, envoi, suivi du traitement, affichage du résultat. Le parcours par fichier importé a été essayé de bout en bout ; l'enregistrement au micro lui-même reste à essayer.
+- [ ] 👤 Essayer l'enregistrement au micro sur ton ordinateur (Chrome et Safari), et relire les écrans.
+- [ ] 🤖 Mise en ligne avec accès invité (slide 11 du template). Variables à régler sur Render : `MISTRAL_API_KEY`, `MISTRAL_MODEL=mistral-medium-latest`, `LLM_PROVIDER=mistral`, `ELEVENLABS_API_KEY`, `INTEGRATION_API_KEY`. Décider d'un disque persistant pour la base SQLite (sinon, retour à l'état de la démo à chaque redémarrage).
 - [ ] 👥 Test de bout en bout.
 
 ## Jeudi 19 novembre : dossier de soumission

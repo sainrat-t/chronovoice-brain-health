@@ -35,15 +35,16 @@ Toute la connaissance projet (`docs/`) est structurée selon l'**Open Knowledge 
 Enregistrement (micro ou intégration) + métadonnées
   → [0] Capture et qualité   ElevenLabs Scribe v3 + calcul   → SessionTranscript, QualityReport
   → [1] Marqueurs            calcul pur                       → SessionMetrics
-  → [2] Analyste du récit    Claude Opus 5.5, expérimental     → NarrativeAnalysis
+  → [2] Analyste du récit    LLM (Mistral ou Claude), expérimental → NarrativeAnalysis
   → [3] Dérive               statistique                      → LongitudinalComparisonResult
-  → [4] Synthèse clinique    Claude Opus 5.5, contraint        → ClinicalSummaryReport
+  → [4] Synthèse clinique    LLM (Mistral ou Claude), contraint → ClinicalSummaryReport
   → Interface soignant (soins primaires)
 ```
 
 - **Spec détaillée** : [`docs/specs/pipeline.md`](docs/specs/pipeline.md).
 - **Justification scientifique** : [`docs/discovery/synthesis.md`](docs/discovery/synthesis.md), section 4.
-- **Seulement 2 étapes LLM.** Tout ce qui est une mesure est du calcul déterministe. Le LLM rédige ; il ne décide jamais du niveau d'orientation.
+- **Seulement 2 étapes LLM.** Tout ce qui est une mesure est du calcul déterministe. Le LLM rédige ; il ne décide jamais du niveau d'orientation. Ce qui est déjà décidé ou chiffré (titre de la synthèse, phrase sur l'incertitude, suite proposée à la personne) est écrit par le code, pas par le LLM.
+- **La réponse d'un LLM est une donnée non fiable.** Elle est vérifiée contre la transcription et les mesures avant d'être gardée (citations retrouvées dans la transcription, marqueurs existants, vocabulaire interdit), et un passage affiché est toujours le texte de la transcription, jamais celui du modèle. Les tests n'appellent jamais le réseau : ils utilisent `tests/llm_doubles.py`.
 
 **Décisions produit (2026-11-12)** :
 
@@ -65,13 +66,25 @@ Les règles 1 et 5 de sécurité clinique y sont vérifiées par validation : vo
 ```
 backend/    Python 3.12, FastAPI, Pydantic v2 (géré avec uv)
               app/schemas.py   contrat entre les étapes
-              app/agents/      étapes du pipeline (capture.py = étape 0 hors appel Scribe, segmentation.py et markers.py = étape 1,
-                               drift.py = étape 3, pipeline.py = enchaînement des étapes 0 et 1)
+              app/main.py      routes de l'API (docs/specs/api.md) ; configuration lue dans les variables d'environnement
+              app/api/         modèles des réponses (models.py), vues (views.py), transcription annotée (transcript_view.py)
+              app/store.py     stockage SQLite (CHRONOVOICE_DB, par défaut data/chronovoice.sqlite3, exclu de git)
+              app/processing.py traitement d'une séance en tâche de fond, du fichier audio à la synthèse
+              app/demo.py      chargement des personas, avec les textes figés des étapes 2 et 4 (data/synthetic/llm_snapshot/)
+              app/prompts.py   banque des questions d'amorce
+              app/agents/      étapes du pipeline (transcription.py = appel à Scribe, capture.py = reste de l'étape 0, segmentation.py et markers.py = étape 1,
+                               narrative.py = étape 2, drift.py = étape 3, summary.py = étape 4,
+                               passages.py = vérification des citations, pipeline.py = enchaînement des étapes 0 et 1)
+              app/llm/         modèle des étapes 2 et 4 : contrat commun LLMClient (base.py), Mistral (mistral.py), Claude (claude.py) ;
+                               fournisseur choisi par LLM_PROVIDER ou par la clé présente dans backend/.env
               app/language/    adaptateurs de langue (anglais : spaCy + wordfreq)
               app/demo_data.py lecture des personas et séances synthétiques
               data/            prompts.json (questions d'amorce) et synthetic/ (3 personas, 30 séances générées)
-              scripts/         génération des données synthétiques, rapport des trajectoires, simulation des règles
-frontend/   Vite + React + TypeScript + Tailwind + Lucide + Recharts (scaffold à la phase dashboard)
+              scripts/         données synthétiques, rapport des trajectoires, simulation des règles, essai réel des LLM,
+                               textes figés des personas (build_demo_snapshot), remise à zéro de la démo (reset_demo)
+frontend/   Vite + React + TypeScript + Tailwind + Lucide + Recharts : interface soignant (docs/specs/clinician-ui.md)
+              src/api/         types générés depuis l'OpenAPI du backend (schema.d.ts), alias (types.ts), appels (client.ts)
+              src/pages/       les 5 écrans ; src/components/ sections et graphiques ; src/lib/ utilitaires, micro
 docs/       base de connaissances OKF v0.2 (racine docs/index.md) : discovery, tech, challenge
 ```
 
@@ -81,19 +94,21 @@ docs/       base de connaissances OKF v0.2 (racine docs/index.md) : discovery, t
 
 ```bash
 uv sync                                    # installe Python 3.12 + dépendances
-uv run uvicorn app.main:app --reload       # API sur http://127.0.0.1:8000 (GET /health)
+uv run --env-file .env uvicorn app.main:app --reload  # API sur http://127.0.0.1:8000 (/health, /api, /docs)
+uv run --env-file .env python -m scripts.reset_demo   # remet la base dans l'état de la démo
 uv run pytest                              # tests
 uv run ruff check . && uv run ruff format . # lint + format
 uv run mypy app                            # typage strict
 ```
 
-### Frontend (depuis `frontend/`, une fois le scaffold fait)
+### Frontend (depuis `frontend/`)
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
-npm run build
-npm run lint
+VITE_API_TARGET=http://127.0.0.1:8000 npm run dev  # http://localhost:5173, /api renvoyé vers le backend
+npm run build      # frontend/dist, servi ensuite par FastAPI
+npm run lint && npm run typecheck
+npm run gen:api    # après un changement du backend : régénère les types (après scripts.export_openapi)
 ```
 
 ## Règles de développement
