@@ -18,8 +18,8 @@ Les agents doivent le parcourir en *progressive disclosure* (d'abord cet index, 
 |---|---|---|
 | [`challenge.md`](challenge.md) | Énoncé officiel du Challenge 08, règles, critères du jury, template de soumission et analyse des écarts | `stable` |
 | [`discovery/index.md`](discovery/index.md) | Phase de discovery scientifique : protocole, synthèse des preuves, hypothèses H1–H10, architecture v0.3 et corpus d'études | `draft` |
-| [`specs/index.md`](specs/index.md) | Spécifications du prototype : questionnaire, puis specs de la pipeline, de l'interface soignant et de l'enregistrement au micro | `draft` |
-| [`tech/index.md`](tech/index.md) | Références techniques d'intégration (STT ElevenLabs Scribe v3, réglages étape 0, conformité) | `stable` |
+| [`specs/index.md`](specs/index.md) | Spécifications du prototype : questionnaire, vue d'ensemble, pipeline, interface soignant et micro, API et mise en ligne, données synthétiques | `draft` |
+| [`tech/index.md`](tech/index.md) | Références techniques : ElevenLabs Scribe v3 (réglages de l'étape 0, conformité), composants tiers et licences, mise en ligne sur Render | `stable` |
 | [`log.md`](log.md) | Historique chronologique des modifications et décisions de la base de connaissances | `stable` |
 
 ## Conventions OKF du projet

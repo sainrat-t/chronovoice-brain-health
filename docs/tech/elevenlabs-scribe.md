@@ -64,15 +64,15 @@ Passer de v2 à v3 se fait en changeant seulement `model_id` : l'API est la mêm
 |---|---|---|
 | `model_id` | `"scribe_v3"` | le plus précis |
 | `file` | le fichier audio | ou `source_url` pour un fichier hébergé |
-| `language_code` | `"eng"` pour le prototype ; omis ailleurs (détection automatique) | le prototype est en anglais ; la langue détectée part dans les métadonnées de la séance |
+| `language_code` | toujours envoyé : la langue des métadonnées de la séance (`"eng"` dans le prototype) | la langue est connue à l'avance ; la langue détectée part dans les métadonnées de la séance |
 | `diarize` | `true` | pour isoler la voix de la personne suivie |
-| `num_speakers` | `2` quand on sait qu'il y a un seul interlocuteur | aide la diarisation ; sinon, on l'omet |
+| `num_speakers` | `2` pour un enregistrement fait dans l'interface (la personne et le soignant) ; omis pour une intégration | aide la diarisation |
 | `timestamps_granularity` | `"word"` | pour les pauses |
 | `no_verbatim` | **`false`** (la valeur par défaut) | **ne jamais l'activer** : il supprime les hésitations et les faux départs, donc le signal de fluence |
 | `tag_audio_events` | `true` | rires, toux… exclus du compte de mots, utiles au contrôle qualité |
 | `numbers_format` | `"words"` | « forty-two » plutôt que « 42 », pour compter les mots réellement prononcés (v3 seulement) |
 | `temperature` | `0.0` | sortie la plus stable possible |
-| `seed` | un entier fixe | reproductibilité au mieux : ElevenLabs ne la garantit pas |
+| `seed` | un entier fixe (`20261113`) | reproductibilité au mieux : ElevenLabs ne la garantit pas |
 | `keyterms` | **non** | biaiserait le vocabulaire transcrit, donc les mesures lexicales ; et coûte 20 % de plus |
 | `transcript_edit` | **non** | réécrit le texte |
 | `entity_redaction` | **non** sur le texte analysé | modifie le texte ; à réserver à l'affichage si besoin |
@@ -110,20 +110,18 @@ Chaque élément de `words` contient :
 
 ## 5. Ce que ChronoVoice en tire (étape 0 vers étape 1)
 
-- **Voix de la personne suivie.** On garde les éléments dont le `speaker_id` est celui de la personne. Pour savoir lequel c'est, il faut une règle : une métadonnée de l'application source, ou le locuteur qui parle le plus longtemps. **À décider.**
+- **Voix de la personne suivie.** On garde les éléments dont le `speaker_id` est celui de la personne. Règle retenue (Q34) : la voix indiquée par l'application source s'il y en a une, sinon le locuteur qui prononce le plus de mots.
 - **Pauses.** Une pause est l'écart entre la fin d'un mot (`end`) et le début du mot suivant (`start`), pour deux mots consécutifs de la même personne. On compte celles ≥ 0,25 s (fiche 06).
   - **Ne pas utiliser les éléments `spacing` pour les pauses.** Dans l'exemple de la doc, l'espace qui suit « accent, » dure 0,06 s, alors que l'écart réel entre les deux mots est de 0,77 s.
 - **Entre ou dans les énoncés.**
-  - Une pause compte comme **entre énoncés** si le mot qui la précède se termine par une ponctuation de fin de phrase (`.`, `?`, `!`) ou s'il y a changement de locuteur. Sinon, c'est une pause **dans l'énoncé**.
+  - Les pauses ne sont mesurées qu'à l'intérieur d'un tour de parole de la personne : un silence au changement de locuteur ne compte pas.
+  - Une pause compte comme **entre énoncés** si le mot qui la précède se termine par une ponctuation de fin de phrase (`.`, `?`, `!`). Sinon, c'est une pause **dans l'énoncé**.
   - **Hypothèse à valider** : la ponctuation est déduite par le modèle, pas prononcée.
-- **Hésitations et faux départs.** Ils sont conservés par défaut, mais leur forme exacte dans le texte (« um », « uh », « I- I went »…) n'est pas documentée. **À relever sur un échantillon** avant d'écrire le détecteur de l'indice de fluence (fiche 08).
-- **Contrôle qualité.**
-  - Rejeter ou marquer partielle une séance si :
-    - le `logprob` moyen des mots de la personne est faible ;
-    - la `language_probability` est basse ;
-    - la parole de la personne dure trop peu, ou compte moins de 150 mots (fiche 08) ;
-    - les `audio_event` sont trop nombreux.
-  - Les seuils restent à fixer.
+- **Hésitations et faux départs.** Ils sont conservés par défaut. Sur les premiers appels réels, « um » et « uh » sont transcrits comme des mots (section 9). La forme exacte des faux départs (« I- I went ») reste **à relever sur de vraies voix**.
+- **Contrôle qualité**, tel que codé ([pipeline.md](../specs/pipeline.md), étape 0) :
+  - séance **rejetée** si la personne ne dit aucun mot, ou si la langue détectée n'est pas celle attendue ;
+  - séance **partielle** si la personne dit moins de 150 mots lexicaux (fiche 08), parle moins de 120 s, ou si le `logprob` moyen de ses mots est sous log(0,5), soit une confiance de 50 % (seuil provisoire) ;
+  - la `language_probability` et le nombre d'`audio_event` ne sont pas contrôlés.
 
 ## 6. Limites
 
@@ -153,40 +151,15 @@ Chaque élément de `words` contient :
   - BAA HIPAA pour les établissements de santé éligibles.
 - **Pour le prototype** : données synthétiques uniquement (règle 3 de CLAUDE.md). La clé API ne doit jamais être commitée.
 
-## 8. SDK Python
+## 8. Appel depuis le code
 
-```bash
-uv add elevenlabs
-```
+**Le SDK Python `elevenlabs` n'est pas utilisé** (décision du 2026-11-14, [api.md](../specs/api.md), section 7). Le client `backend/app/agents/transcription.py` envoie la requête en HTTP avec `httpx` :
 
-Exemple d'appel avec nos réglages :
+- `POST https://api.elevenlabs.io/v1/speech-to-text`, en multipart, avec le fichier et les réglages de la section 3 (`seed` = `20261113`) ;
+- en-tête `xi-api-key` ; délai de 300 s ;
+- une fois la transcription enregistrée, `DELETE /v1/speech-to-text/transcripts/{id}` supprime la copie chez ElevenLabs.
 
-```python
-import os
-
-from elevenlabs.client import ElevenLabs
-
-client = ElevenLabs(api_key=os.environ["ELEVENLABS_API_KEY"])
-
-with open("session.wav", "rb") as audio:
-    transcript = client.speech_to_text.convert(
-        file=audio,
-        model_id="scribe_v3",
-        language_code="eng",
-        diarize=True,
-        num_speakers=2,
-        timestamps_granularity="word",
-        tag_audio_events=True,
-        no_verbatim=False,
-        numbers_format="words",
-        temperature=0.0,
-        seed=42,
-    )
-```
-
-- **Quand ajouter la dépendance.** D'après CLAUDE.md, on ajoute la dépendance au backend seulement quand l'étape 0 est validée.
-- **Pour les tests.** Les tests unitaires ne doivent pas appeler l'API : ils travaillent sur des réponses JSON enregistrées.
-- **Ce qui reste à vérifier.** Les noms des arguments viennent de la référence de l'API. Leur nom exact dans le SDK n'est pas vérifié, en particulier pour `numbers_format`.
+- **Pour les tests.** Les tests unitaires n'appellent pas l'API : ils travaillent sur des réponses JSON enregistrées.
 
 ## 9. À tester avant de coder les mesures
 

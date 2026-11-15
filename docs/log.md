@@ -12,6 +12,18 @@ Historique chronologique du bundle `docs/` (entrées les plus récentes en premi
 
 ## 2026-11-15
 
+- **Relecture de toute la documentation contre le code**, avant la rédaction de la documentation technique (PDF). Corrigés :
+  - [`challenge.md`](challenge.md) : où trouver la matière de chaque slide, et nouvelle section 6.5, les 6 exigences face au prototype (ce qui est couvert, ce qui reste ouvert) ;
+  - [`discovery/synthesis.md`](discovery/synthesis.md), section 4 : un encadré liste ce qui a changé en codant la v0.3 (contrôle qualité, marqueurs, test par marqueur et règle de comptage, étape 2 hors des étapes 3 et 4) ; la contrainte « modèle local » de la section 3 est marquée levée pour le prototype ;
+  - [`specs/pipeline.md`](specs/pipeline.md) : échec de Scribe (`failed`, pas `rejected`), marqueurs non testés, test unilatéral, règle `carried_over`, choix des passages, limites d'un appel au modèle, textes figés ;
+  - [`specs/api.md`](specs/api.md) : repli sur le texte fixe, contenu des tables, codes d'erreur, variables d'environnement, audio d'une séance en échec non conservé sur Render ;
+  - [`specs/clinician-ui.md`](specs/clinician-ui.md) : libellés des niveaux, intervalle d'incertitude (étendue sur la référence, pas un intervalle de confiance), envoi manuel, relance, conseils de prévention absents du prototype ;
+  - [`specs/overview.md`](specs/overview.md) : la démo tourne sur Mistral Medium 3.5, et nouvelle section 7, l'état du prototype ;
+  - [`specs/synthetic-data.md`](specs/synthetic-data.md) : phase de référence des trajectoires, faux positifs de l'étape 2 chez Rajesh, rubriques du profil de risque ;
+  - [`tech/elevenlabs-scribe.md`](tech/elevenlabs-scribe.md) : appel en HTTP sans SDK, voix suivie, contrôle qualité codé ;
+  - [`tech/third-party-components.md`](tech/third-party-components.md) : rôle de chaque modèle, images Docker, uv, Render, extensions de Vite, `httpx2`, textes figés ;
+  - index, README, CLAUDE.md, TODO et `backend/.env.example`.
+- **Constaté** : le dépôt GitHub est public, alors que Q26 prévoyait un dépôt privé. Point ajouté au TODO.
 - **Image Docker vérifiée en local** ([`tech/deploy-render.md`](tech/deploy-render.md), section « What was checked before the first deploy ») :
   - construction complète réussie, pour arm64 et pour l'architecture de Render (amd64) ;
   - conteneur lancé comme sur Render (volume pour la base) : personas chargées, interface servie, une vraie séance traitée de bout en bout par Scribe et Mistral Medium, un fichier audio corrompu bien refusé ;

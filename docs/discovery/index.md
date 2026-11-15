@@ -17,5 +17,5 @@ Point d'entrée de la recherche scientifique avant le gel des schémas (`backend
 | [`README.md`](README.md) | `protocol` | Vue d'ensemble du corpus (10 études), protocole de prise de notes et taxonomie de tags | `stable` |
 | [`synthesis.md`](synthesis.md) | `architecture-synthesis` | Hypothèses H1–H10, matrice des preuves, candidats et proposition d'architecture v0.3 | `draft` |
 | [`candidates.md`](candidates.md) | `literature-candidates` | Lectures complémentaires vérifiées sur PubMed (prioritaires intégrées + compléments courts) | `stable` |
-| [`_template.md`](_template.md) | `template` | Modèle OKF v0.2 pour toute nouvelle fiche d'étude | `stable` |
+| [`_template.md`](_template.md) | `study-note` (modèle) | Modèle OKF v0.2 pour toute nouvelle fiche d'étude ; son frontmatter est celui d'une fiche, en `draft` | `stable` |
 | [`studies/index.md`](studies/index.md) | `index` | Index des 10 fiches d'études (`01` à `10`) | `draft` |

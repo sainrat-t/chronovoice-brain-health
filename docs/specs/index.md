@@ -15,4 +15,4 @@ tags: [specs, index, prototype]
 | [`clinician-ui.md`](clinician-ui.md) | `spec` | Écrans de l'interface soignant et parcours d'enregistrement au micro | `draft` |
 | [`api.md`](api.md) | `spec` | Endpoints, traitement asynchrone, stockage, endpoint d'intégration (MyMémoires), mise en ligne | `draft` |
 | [`synthetic-data.md`](synthetic-data.md) | `spec` | Personas, rythme des séances, génération des données de démonstration | `draft` |
-| [`questions.md`](questions.md) | `spec-questionnaire` | Les 28 questions et leurs réponses (toutes validées le 2026-11-12) | `stable` |
+| [`questions.md`](questions.md) | `spec-questionnaire` | Les 43 questions et leurs réponses (Q1 à Q28 validées le 2026-11-12, Q29 à Q43 pour les points incertains) ; reste à préciser : MyMémoires (Q28) | `stable` |

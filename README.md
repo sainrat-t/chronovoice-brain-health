@@ -30,7 +30,7 @@ Audio recording + metadata (RecordingMetadata)
 
 1. **No diagnosis**: diagnostic vocabulary is blocked by schema validation on `ClinicalSummaryReport`.
 2. **Personal baseline required**: no orientation level is issued before 3 `usable` baseline sessions (`building_baseline`), and uncertainty is displayed alongside every score.
-3. **Scientific traceability**: every metric, threshold, and prevention note cites a verified source (PubMed / Crossref) or is explicitly documented as a design choice.
+3. **Scientific traceability**: every metric and threshold cites a verified source (PubMed / Crossref) or is explicitly documented as a design choice. Prevention notes will follow the same rule; none are produced yet, as their source list (Lancet Commission 2024) is still under review.
 4. **Human oversight**: every clinical summary remains a `draft` until explicitly validated by a clinician.
 5. **Synthetic data only**: no real patient audio or data is committed to the repository.
 
@@ -50,14 +50,17 @@ Audio recording + metadata (RecordingMetadata)
 │   │   ├── demo.py              # Loads the personas (with their frozen LLM texts)
 │   │   ├── demo_data.py         # Synthetic persona and session loader/runner
 │   │   ├── agents/              # Pipeline steps (transcription, capture, segmentation, markers,
-│   │   │                        #   narrative, drift, summary)
+│   │   │                        #   narrative, drift, summary), quoted-passage checks (passages)
+│   │   │                        #   and the chaining of steps 0 and 1 (pipeline)
 │   │   ├── llm/                 # Model clients for steps 2 and 4 (Mistral, Claude)
 │   │   └── language/            # Language adapters (protocol + English)
 │   ├── data/
 │   │   ├── prompts.json         # Life-story prompt bank and follow-ups
 │   │   └── synthetic/           # Personas, stories, 30 generated sessions, frozen LLM texts
-│   ├── scripts/                 # Synthetic data generator, trajectory report, Monte Carlo simulation
-│   └── tests/                   # pytest suite (pipeline, schemas, synthetic data, OKF docs)
+│   ├── scripts/                 # Synthetic data generator, trajectory report, Monte Carlo simulation,
+│   │                            #   real LLM trial, frozen persona texts, demo reset, OpenAPI export
+│   └── tests/                   # pytest suite (pipeline, schemas, LLM steps, API, synthetic data,
+│                                #   OKF docs); no network calls
 ├── frontend/                    # Clinician interface (Vite + React + TS + Tailwind + Recharts)
 ├── docs/                        # OKF v0.2 knowledge bundle (discovery, specs v1, tech, log)
 ├── Dockerfile, render.yaml      # Deployment on Render (docs/tech/deploy-render.md)

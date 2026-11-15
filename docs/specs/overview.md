@@ -20,7 +20,7 @@ Un soignant de soins primaires enregistre au micro une personne âgée qui racon
 3. compare la séance à la **référence personnelle** de la personne ;
 4. propose un **niveau d'orientation** non diagnostique, avec ses preuves et son incertitude.
 
-Le prototype a trois parties, chacune avec sa spec :
+Le prototype a quatre parties, chacune avec sa spec :
 
 | Partie | Spec |
 |---|---|
@@ -78,16 +78,16 @@ Choix des questions Q1 et Q2 du questionnaire.
 | Micro | Le soignant enregistre depuis l'interface. Question d'amorce, cible de 5 min, séance « partielle » sous 2 min ou 150 mots, maximum 15 min, import de fichier possible | Q6 à Q9 |
 | Consentement et contexte | Case de consentement obligatoire ; 5 champs de contexte qui pondèrent la fiabilité de la séance | Q10, Q11 |
 | Marqueurs | Sémantique et fluence ; MATTR en plus | Q12 |
-| Outils NLP | spaCy `en_core_web_sm` ; liste de fréquences choisie selon sa licence | Q13 |
+| Outils NLP | spaCy `en_core_web_sm` ; liste de fréquences choisie selon sa licence (ce sera `wordfreq`, voir [third-party-components.md](../tech/third-party-components.md)) | Q13 |
 | Analyste du récit | Version réduite, expérimentale, hors index | Q14 |
-| LLM | Claude Opus 5.5 pour les étapes 2 et 4 | Q15, Q36 |
+| LLM | Claude Opus 5.5 pour les étapes 2 et 4. **Changé le 2026-11-14** : la démo tourne sur Mistral Medium 3.5, par réglage ; Claude reste branché ([pipeline.md](pipeline.md), « Appel au modèle ») | Q15, Q36 |
 | Orientation | Stable, à surveiller, revue recommandée ; rien avant 3 séances | Q16 |
 | Attente | Traitement en arrière-plan avec statut ; moins de 2 min pour 5 min d'audio | Q17 |
 | Utilisateur | Soins primaires (médecin généraliste, infirmier de prévention) | Q18 |
 | Écrans | Liste, fiche, détail de séance, nouvelle séance, synthèse imprimable | Q19 |
 | Supervision humaine | Bouton « Reviewed and validated » ; synthèse en brouillon tant qu'elle n'est pas validée | Q20 |
 | Personne suivie | Explication en langage clair, relue par le soignant | Q21 |
-| Profil de risque | Lecture seule, à côté du score, recommandations sourcées, pas de calcul | Q22 |
+| Profil de risque | Lecture seule, à côté du score, recommandations sourcées, pas de calcul. Les recommandations ne sont pas dans le prototype : la liste de la Commission Lancet 2024 reste à relire | Q22 |
 | Langue | Interface en anglais | Q23 |
 | Mise en ligne | Un seul service (FastAPI sert aussi le frontend), sur Render, avec l'offre payante d'entrée pendant l'évaluation | Q24, Q41, Q43 |
 | Stockage | SQLite ; audio supprimé après transcription, transcript supprimé chez ElevenLabs | Q25 |
@@ -126,5 +126,17 @@ Ce sont les points incertains des specs, tranchés par les questions Q29 à Q43 
 ## 6. Points encore ouverts
 
 - **MyMémoires** (Q28) : ce qu'il enregistre et à quel rythme, à préciser par Thibaut.
-- **Tests de Scribe** ([référence technique](../tech/elevenlabs-scribe.md), section 9). Ils fixeront la détection des faux départs, le seuil de confiance du contrôle qualité et la validité des frontières d'énoncés.
-- **Liste de fréquences des mots** : à choisir selon sa licence.
+- **Tests de Scribe** ([référence technique](../tech/elevenlabs-scribe.md), section 9). Les premiers appels réels ont eu lieu le 2026-11-14, sur des voix de synthèse. Les 5 tests sur de vraies voix restent à faire : ils fixeront la détection des faux départs, le seuil de confiance du contrôle qualité et la validité des frontières d'énoncés.
+- ~~Liste de fréquences des mots~~ : `wordfreq`, choisie selon sa licence ([third-party-components.md](../tech/third-party-components.md)).
+- **Conseils de prévention** : la liste de la Commission Lancet 2024 reste à relire avant d'écrire `prevention_notes`.
+- **Plan de validation** (exigence 6 du challenge) : à écrire.
+
+## 7. État du prototype au 2026-11-15
+
+Les quatre parties sont codées, testées et essayées de bout en bout avec Scribe et Mistral Medium 3.5 ([log.md](../log.md)). En plus de ce que prévoyaient les sections 1 à 3 :
+
+- **Textes figés des personas** : les sorties des étapes 2 et 4 des trois personas ont été produites une fois, puis figées, pour que la démo se rejoue à l'identique ([api.md](api.md), section 7).
+- **Repli sans modèle** : si le LLM est absent ou indisponible, l'étape 2 est sautée et l'étape 4 écrit un texte fixe à partir des mesures. Le niveau d'orientation n'en dépend jamais.
+- **Relance** d'une séance dont la transcription a échoué (`POST /api/sessions/{id}/retry`).
+- **Transcription annotée** (hésitations, répétitions, pauses, mots coupés) et panneau des anecdotes reprises, sur la fiche et sur le détail d'une séance.
+- **Mise en ligne prête** : image Docker et Blueprint Render, avec un disque persistant pour la base ([deploy-render.md](../tech/deploy-render.md)). L'image a été construite et lancée en local le 2026-11-15 ; le service Render reste à créer.

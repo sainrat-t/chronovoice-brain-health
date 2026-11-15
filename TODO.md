@@ -13,7 +13,8 @@
 - [x] 👤 Copier `backend/.env.example` en `backend/.env` et y mettre les clés : `MISTRAL_API_KEY` (ou `ANTHROPIC_API_KEY`) et `ELEVENLABS_API_KEY`.
 - [ ] 👤 Créer un compte Render, avec l'offre payante d'entrée pendant l'évaluation (du 20 au 30 novembre).
 - [ ] 👤 Fournir 1 ou 2 enregistrements en anglais pour tester Scribe : quelqu'un qui raconte un souvenir, avec son accord, sans données de vrais patients.
-- [x] 👥 Faire le premier commit et créer le dépôt privé, car le jury peut demander le code (git est initialisé, sans commit).
+- [x] 👥 Faire le premier commit et créer le dépôt GitHub, car le jury peut demander le code.
+- [ ] 👤 Le dépôt GitHub est **public** (constaté le 2026-11-15), alors que Q26 prévoyait un dépôt privé : le passer en privé, ou garder ce choix et mettre à jour Q26.
 
 ## Jeudi 12 et vendredi 13 novembre : specs
 
@@ -33,7 +34,7 @@
 ## Samedi 14 et dimanche 15 novembre : pipeline d'analyse
 
 - [x] 🤖 `backend/app/schemas.py` : le contrat d'interface entre les étapes, avec 40 tests.
-- [ ] 🤖 Étape 0 :
+- [x] 🤖 Étape 0 :
   - [x] client Scribe (fait le 2026-11-14, essayé sur des voix de synthèse ; les tests sur de vraies voix attendent des enregistrements) ;
   - [x] choix de la voix suivie ;
   - [x] contrôle qualité (seuil de confiance provisoire, à caler sur de vraies transcriptions).
@@ -67,7 +68,8 @@
 - [x] 🤖 Écrans définis dans les specs : liste, fiche, détail de séance, nouvelle séance, synthèse imprimable.
 - [x] 🤖 Enregistrement au micro dans le navigateur, envoi, suivi du traitement, affichage du résultat. Le parcours par fichier importé a été essayé de bout en bout ; l'enregistrement au micro lui-même reste à essayer.
 - [ ] 👤 Essayer l'enregistrement au micro sur ton ordinateur (Chrome et Safari), et relire les écrans.
-- [x] 🤖 Préparer la mise en ligne : `Dockerfile`, `render.yaml`, guide `docs/tech/deploy-render.md` (fait le 2026-11-14).
+- [x] 🤖 Préparer la mise en ligne : `Dockerfile`, `render.yaml`, guide `docs/tech/deploy-render.md` (fait le 2026-11-14). Image construite et lancée en local le 2026-11-15, une vraie séance traitée de bout en bout.
+- [x] 🤖 Relire toute la documentation contre le code (fait le 2026-11-15).
 - [ ] 👤 Mise en ligne avec accès invité (slide 11 du template) : créer le Blueprint dans Render et saisir les deux clés (guide pas à pas). Les autres réglages et le disque persistant sont déjà dans `render.yaml`.
 - [ ] 👥 Test de bout en bout.
 

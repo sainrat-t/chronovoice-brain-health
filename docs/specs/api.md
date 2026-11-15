@@ -17,6 +17,8 @@ generated: "2026-11-12"
 - **Pydantic v2** à toutes les frontières. Le JSON est en snake_case.
 - **Pas de compte dans la démo** (accès invité). L'endpoint d'intégration est protégé par une clé d'API partagée, passée dans l'en-tête `X-Integration-Key`.
 - **Secrets** : `ELEVENLABS_API_KEY`, `MISTRAL_API_KEY` (ou `ANTHROPIC_API_KEY`) et `INTEGRATION_API_KEY` viennent de variables d'environnement (`backend/.env`, jamais commité). Les réglages du modèle sont dans [pipeline.md](pipeline.md), « Appel au modèle ».
+  - Sans `ELEVENLABS_API_KEY`, les deux envois de séance répondent `503`. Sans `INTEGRATION_API_KEY`, l'endpoint d'intégration répond `503`.
+- **Autres variables** : `LLM_PROVIDER`, `MISTRAL_MODEL`, `MISTRAL_REASONING_EFFORT` (le modèle) ; `CHRONOVOICE_DB` (la base), `CHRONOVOICE_AUDIO_DIR` (l'audio en attente, par défaut le dossier temporaire du système), `CHRONOVOICE_FRONTEND_DIST` (l'interface construite) ; `PORT` (le port d'écoute de l'image Docker, 10000 par défaut).
 
 ## 2. Endpoints
 
@@ -35,6 +37,11 @@ generated: "2026-11-12"
 | `GET /api/prompts?person_id=…` | une question d'amorce jamais posée à cette personne, et ses relances | `Prompt` |
 | `POST /api/integrations/recordings` | une application externe dépose un enregistrement | `202` et `{session_id, status}` |
 
+Précisions (relevées dans le code le 2026-11-15) :
+
+- `POST /api/people` répond `201`. Chaque réponse `202` porte aussi `status_url`, l'adresse du suivi.
+- Codes d'erreur : `404` pour une personne ou une séance inconnue ; `409` pour une relance d'une séance qui n'est pas `failed`, ou dont l'audio n'est plus là ; `413` pour un fichier de plus de 100 Mo ; `422` pour un fichier vide, des métadonnées invalides ou une langue non prise en charge.
+
 ## 3. Traitement asynchrone d'une séance
 
 Statuts successifs : `received → transcribing → analysing → summarising → done`. Deux autres issues sont possibles : `rejected` (contrôle qualité, avec ses raisons) et `failed` (erreur technique, avec un message).
@@ -43,22 +50,25 @@ Statuts successifs : `received → transcribing → analysing → summarising �
 - **Suivi** : le frontend interroge `/status` toutes les 2 secondes.
 - **Erreurs** :
   - Si Scribe échoue, on fait un nouvel essai, puis la séance passe en `failed` ; l'audio est gardé pour pouvoir relancer (`POST /api/sessions/{session_id}/retry`).
-  - Si l'étape 2 ou 4 échoue, les marqueurs et le niveau restent valables. La séance passe en `done`, avec la mention « summary unavailable ».
+  - Si l'étape 2 échoue (modèle absent ou indisponible, réponse rejetée), elle est sautée sans bruit : la séance passe en `done`, sans analyse du récit.
+  - Si le modèle de l'étape 4 échoue, ou si ses deux brouillons sont rejetés, la synthèse est écrite avec le **texte fixe** construit à partir des mesures ([pipeline.md](pipeline.md), étape 4). La séance passe en `done`.
+  - La mention « summary unavailable » ne reste que pour deux cas rares : pas de comparaison possible, ou une erreur imprévue en écrivant la synthèse. Les marqueurs et le niveau restent valables.
 - **Cible** : moins de 2 minutes pour 5 minutes d'audio (Q17).
 
 ## 4. Stockage (Q25)
 
-- **SQLite**, un seul fichier dans `backend/data/`.
+- **SQLite**, un seul fichier : `backend/data/chronovoice.sqlite3` en local, `/var/data/chronovoice.sqlite3` sur le disque persistant de Render (`CHRONOVOICE_DB`).
 - Tables :
   - `people` ;
-  - `sessions` (métadonnées, statut, qualité) ;
-  - `session_results` (transcription de la personne, marqueurs, comparaison, récit, en JSON validé par Pydantic) ;
+  - `sessions` (métadonnées, statut, erreur, chemin de l'audio en attente) ;
+  - `session_results` (la transcription complète, toutes voix comprises ; le rapport de qualité et les marqueurs ; le récit ; en JSON validé par Pydantic). La comparaison de l'étape 3 n'est pas stockée : elle est recalculée à chaque lecture (section 7) ;
   - `summaries` ;
   - `risk_profiles`.
 - **Audio** :
   - écrit dans un dossier temporaire ;
   - **supprimé dès que la transcription est enregistrée** ;
   - la transcription est ensuite supprimée chez ElevenLabs (`DELETE /v1/speech-to-text/transcripts/{id}`).
+  - **Limite** : l'audio d'une séance `failed` est gardé pour la relance, et n'est jamais supprimé automatiquement. Sur Render, ce dossier temporaire n'est pas sur le disque persistant : il disparaît à chaque redéploiement, et la relance répond alors `409`.
 - **Personas** : leurs séances sont chargées au démarrage depuis `backend/data/synthetic/` ([synthetic-data.md](synthetic-data.md)), avec `synthetic: true`.
 - **Remise à zéro** : une commande remet la base dans l'état de la démo, pour pouvoir rejouer le scénario.
 
@@ -72,14 +82,14 @@ Statuts successifs : `received → transcribing → analysing → summarising �
 - `metadata` : un JSON qui contient :
   - `source_app`, par exemple `"mymemoires"` ;
   - `external_person_id` : l'identifiant de la personne dans l'application source, que l'API associe à une personne ChronoVoice et crée si elle n'existe pas ;
-  - `task_type`, `language`, `consent`, `recorded_at` ;
-  - en option, `target_speaker_hint` (quelle voix suivre) et `context`.
+  - `language`, `consent`, `recorded_at` ;
+  - en option : `task_type` (`life_story` par défaut), `target_speaker_hint` (quelle voix suivre), `context`, et `display_name` et `birth_year` pour une personne créée à cette occasion.
 
 **Réponse** : `202`, avec `session_id` et l'URL de suivi.
 
 **Webhook sortant** : hors prototype. On le documente dans le deck comme prochaine étape.
 
-L'endpoint sera documenté dans l'OpenAPI générée par FastAPI (`/docs`), avec un exemple d'appel `curl` dans le README du backend.
+L'endpoint est documenté dans l'OpenAPI générée par FastAPI (`/docs`), avec un exemple d'appel `curl` dans le [README](../../README.md) à la racine du dépôt.
 
 ## 6. Mise en ligne
 
@@ -87,8 +97,8 @@ L'endpoint sera documenté dans l'OpenAPI générée par FastAPI (`/docs`), avec
   - Prendre l'offre payante d'entrée pendant l'évaluation, du 20 au 30 novembre : l'offre gratuite se met en veille, et le premier chargement serait lent pour le jury.
   - Vercel a été écarté. D'après sa doc, une requête est limitée à 4,5 Mo, une fonction dure au plus 300 s sur l'offre gratuite, et il n'y a pas de fichier SQLite persistant. Il aurait fallu Vercel Blob pour l'audio, un découpage en 3 appels et une base Postgres ([Vercel Functions Limits](https://vercel.com/docs/functions/limitations)).
 - **HTTPS obligatoire**, pour l'accès au micro dans le navigateur.
-- **Disque persistant** (ajouté le 2026-11-14) : sur Render, le système de fichiers d'un service est effacé à chaque redémarrage ou déploiement. Sans disque persistant pour la base SQLite, la base revient à l'état de la démo, et les séances enregistrées pendant l'évaluation sont perdues. À décider lors de la mise en ligne.
-- **Variables d'environnement** sur la plateforme ; aucune clé dans le dépôt (Q26 : dépôt GitHub privé).
+- **Disque persistant** (ajouté le 2026-11-14) : sur Render, le système de fichiers d'un service est effacé à chaque redémarrage ou déploiement. Sans disque persistant pour la base SQLite, la base revient à l'état de la démo, et les séances enregistrées pendant l'évaluation sont perdues. Décidé le 2026-11-14 : un disque de 1 Go (précisions ci-dessous).
+- **Variables d'environnement** sur la plateforme ; aucune clé dans le dépôt. Q26 prévoyait un dépôt GitHub privé ; le 2026-11-15, il est public (point ouvert dans le TODO).
 
 ### Précisions du 2026-11-14, en préparant la mise en ligne
 

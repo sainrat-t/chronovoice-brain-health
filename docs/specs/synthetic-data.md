@@ -19,9 +19,11 @@ Trois personnes fictives, anglophones, de 70 à 80 ans. Elles vivent à Abu Dhab
 
 | Persona | Âge | Profil | Trajectoire obtenue dans le pipeline |
 |---|---|---|---|
-| **Margaret Hale** | 78 | infirmière à la retraite, britannique | **Déclin progressif à partir de la 6e séance.** `stable` jusqu'à la 6e, `monitor` à la 7e, `review_recommended` de la 8e à la 10e. Elle raconte de nouveau la même anecdote aux séances 8, 9 et 10, sans s'en rendre compte |
-| **Rajesh Menon** | 74 | ingénieur à la retraite, indien, anglophone | **Stable** sur les 10 séances. À la 7e, il revient sur une anecdote en disant lui-même qu'il l'a déjà racontée |
-| **Grace Santos** | 72 | enseignante à la retraite, philippine, anglophone | **Stable.** Sa 7e séance est écourtée après une mauvaise nuit : elle est `partial` (trop courte, confiance de transcription faible), avec un contexte défavorable, et elle ne change pas le niveau |
+| **Margaret Hale** | 78 | infirmière à la retraite, britannique | **Déclin progressif à partir de la 6e séance.** Référence en construction aux séances 1 à 3 (`building_baseline`), `stable` de la 4e à la 6e, `monitor` à la 7e, `review_recommended` de la 8e à la 10e. Elle raconte de nouveau la même anecdote aux séances 8, 9 et 10, sans s'en rendre compte |
+| **Rajesh Menon** | 74 | ingénieur à la retraite, indien, anglophone | **Stable.** Référence en construction aux séances 1 à 3, puis `stable` de la 4e à la 10e. À la 7e, il revient sur une anecdote en disant lui-même qu'il l'a déjà racontée |
+| **Grace Santos** | 72 | enseignante à la retraite, philippine, anglophone | **Stable.** Référence en construction aux séances 1 à 3, puis `stable`. Sa 7e séance est écourtée après une mauvaise nuit : elle est `partial` (trop courte, confiance de transcription faible), avec un contexte défavorable, et elle ne change pas le niveau |
+
+- **Faux positifs de l'étape 2, visibles dans la démo.** Dans les textes figés de Rajesh (Mistral Medium 3.5, 2026-11-14), l'analyse du récit garde 5 reprises d'anecdote en plus de celle de la 7e séance, alors qu'aucune n'était prévue : aux séances 2 et 7 (dans la séance même), deux à la séance 8 (vers la 5e), et une à la 10e (vers la 4e). L'interface les montre comme « not mentioned by the person ». C'est la limite de cette étape expérimentale, hors de l'indice ; ces textes restent à relire (TODO).
 
 - Les noms sont inventés et ne visent aucune personne réelle. Profils validés le 2026-11-12.
 - Le déclin de Margaret commence à la 6e séance, et non à la 5e comme prévu au départ : sa référence personnelle compte ainsi 5 séances sans déclin.
@@ -79,7 +81,6 @@ Le thème du récit pèse sur les marqueurs sémantiques. Un récit centré sur 
 
 Chaque persona a un profil en lecture seule, marqué « shared with consent » :
 
-- antécédents ;
 - tension artérielle ;
 - diabète ;
 - cholestérol ;

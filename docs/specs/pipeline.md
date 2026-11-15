@@ -48,14 +48,14 @@ Enregistrement + métadonnées
 
 **Traitement**
 
-1. **Transcription** par ElevenLabs Scribe v3, avec les réglages de la [référence technique](../tech/elevenlabs-scribe.md), section 3 : verbatim, horodatage par mot, diarisation, `num_speakers=2`.
+1. **Transcription** par ElevenLabs Scribe v3, avec les réglages de la [référence technique](../tech/elevenlabs-scribe.md), section 3 : verbatim, horodatage par mot, diarisation, langue imposée (celle des métadonnées). `num_speakers=2` n'est envoyé que pour un enregistrement fait dans l'interface (la personne et le soignant) ; pour une intégration, Scribe compte les voix lui-même.
+   - **Si Scribe échoue** (fichier illisible, panne), la transcription est essayée deux fois, puis la séance passe en `failed` avec le message de Scribe. Elle n'est pas `rejected` : l'audio est gardé pour qu'on puisse relancer le traitement. Un fichier vide est refusé dès l'envoi (`422`).
 2. **Voix suivie.** C'est le locuteur qui prononce le plus de mots. En consultation, la personne parle beaucoup plus que le soignant (**choix de conception**). Une intégration peut indiquer la voix à suivre. La part de parole de la personne est affichée.
 3. **Tours de parole.** Un tour est une suite de mots de la personne sans mot de l'interlocuteur entre eux.
 4. **Contrôle qualité.** Il classe la séance :
    - **`rejected`** si l'une de ces conditions est vraie :
      - aucun mot de la personne ;
-     - langue détectée différente de la langue attendue (les codes à 2 lettres de Scribe sont convertis en codes à 3 lettres) ;
-     - fichier illisible.
+     - langue détectée différente de la langue attendue (les codes à 2 lettres de Scribe sont convertis en codes à 3 lettres). Comme la langue attendue est imposée à Scribe, ce cas ne devrait pas se produire : le contrôle reste comme garde-fou.
    - **`partial`** si l'une de ces conditions est vraie :
      - moins de 150 mots lexicaux de la personne (fiche 08) ;
      - moins de 2 minutes de parole de la personne (Q8, **choix de conception** validé le 2026-11-12) ;
@@ -116,7 +116,7 @@ Ils sont orientés dans le sens du déclin décrit par la littérature, et ils o
 | Id | Définition | Sens avec le déclin | Source |
 |---|---|---|---|
 | `pronoun_index` | pronoms / (noms + pronoms) | ↑ | définition : 08 ; évolution sur 18 mois : 09 |
-| `noun_ratio` | noms / mots lexicaux | ↓ | 09 |
+| `noun_ratio` | noms / mots lexicaux | ↓ | 09 ; 08 |
 | `mean_word_frequency` | fréquence de Zipf moyenne des mots pleins connus de `wordfreq` | ↑ (vocabulaire plus courant) | 09. Le choix de ne compter que les mots pleins est à confirmer à la lecture de 09 |
 | `mean_word_length` | nombre moyen de lettres par mot lexical | ↓ | 09 |
 | `maze_index` | (hésitations + répétitions immédiates + mots coupés) / nombre d'énoncés | ↑ | 08 (facteur fluence) |
@@ -135,7 +135,7 @@ Précisions sur le `maze_index` :
 |---|---|---|---|
 | `pauses_between_per100w` | silences ≥ 250 ms entre deux énoncés, pour 100 mots lexicaux | Le sens de l'effet est incertain : il augmente chez 06 par compensation, mais Pistono 2019 ne trouve pas d'excès dans le récit de souvenir | seuil et définition : 06 |
 | `pauses_within_per100w` | silences ≥ 250 ms à l'intérieur d'un énoncé, pour 100 mots lexicaux | aucune différence chez 06 | 06 |
-| `mattr_50` | MATTR, fenêtre de 50 mots lexicaux, calculé seulement si la personne en a dit au moins 150 | soutien faible (08, 09) | méthode : Covington & McFall 2010, *J Quant Linguist* 17(2):94–100, DOI [10.1080/09296171003643098](https://doi.org/10.1080/09296171003643098). Référence vérifiée sur Crossref : la revue n'est indexée ni par PubMed ni par Europe PMC. La fenêtre de 50 vient du cahier des charges initial |
+| `mattr_50` | MATTR, fenêtre de 50 mots lexicaux, calculé seulement si la personne en a dit au moins 150 | soutien faible (08, 09) | fiches citées par le code : 03, 08 ; méthode : Covington & McFall 2010, *J Quant Linguist* 17(2):94–100, DOI [10.1080/09296171003643098](https://doi.org/10.1080/09296171003643098). Référence vérifiée sur Crossref : la revue n'est indexée ni par PubMed ni par Europe PMC. La fenêtre de 50 vient du cahier des charges initial |
 
 **Calcul d'une pause.**
 
@@ -201,14 +201,20 @@ t = (x_N − moyenne_ref) / (sd_ref × √((n+1)/n))      ddl = n − 1, avec n 
 
 - Le `t` est orienté dans le sens du déclin : positif quand le marqueur bouge dans le sens décrit par la littérature.
 - Un marqueur est **significatif** quand son `t` atteint le seuil unilatéral à α = 0,05 de la loi de Student : 2,92 avec 3 séances de référence, 2,35 avec 4, 2,13 avec 5.
-- Un marqueur n'est pas testé s'il manque une valeur, ou si la référence n'a aucune variation pour lui.
+- Le test est **unilatéral**, dans le sens du déclin : un marqueur qui bouge beaucoup dans l'autre sens n'est pas significatif, et il est décrit comme resté dans la zone habituelle.
+- Un marqueur n'est pas testé :
+  - s'il manque sa valeur pour la séance, ou pour l'une des séances de référence ;
+  - si la référence n'a aucune variation pour lui ;
+  - si le sens de son effet est incertain : c'est le cas des deux marqueurs de pauses, jamais testés ;
+  - s'il a moins de 2 valeurs de référence : il est alors laissé de côté.
+- Le MATTR est testé et peut être signalé hors de la zone, mais il ne compte pas dans la règle : il est hors de l'indice.
 
-**Par séance.** On compte les marqueurs significatifs parmi les 6 marqueurs de l'indice.
+**Par séance.** On compte les marqueurs significatifs parmi les marqueurs de l'indice qui ont pu être testés (6 au plus).
 
-- Une séance est **en écart** quand **au moins 2 marqueurs sur 6** sont significatifs.
-- C'est une **chute rapide** quand **au moins 4 marqueurs sur 6** le sont.
+- Une séance est **en écart** quand **au moins 2 marqueurs** de l'indice sont significatifs.
+- C'est une **chute rapide** quand **au moins 4 marqueurs** de l'indice le sont.
 
-**L'indice d'écart**, affiché « Change from baseline », est la moyenne des z-scores orientés des 6 marqueurs.
+**L'indice d'écart**, affiché « Change from baseline », est la moyenne des z-scores orientés des marqueurs de l'indice testés.
 
 - Chaque z-score est calculé par rapport à la référence, et tous les marqueurs ont le même poids (méthode du score composite de 09).
 - Il s'exprime en écarts-types de la variabilité habituelle de la personne : 0 veut dire « comme d'habitude », une valeur positive va vers le déclin.
@@ -267,7 +273,7 @@ Seules les séances `usable` comptent.
   - Si le contexte est défavorable, une séance en écart déclenche au plus `monitor`, même en cas de chute rapide : elle ne peut pas confirmer une revue.
   - Elle compte tout de même comme un premier signal : si la séance suivante est aussi en écart, avec un contexte normal, la revue est recommandée.
   - Le contexte pondère la fiabilité de la séance ; ce n'est pas un facteur de risque (H9). C'est un **choix de conception** : aucune étude ne l'appuie.
-- **Séance `partial`.** Elle est comparée à la référence pour l'affichage, mais elle ne change pas le niveau, ne rejoint pas la référence et n'interrompt pas une suite de séances en écart.
+- **Séance `partial`.** Elle est comparée à la référence pour l'affichage, mais elle ne change pas le niveau, ne rejoint pas la référence et n'interrompt pas une suite de séances en écart. Une fois la référence constituée, elle reçoit la règle `carried_over` : le niveau précédent est gardé, et sa synthèse est rédigée sous le titre de ce niveau.
 - **Vieillissement normal.** Sur les quelques mois du prototype, on n'en corrige pas l'effet : il est négligeable devant le bruit d'une séance à l'autre ([synthesis.md](../discovery/synthesis.md), section 4).
 
 **Sortie** : `LongitudinalComparisonResult`. Elle contient la référence (séances, moyennes, écarts-types), les `t` par marqueur, l'index, les sous-scores, le niveau, la règle appliquée et l'incertitude.
@@ -279,8 +285,8 @@ Seules les séances `usable` comptent.
 - **Entrée**, structurée uniquement :
   - le niveau, la règle qui l'a déclenché et l'action proposée ;
   - le nombre de séances de référence, la qualité de la séance et le contexte ;
-  - pour chaque marqueur : sa valeur, la zone habituelle de la personne, s'il sort de la zone et, s'il en sort, dans quel sens (plus haut ou plus bas que d'habitude ; pour un marqueur resté dans la zone, le sens n'est pas donné, pour que le texte n'annonce pas un écart que les mesures ne montrent pas), et les fiches d'étude qu'on peut citer pour lui ;
-  - quelques passages de la transcription **choisis par calcul** et numérotés : les énoncés qui contiennent le plus d'hésitations et de répétitions, et ceux où les pronoms dépassent le plus les noms. Le modèle rattache un passage à un constat **par son numéro** ; il ne recopie pas de texte, et c'est le code qui place le passage exact (révisé le 2026-11-14 : les modèles recopiaient le passage avec son étiquette).
+  - pour chaque marqueur : sa valeur, la zone habituelle de la personne, s'il sort de la zone et, s'il en sort, dans quel sens (plus haut ou plus bas que d'habitude ; pour un marqueur resté dans la zone, le sens n'est pas donné, pour que le texte n'annonce pas un écart que les mesures ne montrent pas), et les fiches d'étude qu'on peut citer pour lui. « Sortir de la zone » veut dire « significatif dans le sens du déclin » (test unilatéral de l'étape 3) ; un marqueur non testé, comme les pauses, est donné comme « not tested » ;
+  - quelques passages de la transcription **choisis par calcul** et numérotés : les énoncés qui contiennent le plus d'hésitations et de répétitions (au moins 2), et ceux où les pronoms dépassent le plus les noms (au moins 3 pronoms, et plus de pronoms que de noms), 2 passages au plus pour chaque raison. Ces seuils sont des **choix de conception**. Le modèle rattache un passage à un constat **par son numéro** ; il ne recopie pas de texte, et c'est le code qui place le passage exact (révisé le 2026-11-14 : les modèles recopiaient le passage avec son étiquette).
 - **Le profil de risque n'est pas envoyé au modèle** dans la v1 : il reste affiché à côté, sans être mêlé à la synthèse.
 - **L'analyse du récit (étape 2) n'est pas envoyée au modèle** non plus (révisé le 2026-11-14). Elle est expérimentale et hors de l'indice : elle reste affichée dans sa propre section, « Experimental, not in the index ». Raison : le modèle l'avait reprise dans les phrases destinées à la personne (« You also repeated a story you had told before »), puis, quand on le lui a interdit, dans des constats sans marqueur, rejetés par le validateur.
 - **Qui écrit quoi** (révisé le 2026-11-14, après le premier essai réel). Le modèle n'écrit que ce qui demande une mise en mots ; ce qui est déjà décidé ou chiffré est écrit par le code.
@@ -301,6 +307,7 @@ Seules les séances `usable` comptent.
   - `review` : `draft`, puis `validated` après le clic du soignant (exigence 5 du challenge) ;
   - `generation_mode` et `model_id` : comment le texte a été produit, et par quel modèle.
 - **Validateur.** Il rejette un brouillon :
+  - qui ne respecte pas le schéma attendu, qui laisse un texte vide, ou qui n'a aucun constat ;
   - qui nomme une affection, même pour l'écarter : « diagnosis », « diagnostic », « Alzheimer's », « dementia », « cognitive impairment », « MCI » (règle 1 de CLAUDE.md). Le contrat `schemas.py` applique la même liste ;
   - dont un constat ne cite aucun marqueur, ou cite un marqueur qui n'a pas été comparé pour cette séance ;
   - dont un constat annonce un écart pour un marqueur resté dans la zone habituelle, ou l'inverse. Chaque constat déclare s'il parle de marqueurs sortis de la zone habituelle (`beyond_usual_range`), et le code compare cette déclaration aux tests de l'étape 3 ;
@@ -337,7 +344,10 @@ Les étapes ne dépendent pas d'un fournisseur : elles passent par un petit cont
 - **Propre à Anthropic** : niveau d'effort `medium` fixé explicitement ; si le modèle décline une requête, l'API la rejoue sur un modèle de repli dans le même appel (`fallbacks`, en bêta).
 - **Propre à Mistral** : température à 0 et `top_p` à 1, envoyés tous les deux. Avec la température à 0 seule, Mistral Large refuse la requête (erreur 400, `top_p` doit valoir 1 ; constaté le 2026-11-14). Même ainsi, les réponses varient d'un essai à l'autre.
 - **Raisonnement, propre à Mistral** : la variable `MISTRAL_REASONING_EFFORT` règle l'effort de raisonnement du modèle. Sans elle, on ne l'envoie pas. Les valeurs acceptées dépendent du modèle (constaté le 2026-11-14) : `none` ou `high` pour Mistral Small 4 ; `low`, `medium` ou `high` pour Mistral Large 4, qui raisonne toujours.
+- **Limites d'un appel** : délai de 90 s ; réponse limitée à 16 000 jetons chez Claude et 8 000 chez Mistral ; le SDK d'Anthropic refait une fois une requête échouée.
+- **Configuration incohérente** : si `LLM_PROVIDER` nomme un fournisseur sans sa clé, ou un fournisseur inconnu, l'API refuse de démarrer, avec un message clair.
 - **Le modèle qui a réellement répondu** est enregistré avec chaque texte.
+- **Personas de la démo** : leurs textes des étapes 2 et 4 ne sont pas générés à chaque démarrage. Ils ont été produits une fois par Mistral Medium 3.5 le 2026-11-14, puis figés dans `backend/data/synthetic/llm_snapshot/` ([api.md](api.md), section 7).
 - **Cache de prompts** : non utilisé. Les consignes sont trop courtes pour être mises en cache.
 - **Essai réel** : `backend/scripts/try_llm_steps.py` rejoue les étapes 2 et 4 sur une persona et affiche ce qui a été gardé, écarté ou rejeté. Pour l'étape 2, il compare le résultat à ce que les personas contiennent par construction : les reprises d'anecdote de Margaret (séances 8, 9, 10) et de Rajesh (séance 7). Résultat du 2026-11-14 avec le code corrigé et Mistral Medium 3.5, sur les 3 personas : les 4 reprises attendues sont retrouvées ; 3 autres sont gardées chez Rajesh alors qu'aucune n'était prévue (rappels ou souvenirs voisins) ; les 8 synthèses demandées au modèle passent les contrôles au premier essai. Les réponses varient d'un essai à l'autre : ces chiffres sont un ordre de grandeur. Détail dans [`../log.md`](../log.md).
 
@@ -351,7 +361,9 @@ Ce sont des modèles Pydantic v2, et les étapes ne s'échangent rien d'autre. I
 | `SessionTranscript`, `QualityReport` | étape 0 | `AudioTranscriptSegment` |
 | `SessionMetrics` | étape 1 | `SessionMetrics` |
 | `NarrativeAnalysis` | étape 2 | — |
+| `AnalysedSession` | API (entrée de l'étape 3 : métadonnées et sorties des étapes 0 et 1) | — |
 | `LongitudinalComparisonResult` | étape 3 | `LongitudinalComparisonResult` |
+| `RiskProfile` | données de la personne (affiché à part, hors du pipeline) | — |
 | `ClinicalSummaryReport` | étape 4 | `ClinicalSummaryReport` |
 
 Tout objet tiré de données de démonstration porte `synthetic: true` (règle 3).

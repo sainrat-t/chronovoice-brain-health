@@ -108,22 +108,24 @@ La FAQ précise aussi que :
 
 \* = obligatoire dans le template.
 
-| # | Slide | Consigne du template | Ce qu'on a déjà |
+La dernière colonne a été mise à jour le 2026-11-15, une fois le prototype codé : elle indique où trouver la matière de chaque slide.
+
+| # | Slide | Consigne du template | Où trouver la matière (état au 2026-11-15) |
 |---|---|---|---|
-| 1 | Couverture | Team Name, Team Size, Problem Statement | — |
-| 2 | Team members\* | Nom, pays, rôle, organisation, confirmation d'âge (5 lignes) | — |
-| 3 | Team Capability Summary\* | 1 000 caractères maximum | — |
-| 4 | Architecture or workflow diagram\* | — | architecture v0.3 ([synthesis.md](discovery/synthesis.md), section 4), à compléter (section 6) |
-| 5 | Target users and intended outcome\* | — | à écrire |
-| 6 | How will success be measured?\* | — | rien : voir l'exigence 6 du challenge |
-| 7 | Evidence supporting the approach\* | Citations, études, benchmarks ou tests préalables | **10 fiches d'études et 9 compléments, références vérifiées sur PubMed** ([discovery](discovery/README.md)) |
-| 8 | Data sources and legal right to use them\* | Source, type, propriétaire, sensibilité, autorisations, données personnelles ou non | règle « données synthétiques seulement » de CLAUDE.md |
-| 9 | Risks and safeguards\* | Vie privée, sécurité, biais, explicabilité, mauvais usage, supervision humaine, modes de défaillance | règles de sécurité clinique de CLAUDE.md |
+| 1 | Couverture | Team Name, Team Size, Problem Statement | — (👤) |
+| 2 | Team members\* | Nom, pays, rôle, organisation, confirmation d'âge (5 lignes) | — (👤) |
+| 3 | Team Capability Summary\* | 1 000 caractères maximum | — (👤) |
+| 4 | Architecture or workflow diagram\* | — | pipeline en 5 étapes, dont 2 seulement font appel à un LLM : [specs/pipeline.md](specs/pipeline.md) ; le service (API, stockage, intégration) : [specs/api.md](specs/api.md). Le schéma reste à dessiner |
+| 5 | Target users and intended outcome\* | — | le soignant de soins primaires et la personne suivie : [specs/overview.md](specs/overview.md), section 1 ; les 5 écrans : [specs/clinician-ui.md](specs/clinician-ui.md) |
+| 6 | How will success be measured?\* | — | taux de fausses alertes simulé de la règle d'orientation : [specs/pipeline.md](specs/pipeline.md), étape 3 ; critères de réussite du prototype : [specs/overview.md](specs/overview.md), section 5. Le plan de validation (exigence 6) reste à écrire |
+| 7 | Evidence supporting the approach\* | Citations, études, benchmarks ou tests préalables | **10 fiches d'études et 9 compléments, références vérifiées sur PubMed** ([discovery](discovery/README.md)) ; essais réels de Scribe et des LLM : [log.md](log.md), 2026-11-14 |
+| 8 | Data sources and legal right to use them\* | Source, type, propriétaire, sensibilité, autorisations, données personnelles ou non | données synthétiques générées par nous : [specs/synthetic-data.md](specs/synthetic-data.md) ; ce qui est stocké et supprimé : [specs/api.md](specs/api.md), section 4 ; hébergement de la transcription : [tech/elevenlabs-scribe.md](tech/elevenlabs-scribe.md), section 7 |
+| 9 | Risks and safeguards\* | Vie privée, sécurité, biais, explicabilité, mauvais usage, supervision humaine, modes de défaillance | règles de sécurité clinique de CLAUDE.md, vérifiées par le contrat [`schemas.py`](../backend/app/schemas.py) ; contrôles de la sortie des LLM : [specs/pipeline.md](specs/pipeline.md), étapes 2 et 4 ; validation de la synthèse par le soignant : [specs/clinician-ui.md](specs/clinician-ui.md) |
 | 10 | Hardware requirements | Seulement s'il y a du matériel (approvisionnement, sécurité) | sans objet (logiciel seul) |
-| 11 | Accès à l'application | Identifiants valides, ou bouton « Continue as Guest » donnant accès à toutes les fonctionnalités | à prévoir : accès invité au dashboard |
-| 12 | Path to pilot and scale\* | Parties prenantes, intégration, réglementation, calendrier, pérennité | à écrire |
-| 13 | Pre-existing IP and third-party materials\* | Propriété, licences, composants open source, restrictions | à établir au fil des dépendances |
-| 14 | Conflict of interest declaration\* | Liens avec les organisateurs, partenaires ou membres du jury | — |
+| 11 | Accès à l'application | Identifiants valides, ou bouton « Continue as Guest » donnant accès à toutes les fonctionnalités | accès sans compte à l'adresse Render : [tech/deploy-render.md](tech/deploy-render.md). Mise en ligne à faire (👤) |
+| 12 | Path to pilot and scale\* | Parties prenantes, intégration, réglementation, calendrier, pérennité | module branchable et endpoint d'intégration : [specs/api.md](specs/api.md), section 5. Le reste est à écrire |
+| 13 | Pre-existing IP and third-party materials\* | Propriété, licences, composants open source, restrictions | [tech/third-party-components.md](tech/third-party-components.md) |
+| 14 | Conflict of interest declaration\* | Liens avec les organisateurs, partenaires ou membres du jury | — (👤) |
 | 15 | Additional Slide | libre | — |
 | 16 | Slide de clôture | image seule, pas de texte | — |
 
@@ -207,12 +209,25 @@ Le plan de départ prévoyait de lire 10 études, puis de figer l'architecture, 
 - **La slide 7 (preuves)** : la discovery a déjà produit un corpus vérifié, ce que peu d'équipes auront.
 - **Le positionnement** : la baseline personnelle et l'absence de diagnostic répondent directement aux exigences 2 et 5 et au critère « Responsible AI, safety and data governance ».
 
+### 6.5 Les 6 exigences face au prototype (2026-11-15)
+
+Ce que le code couvre, une fois le prototype écrit. C'est la matière de la partie « limites » de la documentation technique.
+
+| # | Exigence | Couvert par le prototype | Reste ouvert |
+|---|---|---|---|
+| 1 | Évaluation accessible et culturellement valide | Récit de vie oral, sans lecture, écriture ni épreuve chronométrée. Trois façons de capter une séance : le micro dans le navigateur, un fichier importé, ou une autre application par l'endpoint d'intégration. Tout ce qui dépend de la langue passe par un adaptateur (`backend/app/language/`). | Un seul adaptateur, l'anglais. Aucune adaptation aux déficits sensoriels ni au faible accès numérique. Aucune étude du corpus ne porte sur l'arabe. |
+| 2 | Détection du changement dans le temps | Référence personnelle de 3 à 5 séances, test de chaque marqueur contre elle, règle de comptage (2 marqueurs sur 6 pour une séance en écart, 4 pour une chute rapide) et niveaux `stable`, `monitor`, `review_recommended` : [specs/pipeline.md](specs/pipeline.md), étape 3. | Plusieurs seuils sont des choix de conception non sourcés (persistance sur 2 séances, chute rapide, délai de 2 semaines). La santé fonctionnelle n'est pas mesurée. |
+| 3 | Contexte de risque intégré | Un profil de risque (`RiskProfile`), séparé du score vocal : il est affiché sur la fiche et n'entre pas dans le niveau d'orientation. Le contexte de chaque séance (sommeil, fatigue, maladie aiguë, nouveau traitement, humeur) pondère sa fiabilité. | Le profil n'existe que pour les personas synthétiques : aucun écran ne permet de le saisir. Ses rubriques ne suivent pas encore la liste de la Commission Lancet 2024. Ni génomique, ni objets connectés, ni données métaboliques. |
+| 4 | Prévention personnalisée et orientation | Une explication en langage clair pour la personne : une observation rédigée par le LLM, puis une suite proposée écrite par le code selon le niveau (nouvelle séance sous 2 semaines, ou échange avec un professionnel de santé). | Les conseils de prévention (`prevention_notes`) sont vides tant que la liste Lancet n'est pas relue. Pas d'orientation vers une spécialité précise (neurologie, gériatrie, santé mentale). |
+| 5 | Sécurité et supervision humaine | Vocabulaire diagnostique refusé et pas de niveau sous 3 séances de référence, tous deux vérifiés par le contrat `schemas.py`. Le niveau est décidé par le calcul, jamais par un LLM. La sortie des LLM est vérifiée, avec un texte fixe de repli. La synthèse est validée par le soignant, avec son nom et la date. | Pas de parcours décrit au-delà de la recommandation de revue : qui reçoit l'alerte, dans quel délai. |
+| 6 | Validation et performance locale | Taux de fausses alertes simulé pour une personne stable : 3 à 7 % des séances en écart, revue recommandée à tort dans 0,3 à 2,1 % des séances ([specs/pipeline.md](specs/pipeline.md), étape 3). | Le plan de validation reste à écrire (TODO du 19 novembre). Aucune donnée réelle : ni sensibilité, ni spécificité, ni fiabilité test-retest. |
+
 ## 7. Questions ouvertes
 
 - [ ] Heure et fuseau horaire exacts de la remise du 20 novembre, et exigences complètes de soumission (lien de démo ? vidéo ? dépôt de code ?) : à vérifier dans le dashboard hack2skill.
 - [ ] Composition de l'équipe (slides 1, 2, 3 et 14).
 - [x] Langue de la démo : **anglais**, conception multilingue (décidé le 2026-11-12).
-- [ ] Persona anglophone du mock, à la place de « Jeanne, 78 ans ».
+- [x] Persona anglophone du mock, à la place de « Jeanne, 78 ans » : trois personas anglophones, Margaret, Grace et Rajesh ([specs/synthetic-data.md](specs/synthetic-data.md)), générées le 2026-11-13.
 - [ ] MyMémoires, premier cas d'intégration : ce qu'il enregistre, à quel rythme, et comment il se présente dans le deck.
 - [ ] Maturité déclarée : projet démarré pendant le challenge ?
 - [ ] Le droit de premier refus de 6 mois prévu par le règlement est-il acceptable ?

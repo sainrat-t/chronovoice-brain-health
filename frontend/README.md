@@ -5,7 +5,7 @@ person's change from their own baseline, session details with the highlighted
 transcript, recording a new session with the microphone, and a printable summary.
 Specification: [`docs/specs/clinician-ui.md`](../docs/specs/clinician-ui.md).
 
-Stack: Vite, React 19, TypeScript (strict), Tailwind CSS 4, Recharts, Lucide.
+Stack: Vite, React 19, React Router 7, TypeScript (strict), Tailwind CSS 4, Recharts, Lucide.
 
 ## Run
 
