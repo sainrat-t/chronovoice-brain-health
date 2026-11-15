@@ -1,0 +1,26 @@
+# Render Blueprint for the ChronoVoice Brain prototype (docs/specs/api.md, section 6).
+# Secrets are entered in the Render Dashboard when the Blueprint is created.
+services:
+  - type: web
+    name: chronovoice-brain
+    runtime: docker
+    region: frankfurt
+    plan: 0.5c-512mb
+    healthCheckPath: /health
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: CHRONOVOICE_DB
+        value: /var/data/chronovoice.sqlite3
+      - key: LLM_PROVIDER
+        value: mistral
+      - key: MISTRAL_MODEL
+        value: mistral-medium-latest
+      - key: MISTRAL_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: INTEGRATION_API_KEY
+        generateValue: true

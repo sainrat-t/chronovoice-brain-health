@@ -1,0 +1,23 @@
+# Secrets and local data never go into the image.
+**/.env
+**/.env.*
+**/*.sqlite3
+**/*.sqlite3-*
+**/*.wav
+**/*.m4a
+**/*.webm
+
+# Built or installed locally; rebuilt in the image.
+**/node_modules
+frontend/dist
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+
+# Not needed to run the service.
+.git
+.claude
+docs
+backend/tests

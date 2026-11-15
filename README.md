@@ -60,6 +60,7 @@ Audio recording + metadata (RecordingMetadata)
 │   └── tests/                   # pytest suite (pipeline, schemas, synthetic data, OKF docs)
 ├── frontend/                    # Clinician interface (Vite + React + TS + Tailwind + Recharts)
 ├── docs/                        # OKF v0.2 knowledge bundle (discovery, specs v1, tech, log)
+├── Dockerfile, render.yaml      # Deployment on Render (docs/tech/deploy-render.md)
 ├── CLAUDE.md                    # Full project guide and development rules
 ├── AGENTS.md                    # Reference instructions for coding agents
 └── TODO.md                      # Schedule through the November 20, 2026 submission
@@ -107,6 +108,12 @@ VITE_API_TARGET=http://127.0.0.1:8000 npm run dev
 
 `npm run build` writes `frontend/dist/`; the API then serves the interface itself, on
 the same origin (http://127.0.0.1:8000). Details in [`frontend/README.md`](frontend/README.md).
+
+### Deployment
+
+The repository holds a `Dockerfile` (the API serving the built interface) and a Render
+Blueprint, `render.yaml`. Steps, secrets and the demo reset are in
+[`docs/tech/deploy-render.md`](docs/tech/deploy-render.md).
 
 ### Integration endpoint (pluggable module)
 

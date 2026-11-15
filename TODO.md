@@ -67,7 +67,8 @@
 - [x] 🤖 Écrans définis dans les specs : liste, fiche, détail de séance, nouvelle séance, synthèse imprimable.
 - [x] 🤖 Enregistrement au micro dans le navigateur, envoi, suivi du traitement, affichage du résultat. Le parcours par fichier importé a été essayé de bout en bout ; l'enregistrement au micro lui-même reste à essayer.
 - [ ] 👤 Essayer l'enregistrement au micro sur ton ordinateur (Chrome et Safari), et relire les écrans.
-- [ ] 🤖 Mise en ligne avec accès invité (slide 11 du template). Variables à régler sur Render : `MISTRAL_API_KEY`, `MISTRAL_MODEL=mistral-medium-latest`, `LLM_PROVIDER=mistral`, `ELEVENLABS_API_KEY`, `INTEGRATION_API_KEY`. Décider d'un disque persistant pour la base SQLite (sinon, retour à l'état de la démo à chaque redémarrage).
+- [x] 🤖 Préparer la mise en ligne : `Dockerfile`, `render.yaml`, guide `docs/tech/deploy-render.md` (fait le 2026-11-14).
+- [ ] 👤 Mise en ligne avec accès invité (slide 11 du template) : créer le Blueprint dans Render et saisir les deux clés (guide pas à pas). Les autres réglages et le disque persistant sont déjà dans `render.yaml`.
 - [ ] 👥 Test de bout en bout.
 
 ## Jeudi 19 novembre : dossier de soumission

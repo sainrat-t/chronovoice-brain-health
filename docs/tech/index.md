@@ -11,4 +11,5 @@ tags: [tech, index, pipeline]
 | Fichier | Type | Rôle | Statut |
 |---|---|---|---|
 | [`elevenlabs-scribe.md`](elevenlabs-scribe.md) | `tech-reference` | Réglages, format de réponse, pauses, contrôle qualité et conformité pour ElevenLabs `scribe_v3` (étape 0) | `stable` |
+| [`deploy-render.md`](deploy-render.md) | `tech-guide` | Mise en ligne sur Render : Blueprint, image Docker, secrets, disque, remise à zéro de la démo (en anglais) | `draft` |
 | [`third-party-components.md`](third-party-components.md) | `tech-reference` | Composants tiers (services, bibliothèques, modèles, données), rôle et licence de chacun, pour la slide 13 du deck | `draft` |

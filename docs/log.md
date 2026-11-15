@@ -12,6 +12,10 @@ Historique chronologique du bundle `docs/` (entrées les plus récentes en premi
 
 ## 2026-11-14
 
+- **Mise en ligne préparée** ([`specs/api.md`](specs/api.md), section 6) :
+  - `Dockerfile` à la racine : Node construit l'interface, puis Python 3.12 et uv font tourner l'API, qui sert l'interface ;
+  - `render.yaml` : un service web à Frankfurt, plan `0.5c-512mb`, disque de 1 Go pour la base SQLite, contrôle de santé sur `/health` ;
+  - nouveau guide [`tech/deploy-render.md`](tech/deploy-render.md), en anglais : les étapes à faire dans Render, les secrets, la remise à zéro de la démo.
 - **Interface soignant codée** (`frontend/`, précisions dans [`specs/clinician-ui.md`](specs/clinician-ui.md), section 5) :
   - les 5 écrans de la spec ;
   - types générés depuis l'OpenAPI du backend ;

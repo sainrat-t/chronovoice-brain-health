@@ -86,6 +86,7 @@ frontend/   Vite + React + TypeScript + Tailwind + Lucide + Recharts : interface
               src/api/         types générés depuis l'OpenAPI du backend (schema.d.ts), alias (types.ts), appels (client.ts)
               src/pages/       les 5 écrans ; src/components/ sections et graphiques ; src/lib/ utilitaires, micro
 docs/       base de connaissances OKF v0.2 (racine docs/index.md) : discovery, tech, challenge
+Dockerfile  image du service (interface construite + API) ; render.yaml : Blueprint Render (docs/tech/deploy-render.md)
 ```
 
 ## Commandes

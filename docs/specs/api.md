@@ -90,6 +90,21 @@ L'endpoint sera documenté dans l'OpenAPI générée par FastAPI (`/docs`), avec
 - **Disque persistant** (ajouté le 2026-11-14) : sur Render, le système de fichiers d'un service est effacé à chaque redémarrage ou déploiement. Sans disque persistant pour la base SQLite, la base revient à l'état de la démo, et les séances enregistrées pendant l'évaluation sont perdues. À décider lors de la mise en ligne.
 - **Variables d'environnement** sur la plateforme ; aucune clé dans le dépôt (Q26 : dépôt GitHub privé).
 
+### Précisions du 2026-11-14, en préparant la mise en ligne
+
+Sources : documentation de Render, consultée le 2026-11-14 ([Persistent Disks](https://render.com/docs/disks), [Blueprint YAML Reference](https://render.com/docs/blueprint-spec), [Pricing](https://render.com/pricing)).
+
+- **Image Docker** (`Dockerfile` à la racine), en deux étapes : Node construit l'interface, puis une image Python 3.12 installe le backend avec uv et sert l'interface construite. Une image évite de dépendre de la présence de Node dans l'environnement Python natif de Render.
+- **Configuration déclarée** dans `render.yaml` (un « Blueprint ») : un service web, région `frankfurt`, la plus proche d'Abu Dhabi parmi les 5 proposées ; contrôle de santé sur `/health`.
+- **Plan** (formules du 2026-11-14) : **`0.5c-512mb`** (moins d'un CPU, 512 Mo, 7 $/mois). Mémoire mesurée en local le 2026-11-14 : 220 Mo après le chargement des personas, et 220 Mo au plus fort du traitement d'une séance en direct. Si le service manque de mémoire ou s'avère trop lent, passer à `1c-2g` (1 CPU, 2 Go, 25 $/mois).
+- **Disque persistant** : 1 Go monté sur `/var/data`, avec `CHRONOVOICE_DB=/var/data/chronovoice.sqlite3` (0,25 $ par Go et par mois). Conséquences, d'après la doc de Render :
+  - les séances enregistrées pendant l'évaluation sont gardées d'un redéploiement à l'autre ;
+  - un redéploiement coupe le service quelques secondes (pas de déploiement sans interruption avec un disque) ;
+  - une seule instance ; Render fait un instantané du disque chaque jour, gardé 7 jours ;
+  - la base n'est plus rechargée à chaque démarrage : pour revenir à l'état de la démo, lancer `python -m scripts.reset_demo` depuis le shell du service.
+- **Secrets** : `MISTRAL_API_KEY` et `ELEVENLABS_API_KEY` sont saisies par Thibaut dans Render à la création (`sync: false`) ; `INTEGRATION_API_KEY` est générée par Render. Les réglages non secrets (`LLM_PROVIDER`, `MISTRAL_MODEL`, `CHRONOVOICE_DB`) sont dans `render.yaml`.
+- **Accès invité** : l'URL est publique, sans compte. Toute personne qui la connaît peut envoyer un enregistrement, ce qui consomme des crédits ElevenLabs et Mistral. Pour un prototype évalué pendant 10 jours, le risque est jugé faible ; une limite d'envois par heure serait la prochaine protection.
+
 ## 7. Précisions du 2026-11-14, avant le code
 
 Choix faits en codant l'API. Ils complètent les sections précédentes sans les contredire.
