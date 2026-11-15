@@ -10,6 +10,13 @@ tags: [okf, changelog, decisions]
 
 Historique chronologique du bundle `docs/` (entrées les plus récentes en premier).
 
+## 2026-11-15
+
+- **Image Docker vérifiée en local** ([`tech/deploy-render.md`](tech/deploy-render.md), section « What was checked before the first deploy ») :
+  - construction complète réussie, pour arm64 et pour l'architecture de Render (amd64) ;
+  - conteneur lancé comme sur Render (volume pour la base) : personas chargées, interface servie, une vraie séance traitée de bout en bout par Scribe et Mistral Medium, un fichier audio corrompu bien refusé ;
+  - le guide décrit désormais ce que montrent vraiment les logs : les requêtes, et une ligne par étape en échec.
+
 ## 2026-11-14
 
 - **Mise en ligne préparée** ([`specs/api.md`](specs/api.md), section 6) :

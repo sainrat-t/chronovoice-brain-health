@@ -68,18 +68,21 @@ These steps need your Render account; they are yours to do.
   ```
 
   The personas come back and every recorded session is removed.
-- **Logs**: the service's Logs page shows each session's processing, and the model calls.
+- **Logs**: the service's Logs page shows each request, and one plain line when a step fails (for example `transcription of s-… failed: …`, once per attempt). A session that goes well writes nothing beyond its requests.
 - **Daily snapshots**: Render snapshots the disk every day and keeps each snapshot for 7 days.
 
 ## What was checked before the first deploy
 
-On 2026-11-14, on the development machine:
+On the development machine (an Apple Silicon Mac, Docker Desktop):
 
-- **The base images exist**: `node:22.16-slim`, `python:3.12-slim` and `ghcr.io/astral-sh/uv:0.10.2`.
-- **The install of the image works**: `uv sync --locked --no-dev`, without the development tools.
-- **The start command of the image works**, on a fresh database, with the built interface: `/health`, the pages and `/api/people` answer. Without keys, a recording is refused with a clear message (503).
-- **Memory**: 220 MB.
-- **Not checked**: a full `docker build`. The local Docker Desktop stayed stuck while fetching the base images. The first build on Render is therefore the first full build; its log is in the service's Events page.
+- **2026-11-14, without Docker**: the install of the image (`uv sync --locked --no-dev`) and its start command work; without keys, a recording is refused with a clear message (503). Memory: 220 MB.
+- **2026-11-15, full `docker build`**, for the machine's architecture (arm64) and for Render's (`--platform linux/amd64`, under emulation): both build.
+- **2026-11-15, the container run as on Render**: the keys from `backend/.env`, `CHRONOVOICE_DB=/var/data/chronovoice.sqlite3` on a Docker volume, port 10000.
+  - On a fresh volume, the three personas load before the API answers; `/health`, the pages and the API answer, and the interface is served.
+  - A real 71-second recording (speech synthesis, two voices) is transcribed by Scribe, measured, and analysed by Mistral Medium in about 2 seconds; the session is "partial" (under 2 minutes) and the orientation stays "building baseline 0/3". The audio file is deleted after processing.
+  - A corrupted audio file ends as "failed", with Scribe's message, after two attempts; each attempt writes one line in the logs.
+  - Memory: about 195 MB for the arm64 image, 215 MB for the amd64 image under emulation.
+- **Not checked**: the build on Render itself, and recording with the microphone over HTTPS.
 
 ## Things to know
 
