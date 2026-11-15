@@ -30,7 +30,7 @@ Tout ce qu'on sait du hackathon dans lequel s'inscrit ChronoVoice Brain.
 
 ## 0. L'essentiel
 
-- **À rendre le vendredi 20 novembre 2026** : un prototype qui fonctionne, une documentation technique (hypothèses, dépendances, limites) et le deck de soumission (template de 16 slides, dont 11 obligatoires). L'heure et le fuseau horaire ne sont pas précisés.
+- **À rendre le vendredi 20 novembre 2026** : le deck de soumission (template de 16 slides, dont 11 obligatoires), les champs du formulaire hack2skill (résumé, état, ce qui a été construit pendant le challenge, type de technologie), un lien vers le prototype en ligne et une **vidéo de démonstration**. **Pas de PDF technique séparé à uploader** (vérifié le 2026-11-15) : les hypothèses, dépendances et limites demandées par la FAQ sont intégrées au deck et au dépôt. L'heure et le fuseau horaire exacts restent à vérifier.
 - **Il reste 8 jours** à compter d'aujourd'hui (jeudi 12 novembre).
 - **Cible : Abu Dhabi.** Le challenge demande une évaluation adaptée aux langues, aux niveaux d'études et à la culture de la population locale.
 - **Aucune donnée n'est fournie**, pas même des données synthétiques.
@@ -104,6 +104,8 @@ La FAQ précise aussi que :
 - les exigences complètes sont communiquées à l'inscription, donc à vérifier dans le dashboard hack2skill ;
 - le code source peut être demandé pour l'évaluation.
 
+> **Précision du formulaire hack2skill (vérifiée le 2026-11-15)** : aucun PDF technique séparé n'est demandé à l'envoi. Le formulaire attend le deck (template de 16 slides), le résumé de la solution, l'état de la solution, ce qui a été construit pendant le challenge, le type de technologie, un lien vers le prototype et une **vidéo de démonstration**. Les hypothèses, dépendances et limites évoquées dans la FAQ sont donc intégrées directement dans le deck (slides 4, 8, 9, 12, 13 et 15) et dans la documentation du dépôt (`README.md`, `docs/`).
+
 ### Le deck de soumission (template officiel)
 
 \* = obligatoire dans le template.
@@ -125,9 +127,9 @@ La dernière colonne a été mise à jour le 2026-11-15, une fois le prototype c
 | 11 | Accès à l'application | Identifiants valides, ou bouton « Continue as Guest » donnant accès à toutes les fonctionnalités | accès sans compte à l'adresse Render : [tech/deploy-render.md](tech/deploy-render.md). Mise en ligne à faire (👤) |
 | 12 | Path to pilot and scale\* | Parties prenantes, intégration, réglementation, calendrier, pérennité | module branchable et endpoint d'intégration : [specs/api.md](specs/api.md), section 5. Le reste est à écrire |
 | 13 | Pre-existing IP and third-party materials\* | Propriété, licences, composants open source, restrictions | [tech/third-party-components.md](tech/third-party-components.md) |
-| 14 | Conflict of interest declaration\* | Liens avec les organisateurs, partenaires ou membres du jury | — (👤) |
-| 15 | Additional Slide | libre | — |
-| 16 | Slide de clôture | image seule, pas de texte | — |
+| 14 | Conflict of interest declaration\* | Liens avec les organisateurs, partenaires ou membres du jury (Future Health Abu Dhabi, Hack2Skill, Microsoft, Inception42, MBZUAI) | — (👤) |
+| 15 | Additional Slide | libre | captures de l'interface + synthèse des hypothèses, limites et plan de validation |
+| 16 | Slide de clôture | image « Thank you » du template | — |
 
 ## 5. Règles et conditions
 
@@ -224,7 +226,8 @@ Ce que le code couvre, une fois le prototype écrit. C'est la matière de la par
 
 ## 7. Questions ouvertes
 
-- [ ] Heure et fuseau horaire exacts de la remise du 20 novembre, et exigences complètes de soumission (lien de démo ? vidéo ? dépôt de code ?) : à vérifier dans le dashboard hack2skill.
+- [ ] Heure et fuseau horaire exacts de la remise du 20 novembre : à vérifier dans le dashboard hack2skill.
+- [x] Exigences de soumission du formulaire (vérifiées le 2026-11-15) : deck de 16 slides, résumé, état, construit pendant le challenge, type de technologie, lien vers le prototype et vidéo de démo ; pas de PDF technique séparé.
 - [ ] Composition de l'équipe (slides 1, 2, 3 et 14).
 - [x] Langue de la démo : **anglais**, conception multilingue (décidé le 2026-11-12).
 - [x] Persona anglophone du mock, à la place de « Jeanne, 78 ans » : trois personas anglophones, Margaret, Grace et Rajesh ([specs/synthetic-data.md](specs/synthetic-data.md)), générées le 2026-11-13.

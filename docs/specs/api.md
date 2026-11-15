@@ -98,7 +98,7 @@ L'endpoint est documenté dans l'OpenAPI générée par FastAPI (`/docs`), avec 
   - Vercel a été écarté. D'après sa doc, une requête est limitée à 4,5 Mo, une fonction dure au plus 300 s sur l'offre gratuite, et il n'y a pas de fichier SQLite persistant. Il aurait fallu Vercel Blob pour l'audio, un découpage en 3 appels et une base Postgres ([Vercel Functions Limits](https://vercel.com/docs/functions/limitations)).
 - **HTTPS obligatoire**, pour l'accès au micro dans le navigateur.
 - **Disque persistant** (ajouté le 2026-11-14) : sur Render, le système de fichiers d'un service est effacé à chaque redémarrage ou déploiement. Sans disque persistant pour la base SQLite, la base revient à l'état de la démo, et les séances enregistrées pendant l'évaluation sont perdues. Décidé le 2026-11-14 : un disque de 1 Go (précisions ci-dessous).
-- **Variables d'environnement** sur la plateforme ; aucune clé dans le dépôt. Q26 prévoyait un dépôt GitHub privé ; le 2026-11-15, il est public (point ouvert dans le TODO).
+- **Variables d'environnement** sur la plateforme ; aucune clé dans le dépôt. Le dépôt GitHub est public, pour publier sur Render sans difficulté (Q26, changé le 2026-11-15).
 
 ### Précisions du 2026-11-14, en préparant la mise en ligne
 

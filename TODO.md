@@ -8,13 +8,13 @@
 
 - [ ] 👤 Vérifier dans le dashboard hack2skill :
   - l'heure et le fuseau horaire de la remise ;
-  - les exigences complètes de soumission (lien de démo ? vidéo ? dépôt de code ?).
+  - [x] les exigences de soumission (vérifiées le 2026-11-15) : deck 16 slides, résumé/état/construit pendant le challenge/type de techno, lien prototype, vidéo de démo ; pas de PDF technique séparé.
 - [x] 👤 Répondre au questionnaire des specs : [`docs/specs/questions.md`](docs/specs/questions.md). Reste Q28 (MyMémoires).
 - [x] 👤 Copier `backend/.env.example` en `backend/.env` et y mettre les clés : `MISTRAL_API_KEY` (ou `ANTHROPIC_API_KEY`) et `ELEVENLABS_API_KEY`.
 - [ ] 👤 Créer un compte Render, avec l'offre payante d'entrée pendant l'évaluation (du 20 au 30 novembre).
 - [ ] 👤 Fournir 1 ou 2 enregistrements en anglais pour tester Scribe : quelqu'un qui raconte un souvenir, avec son accord, sans données de vrais patients.
 - [x] 👥 Faire le premier commit et créer le dépôt GitHub, car le jury peut demander le code.
-- [ ] 👤 Le dépôt GitHub est **public** (constaté le 2026-11-15), alors que Q26 prévoyait un dépôt privé : le passer en privé, ou garder ce choix et mettre à jour Q26.
+- [x] 👤 Dépôt GitHub public ou privé : il reste **public**, pour publier sur Render sans difficulté (décision du 2026-11-15, Q26 mise à jour).
 
 ## Jeudi 12 et vendredi 13 novembre : specs
 
@@ -75,10 +75,11 @@
 
 ## Jeudi 19 novembre : dossier de soumission
 
-- [ ] 👥 Deck sur le template de 16 slides. 👤 Slides sur l'équipe : 1, 2, 3 et 14.
-- [ ] 🤖 Documentation technique : hypothèses, dépendances, limites.
-- [ ] 🤖 Plan de validation (exigence 6 du challenge), simulé sur les personas.
-- [ ] 👥 Répétition de la démo : 7 minutes, puis 3 minutes de questions.
+- [ ] 👥 Deck sur le template de 16 slides (en anglais). 👤 Slides sur l'équipe : 1, 2, 3 et 14.
+- [ ] 👥 Champs du formulaire hack2skill (résumé de la solution, état, construit pendant le challenge, type de technologie, lien prototype).
+- [ ] 🤖 Plan de validation (exigence 6 du challenge), simulé sur les personas — à intégrer dans le deck (slides 6 et 15) et `docs/`.
+- [ ] 👤 Vidéo de démonstration de la solution (captures réelles du prototype + habillage en anglais).
+- [ ] 👥 Répétition de la démo : 7 minutes, puis 3 minutes de questions (si passage live jury).
 
 ## Vendredi 20 novembre : remise
 

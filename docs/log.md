@@ -12,6 +12,7 @@ Historique chronologique du bundle `docs/` (entrées les plus récentes en premi
 
 ## 2026-11-15
 
+- **Précision des livrables de soumission** ([`challenge.md`](challenge.md), [`TODO.md`](../TODO.md)) : vérification sur le formulaire hack2skill et le template officiel de 16 slides (partenaires affichés : Future Health Abu Dhabi, Hack2Skill, Microsoft, Inception42, MBZUAI). Pas de PDF technique séparé à uploader : le dossier comprend le deck de 16 slides, les champs du formulaire (résumé, état, construit pendant le challenge, type de technologie), le lien vers le prototype et une vidéo de démonstration ; les hypothèses, dépendances et limites sont intégrées dans le deck et la doc du dépôt.
 - **Relecture de toute la documentation contre le code**, avant la rédaction de la documentation technique (PDF). Corrigés :
   - [`challenge.md`](challenge.md) : où trouver la matière de chaque slide, et nouvelle section 6.5, les 6 exigences face au prototype (ce qui est couvert, ce qui reste ouvert) ;
   - [`discovery/synthesis.md`](discovery/synthesis.md), section 4 : un encadré liste ce qui a changé en codant la v0.3 (contrôle qualité, marqueurs, test par marqueur et règle de comptage, étape 2 hors des étapes 3 et 4) ; la contrainte « modèle local » de la section 3 est marquée levée pour le prototype ;
@@ -23,7 +24,7 @@ Historique chronologique du bundle `docs/` (entrées les plus récentes en premi
   - [`tech/elevenlabs-scribe.md`](tech/elevenlabs-scribe.md) : appel en HTTP sans SDK, voix suivie, contrôle qualité codé ;
   - [`tech/third-party-components.md`](tech/third-party-components.md) : rôle de chaque modèle, images Docker, uv, Render, extensions de Vite, `httpx2`, textes figés ;
   - index, README, CLAUDE.md, TODO et `backend/.env.example`.
-- **Constaté** : le dépôt GitHub est public, alors que Q26 prévoyait un dépôt privé. Point ajouté au TODO.
+- **Constaté** : le dépôt GitHub est public, alors que Q26 prévoyait un dépôt privé. **Décision de Thibaut** : il reste public, pour publier sur Render sans difficulté ; Q26 est mise à jour ([`specs/questions.md`](specs/questions.md)).
 - **Image Docker vérifiée en local** ([`tech/deploy-render.md`](tech/deploy-render.md), section « What was checked before the first deploy ») :
   - construction complète réussie, pour arm64 et pour l'architecture de Render (amd64) ;
   - conteneur lancé comme sur Render (volume pour la base) : personas chargées, interface servie, une vraie séance traitée de bout en bout par Scribe et Mistral Medium, un fichier audio corrompu bien refusé ;

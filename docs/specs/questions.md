@@ -217,6 +217,8 @@ Proposition : oui, privé, partagé sur demande.
 
 Réponse : ok, proposition validée le 2026-11-12.
 
+**Changé le 2026-11-15** : le dépôt reste **public**, pour publier sur Render sans difficulté (choix de Thibaut). Aucune clé n'est dans le dépôt : elles sont saisies dans Render.
+
 ## F. Équipe et MyMémoires
 
 **Q27. Qui est dans l'équipe, et qui fait quoi** (deck, démo, slides sur l'équipe) ?
